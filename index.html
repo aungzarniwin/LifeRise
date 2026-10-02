@@ -2,127 +2,112 @@
 <html lang="my">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
 <meta name="theme-color" content="#0b0d12">
-<meta name="description" content="LifeRise - Build a Better Life">
 <title>LifeRise — Build a Better Life</title>
 
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
   --bg:#080a0f;
-  --bg2:#0d1017;
-  --card:#11151e;
-  --card2:#151a24;
+  --bg2:#0e1118;
+  --card:#121620;
+  --card2:#171c27;
+  --gold:#d8b15a;
+  --gold2:#f0d48a;
+  --text:#f5f5f2;
+  --muted:#9298a5;
   --line:rgba(255,255,255,.08);
-  --text:#f5f2e9;
-  --muted:#9ca3af;
-  --gold:#d7ae58;
-  --gold2:#f0cf79;
-  --green:#4ade80;
-  --red:#fb7185;
-  --blue:#60a5fa;
-  --purple:#a78bfa;
-  --orange:#fb923c;
-  --radius:22px;
-  --shadow:0 20px 60px rgba(0,0,0,.28);
+  --green:#55c98a;
+  --red:#ef7272;
+  --blue:#70a7ff;
+  --purple:#a88cff;
+  --radius:20px;
+  --sidebar:250px;
 }
 
-*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",
+  "Noto Sans Myanmar","Myanmar Text",sans-serif;
   background:
-    radial-gradient(circle at 20% 0%,rgba(215,174,88,.10),transparent 28%),
-    radial-gradient(circle at 90% 10%,rgba(96,165,250,.06),transparent 25%),
+    radial-gradient(circle at 80% -10%,rgba(216,177,90,.13),transparent 30%),
+    radial-gradient(circle at 0% 30%,rgba(112,167,255,.06),transparent 25%),
     var(--bg);
   color:var(--text);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans Myanmar",sans-serif;
   min-height:100vh;
 }
-
 button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-a{text-decoration:none;color:inherit}
+button:disabled{opacity:.45;cursor:not-allowed}
 
-.app{
-  display:flex;
-  min-height:100vh;
-}
-
-/* SIDEBAR */
+.app{min-height:100vh}
 .sidebar{
-  width:260px;
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  width:var(--sidebar);
   background:rgba(9,11,16,.94);
   border-right:1px solid var(--line);
-  position:fixed;
-  inset:0 auto 0 0;
+  padding:22px 15px;
   z-index:50;
-  padding:22px 14px;
-  overflow-y:auto;
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(18px);
+  overflow:auto;
 }
-
 .logo{
-  padding:8px 12px 22px;
-  border-bottom:1px solid var(--line);
-  margin-bottom:16px;
-}
-.logo-main{
-  font-size:23px;
-  font-weight:900;
-  letter-spacing:2px;
-  color:var(--gold2);
-}
-.logo-sub{
-  font-size:10px;
-  letter-spacing:2px;
-  color:#777d89;
-  margin-top:4px;
-}
-
-.nav-title{
-  font-size:10px;
-  color:#626975;
-  letter-spacing:1.5px;
-  text-transform:uppercase;
-  padding:10px 12px 7px;
-}
-
-.nav-btn{
-  width:100%;
-  border:0;
-  background:transparent;
-  color:#9da3af;
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:11px;
+  padding:5px 10px 25px;
+}
+.logo-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--gold),#8b6926);
+  display:grid;
+  place-items:center;
+  color:#15110a;
+  font-weight:900;
+}
+.logo-title{font-weight:900;letter-spacing:1.5px}
+.logo-sub{font-size:10px;color:var(--muted);letter-spacing:1.5px;margin-top:3px}
+
+.nav-label{
+  font-size:10px;
+  color:#666d7b;
+  letter-spacing:1.3px;
+  padding:12px 11px 7px;
+}
+.nav-btn{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:11px;
+  border:0;
+  background:transparent;
+  color:#9ba1ae;
   padding:11px 12px;
   border-radius:13px;
   margin:2px 0;
   text-align:left;
   transition:.2s;
 }
-.nav-btn:hover{
-  background:rgba(255,255,255,.05);
-  color:white;
-}
+.nav-btn:hover{background:#151922;color:white}
 .nav-btn.active{
-  background:linear-gradient(90deg,rgba(215,174,88,.17),rgba(215,174,88,.04));
+  background:linear-gradient(90deg,rgba(216,177,90,.17),rgba(216,177,90,.04));
   color:var(--gold2);
-  border:1px solid rgba(215,174,88,.15);
+  border:1px solid rgba(216,177,90,.15);
 }
 .nav-icon{width:20px;text-align:center}
-.nav-label{font-size:13px;font-weight:600}
 
 .main{
-  margin-left:260px;
-  width:calc(100% - 260px);
+  margin-left:var(--sidebar);
   min-height:100vh;
 }
-
-/* TOPBAR */
 .topbar{
-  height:72px;
+  height:70px;
   position:sticky;
   top:0;
   z-index:40;
@@ -130,61 +115,92 @@ a{text-decoration:none;color:inherit}
   align-items:center;
   justify-content:space-between;
   padding:0 28px;
-  border-bottom:1px solid var(--line);
-  background:rgba(8,10,15,.82);
+  background:rgba(8,10,15,.78);
   backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
 }
-.top-left{
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.page-title{
-  font-size:18px;
-  font-weight:800;
-}
-.page-sub{
-  font-size:11px;
-  color:var(--muted);
-}
-.top-actions{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.icon-btn{
-  width:40px;
-  height:40px;
-  border-radius:12px;
-  border:1px solid var(--line);
-  background:var(--card);
-  color:#ddd;
+.top-left{display:flex;align-items:center;gap:12px}
+.page-title{font-weight:800;font-size:18px}
+.page-kicker{font-size:11px;color:var(--muted);margin-top:2px}
+.top-right{display:flex;align-items:center;gap:10px}
+.streak-pill{
+  border:1px solid rgba(216,177,90,.2);
+  background:rgba(216,177,90,.07);
+  color:var(--gold2);
+  border-radius:30px;
+  padding:8px 12px;
+  font-size:12px;
 }
 .avatar{
-  width:40px;
-  height:40px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:linear-gradient(135deg,#f0cf79,#8c6726);
-  color:#111;
-  font-weight:900;
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,#d8b15a,#7e5d22);
+  color:#15110a;
+  display:grid;place-items:center;font-weight:900;
 }
 
-/* CONTENT */
-.content{
-  max-width:1500px;
-  margin:auto;
-  padding:28px;
-}
-
+.content{padding:28px;max-width:1500px;margin:auto}
 .page{display:none}
 .page.active{display:block;animation:fade .25s ease}
-@keyframes fade{
-  from{opacity:0;transform:translateY(5px)}
-  to{opacity:1;transform:none}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(216,177,90,.18);
+  border-radius:28px;
+  padding:30px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(216,177,90,.20),transparent 35%),
+    linear-gradient(135deg,#17140d,#11151e 65%);
+  margin-bottom:22px;
 }
+.hero:after{
+  content:"";
+  position:absolute;
+  width:250px;height:250px;
+  right:-90px;bottom:-120px;
+  border-radius:50%;
+  border:1px solid rgba(216,177,90,.15);
+  box-shadow:0 0 0 25px rgba(216,177,90,.025),
+             0 0 0 50px rgba(216,177,90,.02);
+}
+.hero-kicker{
+  color:var(--gold);
+  font-size:11px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin-bottom:9px;
+}
+.hero h1{
+  font-size:clamp(27px,4vw,45px);
+  line-height:1.15;
+  max-width:700px;
+}
+.hero p{
+  color:#b5bac4;
+  max-width:700px;
+  line-height:1.8;
+  margin-top:12px;
+}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+
+.btn{
+  border:1px solid var(--line);
+  background:#171c26;
+  color:#fff;
+  border-radius:12px;
+  padding:10px 15px;
+  transition:.2s;
+}
+.btn:hover{transform:translateY(-1px);background:#1c2330}
+.btn.primary{
+  color:#17130a;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  border:0;
+  font-weight:800;
+}
+.btn.small{padding:7px 11px;font-size:12px}
+.btn.danger{color:#ff9898}
 
 .grid{
   display:grid;
@@ -195,595 +211,436 @@ a{text-decoration:none;color:inherit}
 .g4{grid-template-columns:repeat(4,minmax(0,1fr))}
 
 .card{
-  background:linear-gradient(145deg,rgba(21,25,34,.95),rgba(12,15,21,.95));
+  background:linear-gradient(145deg,rgba(23,28,39,.94),rgba(14,17,24,.94));
   border:1px solid var(--line);
   border-radius:var(--radius);
   padding:20px;
-  box-shadow:var(--shadow);
+  box-shadow:0 12px 35px rgba(0,0,0,.13);
 }
-.card.flat{box-shadow:none}
-.card.gold{
-  border-color:rgba(215,174,88,.2);
-  background:
-    radial-gradient(circle at 90% 10%,rgba(215,174,88,.15),transparent 40%),
-    linear-gradient(145deg,#17150f,#101219);
-}
-
-.section-head{
+.card-title{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:15px;
-  margin:30px 0 14px;
-}
-.section-head:first-child{margin-top:0}
-.section-title{
-  font-size:18px;
-  font-weight:850;
-}
-.section-sub{
-  font-size:12px;
-  color:var(--muted);
-  margin-top:4px;
-}
-
-.btn{
-  border:0;
-  border-radius:12px;
-  padding:10px 15px;
-  font-weight:750;
-  transition:.2s;
-}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{
-  background:linear-gradient(135deg,#e7c66e,#b48736);
-  color:#14110a;
-}
-.btn-dark{
-  background:#191e28;
-  color:#ddd;
-  border:1px solid var(--line);
-}
-.btn-danger{
-  background:rgba(251,113,133,.1);
-  color:#fb7185;
-  border:1px solid rgba(251,113,133,.2);
-}
-.btn-small{padding:7px 10px;font-size:12px}
-
-.muted{color:var(--muted)}
-.gold-text{color:var(--gold2)}
-.green{color:var(--green)}
-.red{color:var(--red)}
-.blue{color:var(--blue)}
-.purple{color:var(--purple)}
-.orange{color:var(--orange)}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:5px;
-  padding:5px 9px;
-  border-radius:999px;
-  font-size:10px;
-  font-weight:800;
-  background:rgba(215,174,88,.10);
-  color:var(--gold2);
-  border:1px solid rgba(215,174,88,.15);
-}
-
-.progress{
-  height:8px;
-  background:#202530;
-  border-radius:99px;
-  overflow:hidden;
-}
-.progress>span{
-  display:block;
-  height:100%;
-  border-radius:inherit;
-  background:linear-gradient(90deg,#a97b2d,#f0cf79);
-}
-
-/* HERO */
-.hero{
-  min-height:280px;
-  padding:30px;
-  position:relative;
-  overflow:hidden;
-  border-radius:28px;
-  background:
-    radial-gradient(circle at 85% 20%,rgba(240,207,121,.22),transparent 28%),
-    radial-gradient(circle at 10% 100%,rgba(167,139,250,.12),transparent 30%),
-    linear-gradient(135deg,#17140d,#10131b 65%);
-  border:1px solid rgba(215,174,88,.18);
-  box-shadow:var(--shadow);
-}
-.hero:after{
-  content:"";
-  position:absolute;
-  width:240px;
-  height:240px;
-  right:-80px;
-  bottom:-120px;
-  border:1px solid rgba(215,174,88,.15);
-  border-radius:50%;
-}
-.hero-kicker{
-  color:var(--gold2);
-  font-size:11px;
-  letter-spacing:2px;
-  font-weight:900;
-}
-.hero h1{
-  font-size:34px;
-  line-height:1.15;
-  max-width:700px;
-  margin:12px 0 8px;
-}
-.hero p{
-  color:#b4b8c0;
-  max-width:650px;
-  line-height:1.7;
-  margin:0;
-}
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
   gap:10px;
-  margin-top:22px;
+  margin-bottom:15px;
 }
-
-/* SCORE */
-.score-wrap{
+.card-title h3{font-size:15px}
+.muted{color:var(--muted)}
+.small-text{font-size:12px;color:var(--muted);line-height:1.7}
+.section{
+  margin-top:28px;
+}
+.section-head{
   display:flex;
-  align-items:center;
-  gap:18px;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:14px;
 }
-.ring{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:conic-gradient(var(--gold2) var(--score,60%),#242933 0);
-  position:relative;
-}
-.ring:after{
-  content:"";
-  position:absolute;
-  inset:9px;
-  border-radius:50%;
-  background:#11151e;
-}
-.ring-inner{
-  position:relative;
-  z-index:2;
-  text-align:center;
-}
-.ring-number{
-  font-size:27px;
-  font-weight:900;
-}
-.ring-label{
-  font-size:9px;
-  color:var(--muted);
-}
+.section-head h2{font-size:20px}
+.section-head p{font-size:12px;color:var(--muted);margin-top:4px}
 
-/* STATS */
 .stat{
   min-height:130px;
 }
 .stat-icon{
-  font-size:22px;
+  width:35px;height:35px;border-radius:11px;
+  display:grid;place-items:center;
+  background:rgba(216,177,90,.1);
+  margin-bottom:13px;
 }
-.stat-value{
-  font-size:27px;
-  font-weight:900;
-  margin-top:10px;
-}
-.stat-label{
-  font-size:12px;
-  color:var(--muted);
-}
-.stat-note{
-  font-size:10px;
-  color:#727985;
-  margin-top:6px;
-}
+.stat-value{font-size:28px;font-weight:900}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px}
 
-/* LESSON */
-.lesson-card{
-  cursor:pointer;
-  transition:.2s;
+.progress{
+  height:7px;
+  border-radius:99px;
+  background:#252a34;
+  overflow:hidden;
 }
-.lesson-card:hover{
-  transform:translateY(-3px);
-  border-color:rgba(215,174,88,.3);
+.progress > div{
+  height:100%;
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  border-radius:99px;
 }
-.lesson-number{
-  font-size:12px;
-  color:var(--gold2);
-  font-weight:900;
-}
-.lesson-title{
-  font-size:17px;
-  font-weight:850;
-  margin:8px 0;
-}
-.lesson-desc{
-  font-size:12px;
-  line-height:1.7;
-  color:#9ea5b0;
-}
-.lesson-footer{
+.progress-label{
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  margin-top:15px;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:7px;
 }
 
-/* COURSE */
-.course{
+.ring{
+  --p:0;
+  width:110px;height:110px;
+  border-radius:50%;
+  background:conic-gradient(var(--gold) calc(var(--p)*1%),#252a34 0);
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+.ring:before{
+  content:"";
+  position:absolute;
+  inset:8px;
+  background:#121620;
+  border-radius:50%;
+}
+.ring-content{position:relative;text-align:center}
+.ring-value{font-size:24px;font-weight:900}
+.ring-label{font-size:9px;color:var(--muted)}
+
+.score-box{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.course-card{
+  min-height:210px;
   position:relative;
   overflow:hidden;
 }
-.course-icon{
-  width:50px;
-  height:50px;
-  border-radius:15px;
-  display:grid;
-  place-items:center;
-  font-size:23px;
-  background:rgba(215,174,88,.1);
-  margin-bottom:14px;
+.course-card .course-icon{
+  width:46px;height:46px;border-radius:15px;
+  display:grid;place-items:center;
+  font-size:21px;
+  background:rgba(216,177,90,.11);
+  margin-bottom:17px;
 }
-.course h3{margin:0 0 7px}
-.course p{
+.course-card h3{font-size:17px}
+.course-card p{
+  color:#9ca2ae;
   font-size:12px;
-  color:var(--muted);
-  line-height:1.65;
+  line-height:1.7;
+  margin-top:7px;
 }
-.module{
-  padding:15px;
-  border:1px solid var(--line);
-  border-radius:15px;
-  background:rgba(255,255,255,.025);
-  display:flex;
-  align-items:center;
-  gap:12px;
-  margin-bottom:9px;
-}
-.module-num{
-  width:32px;
-  height:32px;
-  border-radius:10px;
-  display:grid;
-  place-items:center;
-  background:#202630;
-  font-size:11px;
-  font-weight:800;
-}
-.module-body{flex:1}
-.module-title{font-size:13px;font-weight:800}
-.module-sub{font-size:10px;color:var(--muted);margin-top:3px}
-.lock{font-size:15px;color:#777}
-
-/* FORMS */
-.field{
-  margin-bottom:13px;
-}
-.field label{
-  display:block;
-  font-size:11px;
-  color:#a7adb7;
-  margin-bottom:6px;
-}
-.input,.textarea,.select{
-  width:100%;
-  background:#0c0f15;
-  border:1px solid var(--line);
-  border-radius:12px;
-  color:white;
-  padding:12px 13px;
-  outline:none;
-}
-.input:focus,.textarea:focus,.select:focus{
-  border-color:rgba(215,174,88,.45);
-}
-.textarea{
-  min-height:130px;
-  resize:vertical;
-}
-
-/* ASSESSMENT */
-.assess{
-  margin-bottom:18px;
-}
-.assess-top{
+.course-bottom{
   display:flex;
   justify-content:space-between;
-  margin-bottom:8px;
-  font-size:12px;
+  align-items:center;
+  margin-top:17px;
 }
-.range{
-  width:100%;
-  accent-color:var(--gold2);
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border-radius:30px;
+  padding:5px 9px;
+  background:#1b202b;
+  color:#aeb4c0;
+  font-size:10px;
+}
+.badge.gold{background:rgba(216,177,90,.1);color:var(--gold2)}
+.badge.green{background:rgba(85,201,138,.1);color:#75dba4}
+
+.lesson-list{display:grid;gap:10px}
+.lesson-item{
+  display:flex;
+  gap:13px;
+  align-items:flex-start;
+  padding:14px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:#11151d;
+}
+.lesson-number{
+  min-width:34px;height:34px;border-radius:10px;
+  background:#1d222c;
+  display:grid;place-items:center;
+  color:var(--gold2);font-size:12px;font-weight:800;
+}
+.lesson-item.done .lesson-number{
+  background:rgba(85,201,138,.14);
+  color:#75dba4;
+}
+.lesson-main{flex:1}
+.lesson-main h4{font-size:13px}
+.lesson-main p{font-size:11px;color:var(--muted);line-height:1.6;margin-top:3px}
+.lesson-actions{display:flex;gap:6px;align-items:center}
+
+.detail{
+  line-height:1.9;
+  color:#d5d8df;
+  font-size:14px;
+}
+.detail h3{
+  color:#f5f5f2;
+  font-size:18px;
+  margin:22px 0 8px;
+}
+.detail h4{
+  color:var(--gold2);
+  font-size:14px;
+  margin:18px 0 7px;
+}
+.detail p{margin:8px 0}
+.detail ul{padding-left:22px;margin:8px 0}
+.detail li{margin:5px 0}
+.example{
+  border-left:3px solid var(--gold);
+  background:rgba(216,177,90,.055);
+  padding:14px 16px;
+  border-radius:0 12px 12px 0;
+  margin:12px 0;
+}
+.action-box{
+  background:rgba(85,201,138,.055);
+  border:1px solid rgba(85,201,138,.13);
+  border-radius:14px;
+  padding:15px;
+  margin-top:14px;
+}
+.warning-box{
+  background:rgba(239,114,114,.05);
+  border:1px solid rgba(239,114,114,.13);
+  border-radius:14px;
+  padding:15px;
+  margin-top:14px;
 }
 
-/* CHECKLIST */
-.check-row{
+input,textarea,select{
+  width:100%;
+  background:#0c1017;
+  color:#fff;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:11px 13px;
+  outline:none;
+}
+input:focus,textarea:focus,select:focus{
+  border-color:rgba(216,177,90,.55);
+}
+textarea{min-height:120px;resize:vertical}
+label{
+  display:block;
+  font-size:11px;
+  color:#9da3ae;
+  margin-bottom:6px;
+}
+.field{margin-bottom:12px}
+
+.range-row{
+  display:grid;
+  grid-template-columns:130px 1fr 32px;
+  align-items:center;
+  gap:10px;
+  margin:11px 0;
+}
+input[type=range]{accent-color:var(--gold);padding:0}
+
+.check{
+  width:24px;height:24px;
+  border-radius:8px;
+  border:1px solid #3b414d;
+  background:#0d1118;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+}
+.check.done{
+  background:rgba(85,201,138,.18);
+  border-color:rgba(85,201,138,.35);
+  color:#75dba4;
+}
+
+.action-row{
   display:flex;
   align-items:center;
   gap:12px;
   padding:13px 0;
   border-bottom:1px solid var(--line);
 }
-.check-row:last-child{border-bottom:0}
-.check{
-  width:23px;
-  height:23px;
-  border-radius:8px;
-  border:1px solid #3a414d;
-  display:grid;
-  place-items:center;
-  cursor:pointer;
-}
-.check.done{
-  background:var(--gold2);
-  color:#111;
-  border-color:var(--gold2);
-}
-.check-content{flex:1}
-.check-title{font-size:13px;font-weight:700}
-.check-sub{font-size:10px;color:var(--muted);margin-top:3px}
+.action-row:last-child{border-bottom:0}
+.action-text{flex:1}
+.action-text b{font-size:13px}
+.action-text small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
 
-/* HABITS */
-.habit{
+.tabbar{
   display:flex;
-  align-items:center;
-  gap:12px;
-  padding:15px;
-  background:#0e1219;
+  gap:7px;
+  overflow:auto;
+  padding-bottom:5px;
+  margin-bottom:15px;
+}
+.tab{
+  white-space:nowrap;
   border:1px solid var(--line);
-  border-radius:16px;
-  margin-bottom:10px;
+  background:#11151d;
+  color:#9da3ae;
+  padding:8px 12px;
+  border-radius:10px;
+  font-size:11px;
 }
-.habit-info{flex:1}
-.habit-name{font-weight:800;font-size:13px}
-.habit-meta{font-size:10px;color:var(--muted);margin-top:3px}
+.tab.active{background:rgba(216,177,90,.1);color:var(--gold2);border-color:rgba(216,177,90,.22)}
 
-/* TABLE */
-.table-wrap{overflow-x:auto}
-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:600px;
-}
-th,td{
-  padding:12px;
-  border-bottom:1px solid var(--line);
-  text-align:left;
-  font-size:12px;
-}
-th{color:#8e96a4;font-weight:700}
-
-/* ROADMAP */
-.timeline{
-  position:relative;
-}
-.timeline:before{
-  content:"";
-  position:absolute;
-  left:18px;
-  top:0;
-  bottom:0;
-  width:2px;
-  background:#262b35;
-}
-.phase{
-  position:relative;
-  padding-left:52px;
-  margin-bottom:24px;
-}
-.phase-dot{
-  position:absolute;
-  left:8px;
-  top:5px;
-  width:21px;
-  height:21px;
-  border-radius:50%;
-  background:var(--gold2);
-  box-shadow:0 0 0 5px rgba(215,174,88,.1);
-}
-.phase h3{margin:0 0 5px}
-.phase p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.7;
-  font-size:12px;
-}
-
-/* COACH */
-.coach-response{
-  border-left:3px solid var(--gold2);
-  padding-left:16px;
-}
-.coach-section{
-  margin-bottom:18px;
-}
-.coach-section h4{
-  margin:0 0 7px;
-  color:var(--gold2);
-}
-.coach-section p{
-  margin:0;
-  line-height:1.75;
-  font-size:13px;
-  color:#c0c5ce;
-}
-
-/* MODAL */
 .modal-backdrop{
   position:fixed;
   inset:0;
-  z-index:100;
   background:rgba(0,0,0,.72);
+  backdrop-filter:blur(8px);
+  z-index:100;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
-  backdrop-filter:blur(8px);
+  padding:18px;
 }
 .modal-backdrop.show{display:flex}
 .modal{
   width:min(760px,100%);
   max-height:90vh;
   overflow:auto;
-  background:#11151e;
+  background:#10141c;
   border:1px solid var(--line);
-  border-radius:25px;
-  box-shadow:0 30px 100px rgba(0,0,0,.5);
+  border-radius:24px;
+  box-shadow:0 30px 90px rgba(0,0,0,.5);
 }
 .modal-head{
-  padding:20px;
+  padding:19px 20px;
   border-bottom:1px solid var(--line);
   display:flex;
   justify-content:space-between;
-  gap:10px;
+  align-items:center;
 }
 .modal-body{padding:20px}
 .close{
-  width:35px;
-  height:35px;
+  width:34px;height:34px;border-radius:10px;
   border:1px solid var(--line);
-  background:#191e27;
-  color:#ddd;
-  border-radius:10px;
+  background:#171c25;color:#fff;
 }
 
-/* MOBILE NAV */
+.empty{
+  text-align:center;
+  padding:35px 15px;
+  color:var(--muted);
+}
+
 .mobile-nav{
   display:none;
 }
-
-/* TOAST */
-.toast{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:200;
-  background:#191e27;
-  border:1px solid var(--line);
-  color:white;
-  padding:12px 16px;
-  border-radius:13px;
-  box-shadow:var(--shadow);
-  opacity:0;
-  transform:translateY(10px);
-  pointer-events:none;
-  transition:.25s;
-  font-size:12px;
-}
-.toast.show{
-  opacity:1;
-  transform:none;
-}
-
-/* EMPTY */
-.empty{
-  text-align:center;
-  padding:40px 20px;
-  color:#777f8c;
-}
-.empty-icon{font-size:36px;margin-bottom:10px}
-
-/* MORE DRAWER */
-.drawer{
-  position:fixed;
-  inset:0;
-  z-index:90;
-  background:rgba(0,0,0,.65);
+.more-drawer{
   display:none;
 }
-.drawer.show{display:block}
-.drawer-panel{
+
+.toast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  background:#f2e2b6;
+  color:#17130a;
+  padding:12px 15px;
+  border-radius:12px;
+  font-size:12px;
+  font-weight:700;
+  box-shadow:0 10px 35px rgba(0,0,0,.3);
+  z-index:300;
+  transform:translateY(100px);
+  opacity:0;
+  transition:.25s;
+}
+.toast.show{transform:none;opacity:1}
+
+.timeline{
+  position:relative;
+  padding-left:25px;
+}
+.timeline:before{
+  content:"";
   position:absolute;
-  right:0;
-  top:0;
-  bottom:0;
-  width:min(360px,92%);
-  background:#0f131b;
-  border-left:1px solid var(--line);
-  padding:22px;
-  overflow:auto;
+  left:6px;top:4px;bottom:4px;
+  width:1px;background:#343945;
+}
+.timeline-item{
+  position:relative;
+  padding-bottom:23px;
+}
+.timeline-item:before{
+  content:"";
+  position:absolute;
+  left:-23px;top:5px;
+  width:10px;height:10px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 5px rgba(216,177,90,.08);
+}
+.timeline-item h4{font-size:13px}
+.timeline-item p{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.7}
+
+.locked{
+  position:relative;
+  overflow:hidden;
+}
+.locked:after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(8,10,15,.64);
+  backdrop-filter:blur(3px);
+}
+.lock-content{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  display:grid;
+  place-items:center;
+  text-align:center;
+}
+.lock-content span{font-size:22px}
+.lock-content small{display:block;color:#ddd;margin-top:6px}
+
+@media(max-width:1000px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g3{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
-/* RESPONSIVE */
-@media(max-width:1000px){
+@media(max-width:760px){
+  :root{--sidebar:0px}
   .sidebar{display:none}
-  .main{
-    margin-left:0;
-    width:100%;
-    padding-bottom:78px;
-  }
+  .main{margin-left:0;padding-bottom:76px}
+  .topbar{height:62px;padding:0 15px}
+  .page-title{font-size:15px}
+  .streak-pill{display:none}
+  .content{padding:15px}
+  .hero{padding:22px 18px;border-radius:22px}
+  .hero h1{font-size:28px}
+  .g2,.g3,.g4{grid-template-columns:1fr}
+  .g2.mobile2{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .score-box{justify-content:center}
   .mobile-nav{
     position:fixed;
     display:flex;
-    left:10px;
-    right:10px;
-    bottom:10px;
-    z-index:70;
-    height:64px;
-    border-radius:20px;
-    background:rgba(17,21,30,.94);
-    border:1px solid var(--line);
-    backdrop-filter:blur(20px);
-    box-shadow:0 20px 50px rgba(0,0,0,.45);
-    align-items:center;
-    justify-content:space-around;
+    bottom:0;
+    left:0;
+    right:0;
+    height:68px;
+    z-index:60;
+    background:rgba(10,12,17,.94);
+    backdrop-filter:blur(18px);
+    border-top:1px solid var(--line);
+    padding:7px 8px calc(7px + env(safe-area-inset-bottom));
   }
   .mobile-nav button{
-    background:none;
+    flex:1;
+    background:transparent;
     border:0;
-    color:#747b87;
-    font-size:10px;
+    color:#7f8692;
+    font-size:9px;
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     gap:4px;
   }
   .mobile-nav button.active{color:var(--gold2)}
-  .mobile-nav span:first-child{font-size:18px}
+  .mobile-nav i{font-style:normal;font-size:18px}
+  .range-row{grid-template-columns:100px 1fr 28px}
+  .lesson-actions .btn span{display:none}
+  .toast{left:15px;right:15px;bottom:82px}
 }
 
-@media(max-width:700px){
-  .topbar{
-    height:62px;
-    padding:0 14px;
-  }
-  .page-title{font-size:15px}
-  .page-sub{display:none}
-  .content{padding:16px 14px 30px}
-  .hero{
-    padding:23px;
-    min-height:auto;
-    border-radius:22px;
-  }
-  .hero h1{font-size:26px}
-  .g2,.g3,.g4{grid-template-columns:1fr}
-  .score-wrap{align-items:flex-start}
-  .ring{width:100px;height:100px}
-  .ring-number{font-size:22px}
-  .section-head{margin-top:24px}
-  .card{padding:16px;border-radius:18px}
-  .top-actions .icon-btn:nth-child(1){display:none}
-  .avatar{width:36px;height:36px}
-}
-
-@media(min-width:701px) and (max-width:1100px){
-  .g4{grid-template-columns:repeat(2,1fr)}
-  .g3{grid-template-columns:repeat(2,1fr)}
+@media(min-width:761px){
+  .hide-desktop{display:none}
 }
 </style>
 </head>
@@ -792,924 +649,892 @@ th{color:#8e96a4;font-weight:700}
 
 <div class="app">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="logo">
-      <div class="logo-main">LIFERISE</div>
+<aside class="sidebar">
+  <div class="logo">
+    <div class="logo-mark">L</div>
+    <div>
+      <div class="logo-title">LIFERISE</div>
       <div class="logo-sub">BUILD A BETTER LIFE</div>
     </div>
-
-    <div class="nav-title">MAIN</div>
-    <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">⌂</span><span class="nav-label">Dashboard</span></button>
-    <button class="nav-btn" data-page="mylife"><span class="nav-icon">◎</span><span class="nav-label">My Life</span></button>
-    <button class="nav-btn" data-page="school"><span class="nav-icon">🎓</span><span class="nav-label">Life School 365</span></button>
-
-    <div class="nav-title">COURSES</div>
-    <button class="nav-btn" data-page="wealth"><span class="nav-icon">💰</span><span class="nav-label">Wealth Course</span></button>
-    <button class="nav-btn" data-page="career"><span class="nav-icon">🚀</span><span class="nav-label">Career Course</span></button>
-    <button class="nav-btn" data-page="business"><span class="nav-icon">🏢</span><span class="nav-label">Business Course</span></button>
-
-    <div class="nav-title">LIFE</div>
-    <button class="nav-btn" data-page="habits"><span class="nav-icon">✓</span><span class="nav-label">Habit Tracker</span></button>
-    <button class="nav-btn" data-page="mind"><span class="nav-icon">🧠</span><span class="nav-label">Mind & Emotion</span></button>
-    <button class="nav-btn" data-page="health"><span class="nav-icon">♥</span><span class="nav-label">Health</span></button>
-    <button class="nav-btn" data-page="relationships"><span class="nav-icon">♡</span><span class="nav-label">Relationships</span></button>
-    <button class="nav-btn" data-page="goals"><span class="nav-icon">🎯</span><span class="nav-label">Goals</span></button>
-
-    <div class="nav-title">TOOLS</div>
-    <button class="nav-btn" data-page="roadmap"><span class="nav-icon">◈</span><span class="nav-label">365 Roadmap</span></button>
-    <button class="nav-btn" data-page="journal"><span class="nav-icon">✎</span><span class="nav-label">Journal</span></button>
-    <button class="nav-btn" data-page="tools"><span class="nav-icon">⚙</span><span class="nav-label">Life Tools</span></button>
-    <button class="nav-btn" data-page="challenge"><span class="nav-icon">🔥</span><span class="nav-label">Daily Challenge</span></button>
-    <button class="nav-btn" data-page="coach"><span class="nav-icon">🤖</span><span class="nav-label">AI Life Coach</span></button>
-
-    <div class="nav-title">SYSTEM</div>
-    <button class="nav-btn" data-page="progress"><span class="nav-icon">◒</span><span class="nav-label">Progress</span></button>
-    <button class="nav-btn" data-page="premium"><span class="nav-icon">✦</span><span class="nav-label">Premium</span></button>
-    <button class="nav-btn" data-page="settings"><span class="nav-icon">⚙</span><span class="nav-label">Settings</span></button>
-  </aside>
-
-  <main class="main">
-
-    <!-- TOPBAR -->
-    <header class="topbar">
-      <div class="top-left">
-        <div>
-          <div class="page-title" id="pageTitle">Dashboard</div>
-          <div class="page-sub">Build a Better Life</div>
-        </div>
-      </div>
-
-      <div class="top-actions">
-        <button class="icon-btn" onclick="openNotificationSettings()" title="Notifications">🔔</button>
-        <button class="icon-btn" onclick="showPage('coach')" title="Coach">🤖</button>
-        <div class="avatar" id="avatar">A</div>
-      </div>
-    </header>
-
-    <div class="content">
-
-      <!-- DASHBOARD -->
-      <section class="page active" id="page-dashboard">
-
-        <div class="hero">
-          <div class="hero-kicker">LIFERISE • PERSONAL GROWTH OS</div>
-          <h1 id="greeting">မင်္ဂလာပါ</h1>
-          <p>
-            ကိုယ့်ဘဝကို တစ်နေ့ချင်းစီ ပိုကောင်းအောင် တည်ဆောက်ပါ
-            <br>
-            <b>Think Better → Act Better → Earn Better → Live Better</b>
-          </p>
-
-          <div class="hero-actions">
-            <button class="btn btn-primary" onclick="showPage('school')">🎓 ဒီနေ့သင်ခန်းစာ</button>
-            <button class="btn btn-dark" onclick="showPage('habits')">✓ Habit Check</button>
-            <button class="btn btn-dark" onclick="showPage('coach')">🤖 Coach ကိုမေးမယ်</button>
-          </div>
-        </div>
-
-        <div class="grid g4" style="margin-top:16px">
-          <div class="card stat">
-            <div class="stat-icon">◉</div>
-            <div class="stat-value gold-text" id="dashScore">0</div>
-            <div class="stat-label">Life Score</div>
-            <div class="stat-note">ကိုယ့်တိုးတက်မှုကို ကိုယ်တိုင်တိုင်းတာခြင်း</div>
-          </div>
-
-          <div class="card stat">
-            <div class="stat-icon">🔥</div>
-            <div class="stat-value" id="dashStreak">0</div>
-            <div class="stat-label">Day Streak</div>
-            <div class="stat-note">ဆက်တိုက်လုပ်ဆောင်နေတဲ့ရက်</div>
-          </div>
-
-          <div class="card stat">
-            <div class="stat-icon">🎓</div>
-            <div class="stat-value" id="dashLessons">0</div>
-            <div class="stat-label">Lessons Complete</div>
-            <div class="stat-note">Life School 365</div>
-          </div>
-
-          <div class="card stat">
-            <div class="stat-icon">🎯</div>
-            <div class="stat-value" id="dashGoals">0</div>
-            <div class="stat-label">Active Goals</div>
-            <div class="stat-note">အခုလက်ရှိရည်မှန်းချက်များ</div>
-          </div>
-        </div>
-
-        <div class="grid g2" style="margin-top:16px">
-
-          <div class="card">
-            <div class="section-head" style="margin:0 0 15px">
-              <div>
-                <div class="section-title">ဒီနေ့ရဲ့ Life Focus</div>
-                <div class="section-sub">Today’s lesson</div>
-              </div>
-              <span class="badge">DAY <span id="todayLessonNumber">1</span></span>
-            </div>
-
-            <div id="dashboardLesson"></div>
-          </div>
-
-          <div class="card">
-            <div class="section-head" style="margin:0 0 15px">
-              <div>
-                <div class="section-title">Today 5 Actions</div>
-                <div class="section-sub">တစ်နေ့တာ အဓိကလုပ်ဆောင်ချက်</div>
-              </div>
-              <span class="badge" id="actionCount">0 / 5</span>
-            </div>
-            <div id="dashboardActions"></div>
-          </div>
-
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Life Areas</div>
-            <div class="section-sub">ဘဝရဲ့ အဓိကကဏ္ဍ ၈ ခု</div>
-          </div>
-          <button class="btn btn-dark btn-small" onclick="showPage('mylife')">အသေးစိတ်</button>
-        </div>
-
-        <div class="card">
-          <div id="lifeAreaBars"></div>
-        </div>
-
-        <div class="grid g3" style="margin-top:16px">
-
-          <div class="card gold">
-            <div class="badge">WEALTH</div>
-            <h3>ဝင်ငွေတိုးတက်မှု</h3>
-            <p class="muted">လက်ရှိဝင်ငွေနဲ့ ရည်မှန်းထားတဲ့ဝင်ငွေကြား Gap ကိုကြည့်ပါ</p>
-            <div style="font-size:25px;font-weight:900;margin:15px 0" id="incomeGapDash">0 Ks</div>
-            <button class="btn btn-primary btn-small" onclick="showPage('tools')">တွက်ချက်မယ်</button>
-          </div>
-
-          <div class="card">
-            <div class="badge">HABITS</div>
-            <h3>Habit Progress</h3>
-            <p class="muted">နေ့စဉ်အကျင့်ကောင်းတွေကို တည်ဆောက်ပါ</p>
-            <div class="progress" style="margin:15px 0">
-              <span id="habitProgressDash" style="width:0%"></span>
-            </div>
-            <button class="btn btn-dark btn-small" onclick="showPage('habits')">Habit Tracker</button>
-          </div>
-
-          <div class="card">
-            <div class="badge">MIND</div>
-            <h3>5S Reset</h3>
-            <p class="muted">စိတ်ပူပန်မှု၊ overthinking နဲ့ emotional pressure ကို reset လုပ်ပါ</p>
-            <button class="btn btn-dark btn-small" onclick="open5S()">5S Reset စမယ်</button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- MY LIFE -->
-      <section class="page" id="page-mylife">
-        <div class="section-head">
-          <div>
-            <div class="section-title">My Life</div>
-            <div class="section-sub">ကိုယ့်ဘဝရဲ့ လက်ရှိအခြေအနေကို ရိုးရိုးသားသားကြည့်ခြင်း</div>
-          </div>
-        </div>
-
-        <div class="grid g2">
-
-          <div class="card">
-            <div class="score-wrap">
-              <div class="ring" id="lifeRing">
-                <div class="ring-inner">
-                  <div class="ring-number" id="lifeScoreBig">0</div>
-                  <div class="ring-label">LIFE SCORE</div>
-                </div>
-              </div>
-
-              <div>
-                <div class="badge">SELF-ASSESSMENT</div>
-                <h2 style="margin:8px 0">ဘဝအခြေအနေ</h2>
-                <p class="muted" style="font-size:12px;line-height:1.7">
-                  ဒီ Score က အခြားသူတွေနဲ့ယှဉ်တဲ့အမှတ်မဟုတ်ပါ
-                  ကိုယ့်ဘဝတိုးတက်မှုကို ကိုယ်တိုင်ပြန်ကြည့်ဖို့အသုံးပြုတဲ့ indicator ဖြစ်ပါတယ်
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="field">
-              <label>နာမည်</label>
-              <input class="input" id="profileName" placeholder="သင့်နာမည်">
-            </div>
-            <div class="field">
-              <label>သင့်ရဲ့ Life Vision</label>
-              <textarea class="textarea" id="profileVision" placeholder="၃ နှစ်၊ ၅ နှစ်အတွင်း ကိုယ့်ဘဝကို ဘယ်လိုမြင်ချင်လဲ"></textarea>
-            </div>
-            <div class="field">
-              <label>ဘာကြောင့် ဒီဘဝကိုတည်ဆောက်ချင်တာလဲ</label>
-              <textarea class="textarea" id="profileWhy" placeholder="သင့်ရဲ့ WHY ကိုရေးပါ"></textarea>
-            </div>
-            <button class="btn btn-primary" onclick="saveProfile()">Save My Life</button>
-          </div>
-
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Life Assessment</div>
-            <div class="section-sub">ကဏ္ဍတစ်ခုချင်းစီကို 1–10 အထိ ကိုယ်တိုင်သတ်မှတ်ပါ</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div id="assessment"></div>
-          <button class="btn btn-primary" onclick="saveAssessment()">Save Assessment</button>
-        </div>
-      </section>
-
-      <!-- SCHOOL -->
-      <section class="page" id="page-school">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">LIFE SCHOOL 365</div>
-          <h1>နေ့တိုင်း တစ်ခုသင်၊ တစ်ခုစဉ်းစား၊ တစ်ခုလုပ်</h1>
-          <p>
-            LifeRise ရဲ့ Life School ဟာ ဘဝတိုးတက်ရေးကို
-            Mindset, Money, Career, Business, Health, Relationships, Time နဲ့ Growth
-            ဆိုတဲ့ကဏ္ဍတွေကနေ နေ့စဉ်တစ်ဆင့်ချင်း လေ့လာနိုင်အောင် တည်ဆောက်ထားတာပါ
-          </p>
-        </div>
-
-        <div class="grid g4" style="margin-top:16px">
-          <div class="card stat">
-            <div class="stat-value gold-text" id="schoolDone">0</div>
-            <div class="stat-label">Lessons Complete</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="schoolDay">1</div>
-            <div class="stat-label">Current Day</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="schoolPercent">0%</div>
-            <div class="stat-label">Course Progress</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value">365</div>
-            <div class="stat-label">Total Lessons</div>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">ဒီနေ့သင်ခန်းစာ</div>
-            <div class="section-sub">Learn → Think → Write → Act → Reflect</div>
-          </div>
-          <button class="btn btn-dark btn-small" onclick="openSchoolLesson()">Open Lesson</button>
-        </div>
-
-        <div id="schoolToday"></div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">365 Days Roadmap</div>
-            <div class="section-sub">Reset → Build → Grow → Scale → Master</div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="timeline">
-            <div class="phase">
-              <div class="phase-dot"></div>
-              <h3>RESET — Day 1–30</h3>
-              <p>ကိုယ့်ဘဝကိုပြန်ကြည့်ခြင်း၊ mindset၊ focus၊ stress၊ time၊ bad habits၊ values နဲ့ WHY ကိုရှင်းလင်းခြင်း</p>
-            </div>
-            <div class="phase">
-              <div class="phase-dot"></div>
-              <h3>BUILD — Day 31–90</h3>
-              <p>Habit၊ routine၊ communication၊ learning၊ money management၊ career၊ sales၊ leadership နဲ့ relationship foundations တည်ဆောက်ခြင်း</p>
-            </div>
-            <div class="phase">
-              <div class="phase-dot"></div>
-              <h3>GROW — Day 91–180</h3>
-              <p>Income growth၊ skill monetization၊ career growth၊ promotion၊ negotiation၊ side income၊ business thinking နဲ့ financial planning</p>
-            </div>
-            <div class="phase">
-              <div class="phase-dot"></div>
-              <h3>SCALE — Day 181–270</h3>
-              <p>System၊ delegation၊ team၊ multiple income၊ assets၊ investment basics၊ risk management နဲ့ strategic thinking</p>
-            </div>
-            <div class="phase">
-              <div class="phase-dot"></div>
-              <h3>MASTER — Day 271–365</h3>
-              <p>Long-term thinking၊ financial independence၊ meaningful work၊ family၊ health၊ contribution၊ legacy နဲ့ life design</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Lesson Library</div>
-            <div class="section-sub">Day 1 မှ Day 365 အထိ</div>
-          </div>
-          <select class="select" style="width:180px" id="schoolDaySelect" onchange="selectSchoolDay(this.value)"></select>
-        </div>
-
-        <div id="schoolLibrary"></div>
-      </section>
-
-      <!-- WEALTH -->
-      <section class="page" id="page-wealth">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">WEALTH COURSE</div>
-          <h1>ပိုက်ဆံကို ထိန်းချုပ်ပြီး ဝင်ငွေကို တိုးတက်အောင်လုပ်ပါ</h1>
-          <p>Earn More → Spend Wisely → Save Consistently → Build Assets → Protect Wealth</p>
-        </div>
-
-        <div class="grid g3" style="margin-top:16px" id="wealthModules"></div>
-      </section>
-
-      <!-- CAREER -->
-      <section class="page" id="page-career">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">CAREER COURSE</div>
-          <h1>Career ကို ကိုယ်တိုင်တည်ဆောက်ပါ</h1>
-          <p>Communication → Performance → Visibility → Leadership → Career Growth</p>
-        </div>
-        <div class="grid g3" style="margin-top:16px" id="careerModules"></div>
-      </section>
-
-      <!-- BUSINESS -->
-      <section class="page" id="page-business">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">BUSINESS COURSE</div>
-          <h1>လုပ်ငန်းကို အမြတ်ရအောင် တည်ဆောက်ပါ</h1>
-          <p>Customer → Product → Marketing → Sales → Profit → Cash Flow → System → Scale</p>
-        </div>
-        <div class="grid g3" style="margin-top:16px" id="businessModules"></div>
-      </section>
-
-      <!-- HABITS -->
-      <section class="page" id="page-habits">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Habit Tracker</div>
-            <div class="section-sub">သေးငယ်တဲ့အကျင့်တွေက ရေရှည်ရလဒ်ကိုဖန်တီးပါတယ်</div>
-          </div>
-        </div>
-
-        <div class="grid g4">
-          <div class="card stat">
-            <div class="stat-value gold-text" id="habitStreak">0</div>
-            <div class="stat-label">Current Streak</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="habitToday">0%</div>
-            <div class="stat-label">Today</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="habit7">0%</div>
-            <div class="stat-label">Last 7 Days</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="habit30">0%</div>
-            <div class="stat-label">Last 30 Days</div>
-          </div>
-        </div>
-
-        <div class="grid g2" style="margin-top:16px">
-          <div class="card">
-            <h3>Add New Habit</h3>
-            <div class="field">
-              <label>Habit Name</label>
-              <input class="input" id="habitInput" placeholder="ဥပမာ — မနက် 20 မိနစ်စာဖတ်မယ်">
-            </div>
-            <button class="btn btn-primary" onclick="addHabit()">+ Add Habit</button>
-          </div>
-
-          <div class="card">
-            <h3>Habit Principle</h3>
-            <p class="muted" style="line-height:1.8;font-size:13px">
-              အကျင့်တစ်ခုကို စတင်တဲ့အခါ အရမ်းကြီးမစပါနဲ့
-              လုပ်နိုင်တဲ့အဆင့်ကနေစပြီး နေ့တိုင်းထပ်လုပ်ပါ
-              Consistency က Intensity ထက် အရေးကြီးပါတယ်
-            </p>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Today’s Habits</div>
-            <div class="section-sub" id="habitDateText"></div>
-          </div>
-        </div>
-        <div class="card" id="habitList"></div>
-      </section>
-
-      <!-- MIND -->
-      <section class="page" id="page-mind">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">MIND & EMOTION</div>
-          <h1>စိတ်ကို ဖိနှိပ်မထားဘဲ စနစ်တကျ ကိုင်တွယ်ပါ</h1>
-          <p>Emotion ကိုဖျောက်ပစ်ဖို့မဟုတ်ပါ — နားလည်ပြီး တုံ့ပြန်ပုံကို ရွေးချယ်နိုင်ဖို့ပါ</p>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">5S Reset Method</div>
-            <div class="section-sub">SPOT → STEADY → SAY → SHIFT → STEP</div>
-          </div>
-          <button class="btn btn-primary" onclick="open5S()">5S စမယ်</button>
-        </div>
-
-        <div class="grid g5" style="grid-template-columns:repeat(5,1fr)">
-          <div class="card"><div class="badge">01</div><h3>SPOT</h3><p class="muted">အခုဘာဖြစ်နေတယ်ဆိုတာ သတိထားပါ</p></div>
-          <div class="card"><div class="badge">02</div><h3>STEADY</h3><p class="muted">ခဏရပ်ပြီး အသက်ရှူကာ ကိုယ့်ကိုယ်ကိုတည်ငြိမ်အောင်လုပ်ပါ</p></div>
-          <div class="card"><div class="badge">03</div><h3>SAY</h3><p class="muted">ခံစားချက်ကို နာမည်ပေးပါ</p></div>
-          <div class="card"><div class="badge">04</div><h3>SHIFT</h3><p class="muted">Fact နဲ့ Mind Interpretation ကိုခွဲပါ</p></div>
-          <div class="card"><div class="badge">05</div><h3>STEP</h3><p class="muted">အခုလုပ်နိုင်တဲ့ အငယ်ဆုံးခြေလှမ်းကိုရွေးပါ</p></div>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Mindset Principles</div>
-          </div>
-        </div>
-
-        <div class="grid g3">
-          <div class="card"><h3>Control the Controllable</h3><p class="muted">ကိုယ်ထိန်းချုပ်နိုင်တာကို အာရုံစိုက်ပြီး မထိန်းချုပ်နိုင်တာကို လက်ခံနိုင်ဖို့လေ့ကျင့်ပါ</p></div>
-          <div class="card"><h3>Facts vs Stories</h3><p class="muted">ဖြစ်ရပ်မှန်နဲ့ ကိုယ့်စိတ်ကထပ်ထည့်ပြောနေတဲ့ဇာတ်လမ်းကို ခွဲခြားပါ</p></div>
-          <div class="card"><h3>Small Next Step</h3><p class="muted">ပြဿနာကြီးတစ်ခုလုံးကို တစ်ခါတည်းမဖြေရှင်းဘဲ နောက်တစ်ဆင့်ကိုရွေးပါ</p></div>
-        </div>
-      </section>
-
-      <!-- HEALTH -->
-      <section class="page" id="page-health">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">HEALTH</div>
-          <h1>Energy မရှိရင် Life Plan ကောင်းကောင်းမအလုပ်လုပ်နိုင်ပါ</h1>
-          <p>Sleep • Movement • Water • Food • Rest • Screen Time</p>
-        </div>
-
-        <div class="grid g3" style="margin-top:16px">
-          <div class="card"><div class="course-icon">😴</div><h3>Sleep</h3><p class="muted">အိပ်ချိန်ကို priority တစ်ခုအဖြစ်ထားပါ</p></div>
-          <div class="card"><div class="course-icon">🏃</div><h3>Movement</h3><p class="muted">နေ့စဉ်လှုပ်ရှားမှုတစ်ခုရှိအောင်လုပ်ပါ</p></div>
-          <div class="card"><div class="course-icon">💧</div><h3>Water</h3><p class="muted">ရေသောက်မှုကို သတိထားပါ</p></div>
-          <div class="card"><div class="course-icon">🥗</div><h3>Food</h3><p class="muted">အစားအစာရွေးချယ်မှုကို ပိုသတိထားပါ</p></div>
-          <div class="card"><div class="course-icon">🧘</div><h3>Rest</h3><p class="muted">အနားယူခြင်းကို အလုပ်မလုပ်တာလို့ မမြင်ပါနဲ့</p></div>
-          <div class="card"><div class="course-icon">📱</div><h3>Screen Time</h3><p class="muted">အာရုံစူးစိုက်မှုကို ခိုးယူတဲ့ screen habit တွေကိုစစ်ပါ</p></div>
-        </div>
-      </section>
-
-      <!-- RELATIONSHIPS -->
-      <section class="page" id="page-relationships">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">RELATIONSHIPS</div>
-          <h1>အောင်မြင်မှုမှာ လူတွေနဲ့ဆက်ဆံရေးကလည်း အရေးကြီးပါတယ်</h1>
-          <p>Love • Family • Friendship • Boundaries • Communication</p>
-        </div>
-
-        <div class="grid g2" style="margin-top:16px">
-          <div class="card"><h3>နားထောင်ခြင်း</h3><p class="muted">ဖြေရှင်းဖို့မကြိုးစားခင် နားလည်ဖို့အရင်နားထောင်ပါ</p></div>
-          <div class="card"><h3>Boundaries</h3><p class="muted">ကိုယ့်အချိန်၊ ကိုယ့်စွမ်းအင်နဲ့ ကိုယ့်တန်ဖိုးကို ကာကွယ်ဖို့ သင့်တော်တဲ့ boundary ရှိပါစေ</p></div>
-          <div class="card"><h3>Quality Time</h3><p class="muted">အတူရှိတဲ့အချိန်ထက် အာရုံစူးစိုက်ပြီး အတူရှိပေးနိုင်ခြင်းက ပိုအရေးကြီးပါတယ်</p></div>
-          <div class="card"><h3>Repair</h3><p class="muted">အငြင်းပွားမှုဖြစ်ရင် အနိုင်ရဖို့မဟုတ်ဘဲ ဆက်ဆံရေးကိုပြန်ကောင်းအောင်လုပ်ဖို့အာရုံစိုက်ပါ</p></div>
-        </div>
-      </section>
-
-      <!-- GOALS -->
-      <section class="page" id="page-goals">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Goals</div>
-            <div class="section-sub">Vision ကို Action အဖြစ်ပြောင်းပါ</div>
-          </div>
-        </div>
-
-        <div class="grid g2">
-          <div class="card">
-            <h3>New Goal</h3>
-            <div class="field">
-              <label>Goal</label>
-              <input class="input" id="goalTitle" placeholder="ဥပမာ — လစဉ်ဝင်ငွေ 30 သိန်းရောက်အောင်လုပ်မယ်">
-            </div>
-            <div class="field">
-              <label>Why</label>
-              <textarea class="textarea" id="goalWhy" placeholder="ဒီ Goal က ဘာကြောင့်အရေးကြီးတာလဲ"></textarea>
-            </div>
-            <div class="field">
-              <label>Deadline</label>
-              <input class="input" id="goalDeadline" type="date">
-            </div>
-            <button class="btn btn-primary" onclick="addGoal()">+ Create Goal</button>
-          </div>
-
-          <div class="card">
-            <h3>Goal Principle</h3>
-            <p class="muted" style="line-height:1.8">
-              Goal တစ်ခုကို ရေးထားရုံနဲ့မပြီးပါ
-              Monthly → Weekly → Daily action အဖြစ် ခွဲနိုင်ရင် အကောင်အထည်ဖော်နိုင်ခြေ ပိုကောင်းလာပါတယ်
-            </p>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div class="section-title">My Goals</div>
-        </div>
-        <div id="goalList"></div>
-      </section>
-
-      <!-- ROADMAP -->
-      <section class="page" id="page-roadmap">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">365 ROADMAP</div>
-          <h1>တစ်နှစ်ကို တစ်ကြိမ်တည်းပြောင်းဖို့မဟုတ်ဘဲ တစ်နေ့ချင်းတိုးတက်ဖို့</h1>
-          <p>Reset → Build → Grow → Scale → Master</p>
-        </div>
-
-        <div class="grid g5" style="margin-top:16px">
-          <div class="card"><div class="badge">01–30</div><h3>RESET</h3><p class="muted">အခြေခံကိုရှင်း</p></div>
-          <div class="card"><div class="badge">31–90</div><h3>BUILD</h3><p class="muted">အကျင့်တည်ဆောက်</p></div>
-          <div class="card"><div class="badge">91–180</div><h3>GROW</h3><p class="muted">ဝင်ငွေ၊ Skill၊ Career တိုး</p></div>
-          <div class="card"><div class="badge">181–270</div><h3>SCALE</h3><p class="muted">System တည်ဆောက်</p></div>
-          <div class="card"><div class="badge">271–365</div><h3>MASTER</h3><p class="muted">ရေရှည်ဘဝဒီဇိုင်း</p></div>
-        </div>
-
-        <div class="section-head">
-          <div class="section-title">Today’s Position</div>
-        </div>
-        <div class="card">
-          <div class="progress"><span id="roadmapProgress"></span></div>
-          <div style="display:flex;justify-content:space-between;margin-top:10px;font-size:11px">
-            <span>Day <b id="roadmapDay">1</b></span>
-            <span id="roadmapPercent">0%</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- JOURNAL -->
-      <section class="page" id="page-journal">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Journal</div>
-            <div class="section-sub">ကိုယ့်အတွေးကို ရေးချခြင်းက clarity ကိုတိုးစေပါတယ်</div>
-          </div>
-        </div>
-
-        <div class="grid g2">
-          <div class="card">
-            <h3 id="journalDateTitle">Today’s Reflection</h3>
-            <div class="field">
-              <label>ဒီနေ့ဘာကောင်းခဲ့လဲ</label>
-              <textarea class="textarea" id="journalGood"></textarea>
-            </div>
-            <div class="field">
-              <label>ဘာကနေ သင်ခန်းစာရခဲ့လဲ</label>
-              <textarea class="textarea" id="journalLearn"></textarea>
-            </div>
-            <div class="field">
-              <label>မနက်ဖြန် ဘာတစ်ခုလုပ်မလဲ</label>
-              <textarea class="textarea" id="journalTomorrow"></textarea>
-            </div>
-            <button class="btn btn-primary" onclick="saveJournal()">Save Reflection</button>
-          </div>
-
-          <div class="card">
-            <h3>Reflection Questions</h3>
-            <div class="check-row">
-              <div>①</div>
-              <div class="check-content">
-                <div class="check-title">ဒီနေ့ ကိုယ့်အချိန်ကို ဘယ်လိုသုံးခဲ့လဲ</div>
-              </div>
-            </div>
-            <div class="check-row">
-              <div>②</div>
-              <div class="check-content">
-                <div class="check-title">ဘယ်အရာက ကိုယ့်စွမ်းအင်ကို လျော့စေခဲ့လဲ</div>
-              </div>
-            </div>
-            <div class="check-row">
-              <div>③</div>
-              <div class="check-content">
-                <div class="check-title">ဘယ်အရာကို နောက်တစ်ကြိမ် ပိုကောင်းအောင်လုပ်နိုင်လဲ</div>
-              </div>
-            </div>
-            <div class="check-row">
-              <div>④</div>
-              <div class="check-content">
-                <div class="check-title">ဒီနေ့အတွက် ဘာကိုကျေးဇူးတင်လဲ</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TOOLS -->
-      <section class="page" id="page-tools">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Life Tools</div>
-            <div class="section-sub">ဆုံးဖြတ်ချက်၊ ငွေကြေး၊ အချိန်နဲ့စိတ်ကို စနစ်တကျစီမံဖို့</div>
-          </div>
-        </div>
-
-        <div class="grid g2">
-
-          <div class="card">
-            <div class="badge">WEALTH</div>
-            <h3>Income Gap Calculator</h3>
-            <div class="field">
-              <label>လက်ရှိလစဉ်ဝင်ငွေ</label>
-              <input class="input" id="currentIncome" type="number" placeholder="1500000">
-            </div>
-            <div class="field">
-              <label>လိုချင်တဲ့လစဉ်ဝင်ငွေ</label>
-              <input class="input" id="targetIncome" type="number" placeholder="2500000">
-            </div>
-            <button class="btn btn-primary" onclick="calcIncomeGap()">Calculate</button>
-            <div id="incomeResult" style="margin-top:15px"></div>
-          </div>
-
-          <div class="card">
-            <div class="badge">SAVING</div>
-            <h3>Saving Calculator</h3>
-            <div class="field">
-              <label>ရည်မှန်းချက်ငွေပမာဏ</label>
-              <input class="input" id="saveTarget" type="number" placeholder="10000000">
-            </div>
-            <div class="field">
-              <label>လစဉ်စုမယ့်ငွေ</label>
-              <input class="input" id="saveMonthly" type="number" placeholder="500000">
-            </div>
-            <button class="btn btn-primary" onclick="calcSaving()">Calculate</button>
-            <div id="savingResult" style="margin-top:15px"></div>
-          </div>
-
-          <div class="card">
-            <div class="badge">TIME</div>
-            <h3>Time Audit</h3>
-            <div class="field">
-              <label>အလုပ်</label>
-              <input class="input" id="timeWork" type="number" placeholder="8">
-            </div>
-            <div class="field">
-              <label>Social Media</label>
-              <input class="input" id="timeSocial" type="number" placeholder="2">
-            </div>
-            <div class="field">
-              <label>Sleep</label>
-              <input class="input" id="timeSleep" type="number" placeholder="7">
-            </div>
-            <button class="btn btn-primary" onclick="calcTimeAudit()">Audit</button>
-            <div id="timeResult" style="margin-top:15px"></div>
-          </div>
-
-          <div class="card">
-            <div class="badge">DECISION</div>
-            <h3>Decision Maker</h3>
-            <p class="muted">ဆုံးဖြတ်ချက်ကို သင့်အစားမချဘဲ စဉ်းစားပုံကို ပိုရှင်းအောင်ကူညီပေးပါမယ်</p>
-            <button class="btn btn-primary" onclick="openDecision()">Decision Framework</button>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- CHALLENGE -->
-      <section class="page" id="page-challenge">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">DAILY CHALLENGE</div>
-          <h1>ဒီနေ့အတွက် Action တစ်ခု</h1>
-          <p>သေးငယ်တဲ့ Action တစ်ခုကို အကောင်အထည်ဖော်ပြီး Momentum တည်ဆောက်ပါ</p>
-        </div>
-
-        <div class="card" style="margin-top:16px;text-align:center;padding:40px 20px">
-          <div style="font-size:50px">🔥</div>
-          <div class="badge" style="margin-top:12px">TODAY</div>
-          <h2 id="challengeTitle">ဒီနေ့ရဲ့ Challenge</h2>
-          <p class="muted" id="challengeText" style="max-width:600px;margin:0 auto 20px;line-height:1.8"></p>
-          <button class="btn btn-primary" id="challengeBtn" onclick="completeChallenge()">Challenge Complete</button>
-        </div>
-      </section>
-
-      <!-- COACH -->
-      <section class="page" id="page-coach">
-        <div class="hero" style="min-height:auto">
-          <div class="hero-kicker">AI LIFE COACH</div>
-          <h1>ပြဿနာကို ရှင်းအောင်စဉ်းစားပြီး နောက်တစ်ဆင့်ကိုရွေးပါ</h1>
-          <p>ဒီ Version မှာ local coaching engine အသုံးပြုထားပြီး cloud AI မလိုဘဲ အခြေခံ coaching framework ကိုအသုံးပြုနိုင်ပါတယ်</p>
-        </div>
-
-        <div class="grid g2" style="margin-top:16px">
-          <div class="card">
-            <div class="field">
-              <label>Problem Category</label>
-              <select class="select" id="coachCategory">
-                <option value="career">Career</option>
-                <option value="money">Money</option>
-                <option value="relationship">Relationship</option>
-                <option value="business">Business</option>
-                <option value="mind">Mind / Emotion</option>
-                <option value="decision">Decision</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label>ဘာတွေဖြစ်နေတာလဲ</label>
-              <textarea class="textarea" id="coachInput" placeholder="သင့်ပြဿနာကို အသေးစိတ်ရေးပါ"></textarea>
-            </div>
-
-            <button class="btn btn-primary" onclick="runCoach()">🤖 Coach ကိုမေးမယ်</button>
-          </div>
-
-          <div class="card" id="coachResult">
-            <div class="empty">
-              <div class="empty-icon">🤖</div>
-              <div>ပြဿနာတစ်ခုရေးပြီး Coach ကိုမေးပါ</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div>
-            <div class="section-title">Coach History</div>
-          </div>
-        </div>
-        <div id="coachHistory"></div>
-      </section>
-
-      <!-- PROGRESS -->
-      <section class="page" id="page-progress">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Progress</div>
-            <div class="section-sub">သင့်ရဲ့ consistency ကို ပြန်ကြည့်ပါ</div>
-          </div>
-        </div>
-
-        <div class="grid g4">
-          <div class="card stat">
-            <div class="stat-value gold-text" id="progressLessons">0</div>
-            <div class="stat-label">Lessons</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="progressHabits">0</div>
-            <div class="stat-label">Habits</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="progressGoals">0</div>
-            <div class="stat-label">Goals</div>
-          </div>
-          <div class="card stat">
-            <div class="stat-value" id="progressJournal">0</div>
-            <div class="stat-label">Journal Days</div>
-          </div>
-        </div>
-
-        <div class="section-head">
-          <div class="section-title">Overall Learning Progress</div>
-        </div>
-        <div class="card">
-          <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
-            <span>Life School 365</span>
-            <span id="progressSchoolText">0%</span>
-          </div>
-          <div class="progress"><span id="progressSchoolBar"></span></div>
-        </div>
-      </section>
-
-      <!-- PREMIUM -->
-      <section class="page" id="page-premium">
-        <div class="hero">
-          <div class="hero-kicker">LIFERISE PREMIUM</div>
-          <h1>သင့်ဘဝတိုးတက်မှုကို ပိုမိုနက်ရှိုင်းအောင် တည်ဆောက်ပါ</h1>
-          <p>
-            Premium-ready architecture အဖြစ် တည်ဆောက်ထားပြီး
-            နောက်ပိုင်းမှာ payment နဲ့ cloud account ထည့်သွင်းနိုင်ပါတယ်
-          </p>
-        </div>
-
-        <div class="grid g3" style="margin-top:16px">
-          <div class="card">
-            <div class="course-icon">🎓</div>
-            <h3>Advanced Lessons</h3>
-            <p class="muted">Advanced Life School content</p>
-            <span class="badge">PREMIUM</span>
-          </div>
-          <div class="card">
-            <div class="course-icon">📊</div>
-            <h3>Advanced Analytics</h3>
-            <p class="muted">Life, Habit, Wealth progress analytics</p>
-            <span class="badge">PREMIUM</span>
-          </div>
-          <div class="card">
-            <div class="course-icon">☁</div>
-            <h3>Cloud Sync</h3>
-            <p class="muted">Device အများကြား data sync</p>
-            <span class="badge">COMING SOON</span>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:16px;text-align:center">
-          <h2>Premium System Ready</h2>
-          <p class="muted">Payment provider ချိတ်ဆက်တဲ့အဆင့်မရောက်သေးပါ</p>
-          <button class="btn btn-primary" onclick="toast('Premium payment system ကို နောက်အဆင့်မှာချိတ်ဆက်နိုင်ပါတယ်')">Notify Me</button>
-        </div>
-      </section>
-
-      <!-- SETTINGS -->
-      <section class="page" id="page-settings">
-        <div class="section-head">
-          <div>
-            <div class="section-title">Settings</div>
-            <div class="section-sub">LifeRise ကို သင့်စိတ်ကြိုက်ပြင်ဆင်ပါ</div>
-          </div>
-        </div>
-
-        <div class="grid g2">
-
-          <div class="card">
-            <h3>Notifications</h3>
-            <div class="check-row">
-              <div class="check" id="notifyMorning" onclick="toggleNotify('morning')">✓</div>
-              <div class="check-content">
-                <div class="check-title">Morning Action</div>
-                <div class="check-sub">မနက်ပိုင်းအတွက် reminder</div>
-              </div>
-            </div>
-            <div class="check-row">
-              <div class="check" id="notifyAfternoon" onclick="toggleNotify('afternoon')">✓</div>
-              <div class="check-content">
-                <div class="check-title">Afternoon Check</div>
-                <div class="check-sub">နေ့လယ် progress check</div>
-              </div>
-            </div>
-            <div class="check-row">
-              <div class="check" id="notifyEvening" onclick="toggleNotify('evening')">✓</div>
-              <div class="check-content">
-                <div class="check-title">Evening Reflection</div>
-                <div class="check-sub">ညပိုင်း reflection reminder</div>
-              </div>
-            </div>
-            <button class="btn btn-primary" style="margin-top:15px" onclick="requestNotifications()">Enable Browser Notification</button>
-          </div>
-
-          <div class="card">
-            <h3>Data</h3>
-            <p class="muted">သင့် data ကို ဒီ browser ရဲ့ LocalStorage ထဲမှာ သိမ်းထားပါတယ်</p>
-            <button class="btn btn-dark" onclick="exportData()">Export My Data</button>
-            <button class="btn btn-danger" style="margin-top:8px" onclick="resetData()">Reset All Data</button>
-          </div>
-
-        </div>
-      </section>
-
+  </div>
+
+  <div class="nav-label">MAIN</div>
+  <button class="nav-btn active" data-page="dashboard"><span class="nav-icon">⌂</span> Dashboard</button>
+  <button class="nav-btn" data-page="mylife"><span class="nav-icon">◉</span> My Life</button>
+  <button class="nav-btn" data-page="school"><span class="nav-icon">◈</span> Life School 365</button>
+
+  <div class="nav-label">COURSES</div>
+  <button class="nav-btn" data-page="wealth"><span class="nav-icon">₿</span> Wealth Course</button>
+  <button class="nav-btn" data-page="career"><span class="nav-icon">↗</span> Career Course</button>
+  <button class="nav-btn" data-page="business"><span class="nav-icon">◇</span> Business Course</button>
+
+  <div class="nav-label">LIFE</div>
+  <button class="nav-btn" data-page="habits"><span class="nav-icon">✓</span> Habits</button>
+  <button class="nav-btn" data-page="mind"><span class="nav-icon">☯</span> Mind & Emotion</button>
+  <button class="nav-btn" data-page="health"><span class="nav-icon">♡</span> Health</button>
+  <button class="nav-btn" data-page="relationships"><span class="nav-icon">♥</span> Relationships</button>
+  <button class="nav-btn" data-page="goals"><span class="nav-icon">◎</span> Goals</button>
+
+  <div class="nav-label">TOOLS</div>
+  <button class="nav-btn" data-page="roadmap"><span class="nav-icon">◫</span> 365 Roadmap</button>
+  <button class="nav-btn" data-page="journal"><span class="nav-icon">✎</span> Journal</button>
+  <button class="nav-btn" data-page="tools"><span class="nav-icon">⚙</span> Life Tools</button>
+  <button class="nav-btn" data-page="challenge"><span class="nav-icon">★</span> Daily Challenge</button>
+  <button class="nav-btn" data-page="coach"><span class="nav-icon">✦</span> AI Life Coach</button>
+  <button class="nav-btn" data-page="progress"><span class="nav-icon">▥</span> Progress</button>
+
+  <div class="nav-label">SYSTEM</div>
+  <button class="nav-btn" data-page="premium"><span class="nav-icon">◆</span> Premium</button>
+  <button class="nav-btn" data-page="settings"><span class="nav-icon">⚙</span> Settings</button>
+</aside>
+
+<main class="main">
+
+<header class="topbar">
+  <div class="top-left">
+    <div>
+      <div class="page-title" id="topTitle">Dashboard</div>
+      <div class="page-kicker">Build a Better Life</div>
     </div>
-  </main>
+  </div>
+  <div class="top-right">
+    <div class="streak-pill">🔥 <span id="topStreak">0</span> day streak</div>
+    <div class="avatar" id="avatar">A</div>
+  </div>
+</header>
+
+<div class="content">
+
+<!-- DASHBOARD -->
+<section class="page active" id="page-dashboard">
+
+  <div class="hero">
+    <div class="hero-kicker">LIFERISE • YOUR LIFE GROWTH SYSTEM</div>
+    <h1 id="greeting">ကိုယ့်ဘဝကို ကိုယ်တိုင်တည်ဆောက်ပါ</h1>
+    <p>
+      LifeRise ရဲ့ ရည်ရွယ်ချက်က အကြံပေးချက်တွေကို ဖတ်ရုံနဲ့မပြီးဘဲ
+      ကိုယ့်ဘဝမှာ တကယ်အသုံးချနိုင်အောင် သင်ယူခြင်း၊ စဉ်းစားခြင်း၊
+      ရေးသားခြင်း၊ လက်တွေ့လုပ်ခြင်းနဲ့ ပြန်လည်သုံးသပ်ခြင်းကို တစ်နေရာတည်းမှာ
+      စုစည်းပေးထားတာပါ
+    </p>
+    <div class="hero-actions">
+      <button class="btn primary" onclick="openTodayLesson()">ဒီနေ့သင်ခန်းစာ စမယ်</button>
+      <button class="btn" onclick="showPage('mylife')">My Life ပြန်သုံးသပ်မယ်</button>
+    </div>
+  </div>
+
+  <div class="grid g4">
+    <div class="card stat">
+      <div class="stat-icon">◉</div>
+      <div class="stat-value" id="dashScore">0</div>
+      <div class="stat-label">Life Progress</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-value" id="dashStreak">0</div>
+      <div class="stat-label">Current Streak</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value" id="dashLessons">0</div>
+      <div class="stat-label">Lessons Completed</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">✓</div>
+      <div class="stat-value" id="dashHabits">0%</div>
+      <div class="stat-label">Habit Completion</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <h2>ဒီနေ့အတွက် အဓိကအချက်</h2>
+        <p>Learn → Think → Write → Act → Reflect</p>
+      </div>
+    </div>
+
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-title">
+          <h3>📚 ဒီနေ့သင်ခန်းစာ</h3>
+          <span class="badge gold" id="todayPhase">RESET</span>
+        </div>
+        <h2 id="todayLessonTitle">Loading...</h2>
+        <p class="small-text" id="todayLessonPreview"></p>
+        <div style="margin-top:15px">
+          <div class="progress-label">
+            <span>ဒီနေ့ Lesson</span>
+            <span id="todayLessonStatus">မပြီးသေး</span>
+          </div>
+          <div class="progress"><div id="todayLessonProgress" style="width:0%"></div></div>
+        </div>
+        <button class="btn primary small" style="margin-top:15px" onclick="openTodayLesson()">သင်ခန်းစာဖတ်မယ် →</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <h3>🎯 ဒီနေ့ 5 Actions</h3>
+          <span class="badge">Daily</span>
+        </div>
+        <div id="dashboardActions"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="grid g3">
+      <div class="card">
+        <div class="card-title"><h3>💰 Income Growth</h3></div>
+        <div class="small-text">လက်ရှိဝင်ငွေနဲ့ ရည်မှန်းထားတဲ့ဝင်ငွေကြား ကွာဟချက်</div>
+        <div style="font-size:25px;font-weight:900;margin-top:10px" id="incomeGap">0</div>
+        <div class="small-text">တစ်လလျှင်</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><h3>🎯 Goal Progress</h3></div>
+        <div class="progress-label"><span>Goals</span><span id="goalPercent">0%</span></div>
+        <div class="progress"><div id="goalBar" style="width:0%"></div></div>
+        <div class="small-text" style="margin-top:10px" id="goalSummary">Goal မရှိသေးပါ</div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><h3>🧠 Mind Reset</h3></div>
+        <p class="small-text">
+          စိတ်ဖိစီးမှု၊ စိုးရိမ်မှု၊ အတွေးများလွန်းမှုတွေရှိတဲ့အချိန်
+          5S Reset ကိုအသုံးပြုနိုင်ပါတယ်
+        </p>
+        <button class="btn small" style="margin-top:12px" onclick="open5S()">5S Reset စမယ်</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- MY LIFE -->
+<section class="page" id="page-mylife">
+  <div class="section-head">
+    <div>
+      <h2>My Life</h2>
+      <p>ကိုယ့်ဘဝရဲ့ လက်ရှိအခြေအနေကို အမှန်အတိုင်းပြန်ကြည့်ပါ</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>🌱 My Identity</h3></div>
+
+      <div class="field">
+        <label>နာမည်</label>
+        <input id="lifeName" placeholder="သင့်နာမည်">
+      </div>
+
+      <div class="field">
+        <label>နောက် 3 နှစ်မှာ ကိုယ်တည်ဆောက်ချင်တဲ့ဘဝ</label>
+        <textarea id="lifeVision" placeholder="ဥပမာ — ငွေကြေးပိုတည်ငြိမ်ပြီး ကိုယ်ပိုင်လုပ်ငန်းတစ်ခုနဲ့ မိသားစုအတွက် အချိန်ပိုပေးနိုင်တဲ့ဘဝ"></textarea>
+      </div>
+
+      <div class="field">
+        <label>ဘာကြောင့် ဒီဘဝကိုတည်ဆောက်ချင်တာလဲ</label>
+        <textarea id="lifeWhy" placeholder="ဥပမာ — မိသားစုအတွက် ပိုကောင်းတဲ့ဘဝတစ်ခုတည်ဆောက်ချင်လို့"></textarea>
+      </div>
+
+      <button class="btn primary" onclick="saveLifeProfile()">သိမ်းမယ်</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <h3>📊 Life Assessment</h3>
+        <span class="badge gold">Self Review</span>
+      </div>
+
+      <p class="small-text">
+        ဒီ Score ဟာ သင့်ဘဝရဲ့ အမှန်တကယ်တန်ဖိုးကို တိုင်းတာတာမဟုတ်ပါ
+        လက်ရှိအခြေအနေကို ကိုယ်တိုင်သုံးသပ်ပြီး ဘယ်နေရာကို ပိုအာရုံစိုက်သင့်လဲ သိဖို့အတွက်သာ အသုံးပြုပါတယ်
+      </p>
+
+      <div id="assessment"></div>
+      <button class="btn primary" onclick="saveAssessment()">Assessment သိမ်းမယ်</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <div class="card-title"><h3>💡 My Life ကိုဘယ်လိုသုံးသပ်မလဲ</h3></div>
+      <div class="detail">
+        <p>
+          ကိုယ့်ဘဝတိုးတက်ဖို့အတွက် ပထမဆုံးလိုအပ်တာက
+          “ငါ့ဘဝအခြေအနေက ဘယ်လိုရှိနေတယ်” ဆိုတာကို ရိုးရိုးသားသားမြင်နိုင်ခြင်းပါ
+        </p>
+
+        <h4>ဥပမာ</h4>
+        <div class="example">
+          လူတစ်ယောက်က ဝင်ငွေကောင်းပေမယ့် ငွေမစုနိုင်ဘူးဆိုရင်
+          “ဝင်ငွေနည်းလို့” တစ်ခုတည်းလို့ မသတ်မှတ်သင့်ပါ
+          အသုံးစရိတ်စီမံခန့်ခွဲမှု၊ lifestyle inflation၊ မလိုအပ်တဲ့အကြွေး
+          ဒါမှမဟုတ် financial discipline ကလည်း အကြောင်းရင်းဖြစ်နိုင်ပါတယ်
+        </div>
+
+        <h4>စဉ်းစားရန်</h4>
+        <ul>
+          <li>ငါ့ဘဝမှာ လက်ရှိအကောင်းဆုံးဖြစ်နေတဲ့အရာက ဘာလဲ</li>
+          <li>အပြောင်းအလဲအများဆုံးလိုအပ်တဲ့အရာက ဘာလဲ</li>
+          <li>အဲဒီအရာကို မပြောင်းဘဲ 1 နှစ်ဆက်သွားရင် ဘာဖြစ်နိုင်လဲ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIFE SCHOOL -->
+<section class="page" id="page-school">
+  <div class="hero">
+    <div class="hero-kicker">LIFE SCHOOL 365</div>
+    <h1>365 ရက်အတွင်း ဘဝကို တစ်ဆင့်ချင်း တည်ဆောက်ပါ</h1>
+    <p>
+      တစ်ရက်ကို Lesson တစ်ခုသာ သင်ယူပါ
+      အရေးကြီးတာက မြန်မြန်ပြီးအောင်လုပ်တာမဟုတ်ဘဲ
+      သင်ယူထားတာကို ကိုယ့်ဘဝထဲမှာ ပြန်အသုံးချနိုင်ဖို့ပါ
+    </p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card stat">
+      <div class="stat-icon">📚</div>
+      <div class="stat-value" id="schoolCompleted">0</div>
+      <div class="stat-label">Lessons Completed</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">📅</div>
+      <div class="stat-value" id="schoolDay">1</div>
+      <div class="stat-label">Current Day</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">%</div>
+      <div class="stat-value" id="schoolProgress">0%</div>
+      <div class="stat-label">365 Day Progress</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <div class="card-title">
+        <h3>📖 Today's Life School Lesson</h3>
+        <span class="badge gold" id="schoolPhase">RESET</span>
+      </div>
+      <div id="schoolLesson"></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <div>
+        <h2>Life School Structure</h2>
+        <p>ဘဝတည်ဆောက်မှုကို Phase 5 ခုခွဲထားပါတယ်</p>
+      </div>
+    </div>
+
+    <div class="grid g5" style="grid-template-columns:repeat(5,minmax(0,1fr))">
+      <div class="card"><b>01 RESET</b><p class="small-text">Day 1–30<br>ကိုယ့်ဘဝကို ပြန်စစ်ဆေးခြင်း</p></div>
+      <div class="card"><b>02 BUILD</b><p class="small-text">Day 31–90<br>အကျင့်ကောင်းတွေတည်ဆောက်ခြင်း</p></div>
+      <div class="card"><b>03 GROW</b><p class="small-text">Day 91–180<br>ဝင်ငွေ၊ Career၊ Skill တိုးတက်ခြင်း</p></div>
+      <div class="card"><b>04 SCALE</b><p class="small-text">Day 181–270<br>System၊ Team၊ Wealth တိုးချဲ့ခြင်း</p></div>
+      <div class="card"><b>05 MASTER</b><p class="small-text">Day 271–365<br>ရေရှည်ဘဝဒီဇိုင်းနှင့် Legacy</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COURSE PAGES -->
+<section class="page" id="page-wealth"></section>
+<section class="page" id="page-career"></section>
+<section class="page" id="page-business"></section>
+
+<!-- HABITS -->
+<section class="page" id="page-habits">
+  <div class="section-head">
+    <div>
+      <h2>Habit Tracker</h2>
+      <p>ဘဝပြောင်းလဲမှုကို အကြီးကြီးစမယ့်အစား နေ့စဉ်အကျင့်သေးသေးကနေစပါ</p>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card stat">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-value" id="habitStreak">0</div>
+      <div class="stat-label">Habit Streak</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">7</div>
+      <div class="stat-value" id="habit7">0%</div>
+      <div class="stat-label">Last 7 Days</div>
+    </div>
+    <div class="card stat">
+      <div class="stat-icon">30</div>
+      <div class="stat-value" id="habit30">0%</div>
+      <div class="stat-label">Last 30 Days</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="grid g2">
+      <div class="card">
+        <div class="card-title"><h3>➕ Habit အသစ်ထည့်ရန်</h3></div>
+        <div class="field">
+          <label>Habit Name</label>
+          <input id="habitInput" placeholder="ဥပမာ — မနက် 20 မိနစ်စာဖတ်မယ်">
+        </div>
+        <button class="btn primary" onclick="addHabit()">Habit ထည့်မယ်</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><h3>📅 ဒီနေ့ Habit</h3></div>
+        <div id="habitList"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MIND -->
+<section class="page" id="page-mind">
+  <div class="hero">
+    <div class="hero-kicker">MIND & EMOTION</div>
+    <h1>စိတ်ကို ဖိနှိပ်တာမဟုတ်ဘဲ စိတ်ကို နားလည်ပြီး စီမံပါ</h1>
+    <p>
+      စိတ်ဖိစီးမှု၊ စိုးရိမ်မှု၊ ဒေါသ၊ ကြောက်ရွံ့မှုနဲ့ Overthinking တွေကို
+      ချက်ချင်းဖယ်ရှားဖို့ထက် ဘာဖြစ်နေလဲ သိပြီး
+      တုံ့ပြန်ပုံကို ရွေးချယ်နိုင်ဖို့ လေ့ကျင့်ပါ
+    </p>
+    <button class="btn primary" onclick="open5S()">5S Reset စမယ်</button>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3>🧠 5S Emotional Reset</h3>
+      <span class="badge gold">SPOT → STEADY → SAY → SHIFT → STEP</span>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>01 SPOT — ဘာဖြစ်နေလဲ သတိထားပါ</h4>
+        <p>
+          “ငါဘာခံစားနေရတာလဲ” ကို အရင်ရှာပါ
+          စိုးရိမ်နေတာလား၊ ဒေါသထွက်နေတာလား၊ ကြောက်နေတာလား၊
+          အတွေးများနေတာလား၊ ရင်တုန်တာ၊ လည်ပင်းတင်းတာလို
+          ကိုယ်ခန္ဓာအချက်ပြမှုတွေရှိလားဆိုတာ သတိထားပါ
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>02 STEADY — ကိုယ့်ကိုယ်ကို တည်ငြိမ်အောင်လုပ်ပါ</h4>
+        <p>
+          4 စက္ကန့် အသက်ရှူဝင် → 2 စက္ကန့် ခဏထိန်း →
+          6 စက္ကန့် အသက်ရှူထုတ်
+          ကို 3–5 ကြိမ်လောက် ဖြည်းဖြည်းလုပ်ပါ
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>03 SAY — ခံစားချက်ကို နာမည်ပေးပါ</h4>
+        <p>
+          “ငါအခု စိုးရိမ်နေတယ်”
+          “ငါအခု မကျေနပ်ဘူး”
+          “ငါအခု မသေချာလို့ကြောက်နေတယ်”
+          လို့ ကိုယ့်စိတ်ကို စကားလုံးနဲ့ သတ်မှတ်ပါ
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>04 SHIFT — Fact နဲ့ Interpretation ခွဲပါ</h4>
+        <p>
+          ဖြစ်ရပ်အမှန်က ဘာလဲ၊ ကိုယ့်စိတ်က ထပ်ပြီးအဓိပ္ပါယ်ဖော်နေတာက ဘာလဲ
+          ခွဲကြည့်ပါ
+        </p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>05 STEP — နောက်ထပ်အဆင့်သေးသေးတစ်ခုလုပ်ပါ</h4>
+        <p>
+          ပြဿနာတစ်ခုလုံးကို တစ်ခါတည်းဖြေရှင်းဖို့ မကြိုးစားဘဲ
+          အခုချက်ချင်းလုပ်နိုင်တဲ့ အဆင့်အသေးဆုံးတစ်ခုကို ရွေးပါ
+        </p>
+      </div>
+    </div>
+
+    <div class="example">
+      <b>လက်တွေ့နမူနာ</b><br>
+      အလုပ်မှာ Manager က ကိုယ့်ကို ပြင်းပြင်းထန်ထန်ပြောတယ်ဆိုပါစို့
+      <br><br>
+      <b>SPOT:</b> “ငါအခု ဒေါသထွက်နေတယ်”<br>
+      <b>STEADY:</b> အသက်ရှူပြီး ခဏရပ်<br>
+      <b>SAY:</b> “ငါအခု မလေးစားခံရသလို ခံစားနေရတယ်”<br>
+      <b>SHIFT:</b> “Manager ပြောတာ = ငါ့တန်ဖိုးမရှိတာ” မဟုတ်ဘူး<br>
+      <b>STEP:</b> အချက်အလက်ကို ပြန်စစ်ပြီး အလုပ်ကိစ္စကို ဘယ်လိုပြင်မလဲ ဆုံးဖြတ်
+    </div>
+  </div>
+</section>
+
+<!-- HEALTH -->
+<section class="page" id="page-health">
+  <div class="hero">
+    <div class="hero-kicker">HEALTH</div>
+    <h1>ကျန်းမာရေးက Wealth Building ရဲ့ Foundation ဖြစ်ပါတယ်</h1>
+    <p>
+      အလုပ်၊ ဝင်ငွေ၊ Career တိုးတက်မှုတွေကို ရေရှည်ထိန်းထားနိုင်ဖို့
+      အိပ်စက်မှု၊ လှုပ်ရှားမှု၊ အစားအစာ၊ ရေ၊ အနားယူမှုနဲ့ Screen Time
+      ကို စနစ်တကျသုံးသပ်ပါ
+    </p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card course-card">
+      <div class="course-icon">😴</div>
+      <h3>Sleep</h3>
+      <p>အိပ်ချိန်နည်းနေရင် Productivity နဲ့ Emotional Control ကိုပါ ထိခိုက်နိုင်ပါတယ်</p>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">🚶</div>
+      <h3>Movement</h3>
+      <p>နေ့စဉ်လှုပ်ရှားမှုသေးသေးကနေ စတင်ပြီး ထိုင်နေရတဲ့အချိန်ကို လျှော့ပါ</p>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">💧</div>
+      <h3>Water</h3>
+      <p>နေ့စဉ်ရေသောက်မှုကို သတိထားပြီး ကိုယ့်ခန္ဓာကိုယ်လိုအပ်ချက်အတိုင်း ထိန်းပါ</p>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">🥗</div>
+      <h3>Food</h3>
+      <p>အစားအစာကို Diet Challenge တစ်ခုလိုမမြင်ဘဲ ရေရှည်စားသောက်ပုံအဖြစ် စဉ်းစားပါ</p>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">🌙</div>
+      <h3>Recovery</h3>
+      <p>အနားယူတာဟာ အချိန်ဖြုန်းတာမဟုတ်ဘဲ ပြန်လည်အားဖြည့်တဲ့အဆင့်ဖြစ်ပါတယ်</p>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">📱</div>
+      <h3>Screen Time</h3>
+      <p>ကိုယ့်အာရုံစိုက်နိုင်စွမ်းကို စားသုံးနေတဲ့ Digital Distraction တွေကို ပြန်စစ်ပါ</p>
+    </div>
+  </div>
+</section>
+
+<!-- RELATIONSHIPS -->
+<section class="page" id="page-relationships">
+  <div class="hero">
+    <div class="hero-kicker">RELATIONSHIPS</div>
+    <h1>ဘဝတိုးတက်မှုမှာ လူတွေနဲ့ဆက်ဆံပုံကလည်း အရေးကြီးပါတယ်</h1>
+    <p>
+      မိသားစု၊ ချစ်သူ၊ သူငယ်ချင်း၊ လုပ်ဖော်ကိုင်ဖက်နဲ့ Customer
+      ဆက်ဆံရေးတွေမှာ Communication၊ Respect၊ Trust နဲ့ Boundaries ကို တည်ဆောက်ပါ
+    </p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>❤️ Healthy Relationship</h3></div>
+      <div class="detail">
+        <h4>1. နားထောင်ခြင်း</h4>
+        <p>တစ်ဖက်လူပြောတာကို ကိုယ်ပြန်ဖြေဖို့စောင့်နေတာမဟုတ်ဘဲ နားလည်ဖို့ နားထောင်ပါ</p>
+
+        <h4>2. Communication</h4>
+        <p>စိတ်ထဲမှာ ခန့်မှန်းထားတာထက် အရေးကြီးတဲ့ကိစ္စတွေကို ရှင်းရှင်းလင်းလင်းပြောပါ</p>
+
+        <h4>3. Boundaries</h4>
+        <p>လူတိုင်းကို ကျေနပ်အောင်လုပ်ပေးဖို့ မလိုပါ
+        ကိုယ့်အချိန်၊ ကိုယ့်ငွေ၊ ကိုယ့်စိတ်ကျန်းမာရေးကို ကာကွယ်ဖို့ သင့်တော်တဲ့ကန့်သတ်ချက်တွေထားပါ</p>
+
+        <h4>4. Appreciation</h4>
+        <p>ကောင်းတဲ့အရာတွေကို သတိထားပြီး အသိအမှတ်ပြုစကားပြောပါ</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>📝 ဒီနေ့ Relationship Action</h3></div>
+      <div class="detail">
+        <p>ဒီနေ့ ကိုယ့်ဘဝမှာ အရေးကြီးတဲ့လူတစ်ယောက်ကို</p>
+        <div class="action-box">
+          “မင်းလုပ်ပေးထားတာတွေကို ငါတန်ဖိုးထားတယ်”
+          ဆိုတဲ့သဘောမျိုးနဲ့ စိတ်ရင်းနဲ့ အသိအမှတ်ပြုစကားတစ်ခု ပြောပါ
+        </div>
+        <p>
+          Relationship တိုးတက်ဖို့အတွက် ကြီးမားတဲ့ Gift ထက်
+          သေးငယ်တဲ့ Consistent Actions တွေက ပိုအရေးကြီးနိုင်ပါတယ်
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GOALS -->
+<section class="page" id="page-goals">
+  <div class="section-head">
+    <div>
+      <h2>Goals</h2>
+      <p>အိပ်မက်ကို Goal ပြောင်းပြီး Goal ကို Action ပြောင်းပါ</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>🎯 Goal အသစ်</h3></div>
+      <div class="field">
+        <label>Goal</label>
+        <input id="goalName" placeholder="ဥပမာ — လစဉ်ဝင်ငွေကို 25 သိန်းရောက်အောင်တိုးမယ်">
+      </div>
+      <div class="field">
+        <label>ဘာကြောင့်လိုချင်တာလဲ</label>
+        <textarea id="goalWhy" placeholder="ဒီ Goal က ဘာကြောင့်အရေးကြီးတာလဲ"></textarea>
+      </div>
+      <div class="grid g2">
+        <div class="field">
+          <label>Deadline</label>
+          <input type="date" id="goalDeadline">
+        </div>
+        <div class="field">
+          <label>Progress %</label>
+          <input type="number" id="goalProgress" min="0" max="100" value="0">
+        </div>
+      </div>
+      <button class="btn primary" onclick="addGoal()">Goal ထည့်မယ်</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>📌 My Goals</h3></div>
+      <div id="goalList"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="page" id="page-roadmap">
+  <div class="hero">
+    <div class="hero-kicker">365 ROADMAP</div>
+    <h1>365 Days — One Better Life</h1>
+    <p>
+      ဘဝပြောင်းလဲမှုဟာ တစ်ရက်တည်းနဲ့ ဖြစ်လာတာမဟုတ်ပါ
+      တစ်ရက်ပြီးတစ်ရက် တိုးတက်အောင်လုပ်တဲ့ System တစ်ခုကနေ ဖြစ်လာပါတယ်
+    </p>
+  </div>
+
+  <div class="grid g5">
+    <div class="card"><h3>RESET</h3><p class="small-text">Day 1–30<br>လက်ရှိဘဝကို ပြန်စစ်ပါ</p></div>
+    <div class="card"><h3>BUILD</h3><p class="small-text">Day 31–90<br>အကျင့်နဲ့ Routine တည်ဆောက်ပါ</p></div>
+    <div class="card"><h3>GROW</h3><p class="small-text">Day 91–180<br>Skill နဲ့ Income တိုးပါ</p></div>
+    <div class="card"><h3>SCALE</h3><p class="small-text">Day 181–270<br>System နဲ့ Wealth တိုးချဲ့ပါ</p></div>
+    <div class="card"><h3>MASTER</h3><p class="small-text">Day 271–365<br>ရေရှည်ဘဝကို ဒီဇိုင်းဆွဲပါ</p></div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <div class="detail">
+        <h3>RESET — ကိုယ့်ဘဝကို ပြန်စီမံခြင်း</h3>
+        <p>မလိုအပ်တဲ့အရာတွေကို ရှင်းပြီး အရေးကြီးတာတွေကို ပြန်သတ်မှတ်တဲ့အဆင့်</p>
+
+        <h3>BUILD — System တည်ဆောက်ခြင်း</h3>
+        <p>Motivation ကိုမစောင့်ဘဲ Habit၊ Routine နဲ့ Environment ကို တည်ဆောက်တဲ့အဆင့်</p>
+
+        <h3>GROW — တိုးတက်ခြင်း</h3>
+        <p>Skill ကို Income နဲ့ချိတ်ပြီး Career၊ Business၊ Financial Capacity ကို တိုးတက်စေတဲ့အဆင့်</p>
+
+        <h3>SCALE — ချဲ့ထွင်ခြင်း</h3>
+        <p>ကိုယ်တစ်ယောက်တည်းလုပ်တာထက် System၊ Team၊ Delegation၊ Asset တွေကို တည်ဆောက်တဲ့အဆင့်</p>
+
+        <h3>MASTER — ရေရှည်ဘဝဒီဇိုင်း</h3>
+        <p>ငွေရှာနိုင်တာတစ်ခုတည်းမဟုတ်ဘဲ Health၊ Family၊ Purpose၊ Contribution နဲ့ Legacy ကိုပါ စဉ်းစားတဲ့အဆင့်</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNAL -->
+<section class="page" id="page-journal">
+  <div class="section-head">
+    <div>
+      <h2>Journal</h2>
+      <p>ကိုယ့်အတွေးတွေကို ရေးထားခြင်းက ကိုယ့်ကိုယ်ကို နားလည်ဖို့ ကူညီနိုင်ပါတယ်</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>✍️ Today's Reflection</h3></div>
+      <div class="field">
+        <label>ဒီနေ့ ဘာတွေကောင်းခဲ့လဲ</label>
+        <textarea id="journalGood"></textarea>
+      </div>
+      <div class="field">
+        <label>ဘာကို ပိုကောင်းအောင်လုပ်နိုင်လဲ</label>
+        <textarea id="journalImprove"></textarea>
+      </div>
+      <div class="field">
+        <label>မနက်ဖြန်အတွက် အရေးကြီးဆုံး Action တစ်ခု</label>
+        <textarea id="journalAction"></textarea>
+      </div>
+      <button class="btn primary" onclick="saveJournal()">Journal သိမ်းမယ်</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>🙏 Gratitude</h3></div>
+      <p class="small-text">
+        ကျေးဇူးတင်စရာတွေကို ရေးတာက ပြဿနာတွေမရှိတော့အောင်လုပ်တာ မဟုတ်ပါ
+        လက်ရှိဘဝထဲမှာ တန်ဖိုးရှိနေတဲ့အရာတွေကို သတိထားမိအောင်လုပ်တာပါ
+      </p>
+      <textarea id="journalGratitude" style="margin-top:14px" placeholder="ဒီနေ့ ကျေးဇူးတင်မိတဲ့အရာ 3 ခု..."></textarea>
+      <button class="btn primary" style="margin-top:12px" onclick="saveJournal()">သိမ်းမယ်</button>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section class="page" id="page-tools">
+  <div class="section-head">
+    <div>
+      <h2>Life Tools</h2>
+      <p>ဆုံးဖြတ်ချက်နဲ့ ငွေကြေးစီမံခန့်ခွဲမှုအတွက် လက်တွေ့ Tools များ</p>
+    </div>
+  </div>
+
+  <div class="grid g3">
+    <div class="card course-card">
+      <div class="course-icon">💰</div>
+      <h3>Saving Calculator</h3>
+      <p>လစဉ်ဘယ်လောက်စုရင် ရည်မှန်းချက်ကို ဘယ်လောက်ကြာရောက်မလဲတွက်ပါ</p>
+      <button class="btn small" style="margin-top:12px" onclick="openSaving()">ဖွင့်မယ်</button>
+    </div>
+
+    <div class="card course-card">
+      <div class="course-icon">⏱</div>
+      <h3>Time Audit</h3>
+      <p>တစ်နေ့မှာ အချိန်တွေ ဘယ်နေရာကိုသွားနေလဲ ပြန်စစ်ပါ</p>
+      <button class="btn small" style="margin-top:12px" onclick="openTimeAudit()">စစ်မယ်</button>
+    </div>
+
+    <div class="card course-card">
+      <div class="course-icon">⚖</div>
+      <h3>Decision Maker</h3>
+      <p>ဆုံးဖြတ်ချက်ကို AI က ကိုယ်စားမချဘဲ ကိုယ့်စဉ်းစားပုံကို စနစ်တကျလုပ်ပေးပါ</p>
+      <button class="btn small" style="margin-top:12px" onclick="openDecision()">ဖွင့်မယ်</button>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGE -->
+<section class="page" id="page-challenge">
+  <div class="hero">
+    <div class="hero-kicker">DAILY CHALLENGE</div>
+    <h1>ဒီနေ့ တစ်ခုတည်းလုပ်ပါ</h1>
+    <p>
+      Challenge ရဲ့ရည်ရွယ်ချက်က အများကြီးလုပ်ဖို့မဟုတ်ပါ
+      တစ်ခုကို ပြီးအောင်လုပ်ပြီး Action Muscle ကို တည်ဆောက်ဖို့ပါ
+    </p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">
+      <h3 id="challengeTitle">Today's Challenge</h3>
+      <span class="badge gold">1 DAY</span>
+    </div>
+    <div class="detail" id="challengeText"></div>
+    <button class="btn primary" id="challengeBtn" onclick="completeChallenge()">Challenge ပြီးပြီ ✓</button>
+  </div>
+</section>
+
+<!-- COACH -->
+<section class="page" id="page-coach">
+  <div class="hero">
+    <div class="hero-kicker">AI LIFE COACH</div>
+    <h1>ပြဿနာကို စနစ်တကျ စဉ်းစားပါ</h1>
+    <p>
+      ဒီ Coach က သင့်အတွက် အဆုံးအဖြတ်ကို ကိုယ်စားချဖို့မဟုတ်ပါ
+      ပြဿနာကို ခွဲခြမ်းပြီး ဘာတွေစဉ်းစားသင့်လဲ၊
+      ဒီနေ့ဘာလုပ်နိုင်လဲဆိုတာ တည်ဆောက်ပေးဖို့ပါ
+    </p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>✦ Ask Life Coach</h3></div>
+
+      <div class="field">
+        <label>Problem Category</label>
+        <select id="coachCategory">
+          <option value="career">Career</option>
+          <option value="money">Money</option>
+          <option value="business">Business</option>
+          <option value="relationship">Relationship</option>
+          <option value="mind">Mind & Emotion</option>
+          <option value="decision">Decision</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>ဘာဖြစ်နေတာလဲ</label>
+        <textarea id="coachInput" placeholder="ဥပမာ — လက်ရှိအလုပ်မှာ ဝင်ငွေမတိုးတော့ဘူးလို့ ခံစားနေရပြီး အလုပ်ပြောင်းသင့်လား မပြောင်းသင့်လား မသေချာဘူး"></textarea>
+      </div>
+
+      <button class="btn primary" onclick="runCoach()">Coach ကိုမေးမယ်</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>🧭 Coaching Framework</h3></div>
+      <div class="timeline">
+        <div class="timeline-item"><h4>1. Current Situation</h4><p>လက်ရှိအခြေအနေကို ရှင်းရှင်းလင်းလင်းသတ်မှတ်ပါ</p></div>
+        <div class="timeline-item"><h4>2. Main Problem</h4><p>ပြဿနာရဲ့ အဓိကအချက်ကို ခွဲပါ</p></div>
+        <div class="timeline-item"><h4>3. Possible Cause</h4><p>ဖြစ်နိုင်တဲ့အကြောင်းရင်းတွေကို စဉ်းစားပါ</p></div>
+        <div class="timeline-item"><h4>4. Think About</h4><p>ဆုံးဖြတ်ချက်မချခင် ထပ်စဉ်းစားသင့်တာတွေကို ရှာပါ</p></div>
+        <div class="timeline-item"><h4>5. Today Action</h4><p>ဒီနေ့ လုပ်နိုင်တဲ့အရာတစ်ခု ရွေးပါ</p></div>
+        <div class="timeline-item"><h4>6. 7-Day Plan</h4><p>နောက် 7 ရက်အတွက် စမ်းသပ်လုပ်ဆောင်ချက်တစ်ခုတည်ဆောက်ပါ</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <div class="card-title"><h3>Coach Response</h3></div>
+      <div id="coachResult" class="empty">ပြဿနာတစ်ခုထည့်ပြီး Coach ကိုမေးပါ</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="page" id="page-progress">
+  <div class="hero">
+    <div class="hero-kicker">YOUR PROGRESS</div>
+    <h1>တိုးတက်မှုကို မြင်နိုင်အောင် Track လုပ်ပါ</h1>
+    <p>
+      Progress Tracking ရဲ့ရည်ရွယ်ချက်က ကိုယ့်ကိုယ်ကို တခြားလူတွေနဲ့ နှိုင်းယှဉ်ဖို့မဟုတ်ဘဲ
+      မနေ့ကထက် ဒီနေ့ ဘာတွေပြောင်းလဲလာလဲ သိဖို့ပါ
+    </p>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>Life Progress</h3></div>
+      <div class="score-box">
+        <div class="ring" id="progressRing" style="--p:0">
+          <div class="ring-content">
+            <div class="ring-value" id="progressRingValue">0%</div>
+            <div class="ring-label">PROGRESS</div>
+          </div>
+        </div>
+        <div>
+          <h3>Personal Progress Indicator</h3>
+          <p class="small-text">
+            ဒီ Score ဟာ အောင်မြင်မှုကို အတည်ပြုတဲ့ အမှတ်မဟုတ်ပါ
+            ကိုယ့်ရဲ့ Self-Assessment နဲ့ Action Completion တွေကို ပေါင်းပြီး
+            လက်ရှိ Progress ကို မြင်သာအောင် ပြထားတာပါ
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>Course Progress</h3></div>
+      <div id="courseProgress"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<section class="page" id="page-premium">
+  <div class="hero">
+    <div class="hero-kicker">LIFERISE PREMIUM</div>
+    <h1>ပိုမိုနက်ရှိုင်းတဲ့ Life Growth System</h1>
+    <p>
+      Premium architecture ကို ကြိုတင်ထည့်သွင်းထားပါတယ်
+      လက်ရှိမှာ Premium content ကို လက်တွေ့ Payment Gateway မချိတ်ရသေးတဲ့အတွက်
+      Unlock မလုပ်ထားပါ
+    </p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card course-card">
+      <div class="course-icon">📚</div>
+      <h3>Advanced Lessons</h3>
+      <p>Wealth, Career, Business နဲ့ Life Mastery အတွက် ပိုနက်ရှိုင်းတဲ့ Lessons</p>
+      <span class="badge gold" style="margin-top:15px">PREMIUM READY</span>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">🧮</div>
+      <h3>Advanced Tools</h3>
+      <p>Financial Planning, Career Planning နဲ့ Business Growth Tools</p>
+      <span class="badge gold" style="margin-top:15px">PREMIUM READY</span>
+    </div>
+    <div class="card course-card">
+      <div class="course-icon">☁</div>
+      <h3>Cloud Sync</h3>
+      <p>နောက်ပိုင်းမှာ Account Login နဲ့ Cloud Data Sync ချိတ်နိုင်အောင် Architecture ထားထားပါတယ်</p>
+      <span class="badge gold" style="margin-top:15px">COMING LATER</span>
+    </div>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section class="page" id="page-settings">
+  <div class="section-head">
+    <div>
+      <h2>Settings</h2>
+      <p>LifeRise ကို ကိုယ့်လိုအပ်ချက်အတိုင်း စီမံပါ</p>
+    </div>
+  </div>
+
+  <div class="grid g2">
+    <div class="card">
+      <div class="card-title"><h3>🔔 Daily Check-in</h3></div>
+
+      <div class="action-row">
+        <div class="action-text"><b>Morning Action</b><small>မနက်ပိုင်း အာရုံစိုက်ရမယ့်အရာ</small></div>
+        <input type="checkbox" id="notifyMorning" style="width:auto">
+      </div>
+
+      <div class="action-row">
+        <div class="action-text"><b>Afternoon Check</b><small>နေ့လယ် Progress ပြန်စစ်ရန်</small></div>
+        <input type="checkbox" id="notifyAfternoon" style="width:auto">
+      </div>
+
+      <div class="action-row">
+        <div class="action-text"><b>Evening Reflection</b><small>ညပိုင်း Reflection</small></div>
+        <input type="checkbox" id="notifyEvening" style="width:auto">
+      </div>
+
+      <button class="btn small" style="margin-top:15px" onclick="requestNotifications()">Notification Permission</button>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><h3>💾 Data</h3></div>
+      <p class="small-text">
+        LifeRise ရဲ့ လက်ရှိ Data တွေကို ဒီ Browser ရဲ့ Local Storage ထဲမှာ သိမ်းထားပါတယ်
+        Browser Data ကိုဖျက်လိုက်ရင် App Data ပျောက်နိုင်ပါတယ်
+      </p>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:15px">
+        <button class="btn small" onclick="exportData()">Backup Data</button>
+        <button class="btn small danger" onclick="resetData()">Reset All Data</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+</main>
+
+<div class="mobile-nav">
+  <button data-page="dashboard" class="active"><i>⌂</i>Home</button>
+  <button data-page="school"><i>◈</i>Learn</button>
+  <button data-page="habits"><i>✓</i>Habits</button>
+  <button data-page="goals"><i>◎</i>Goals</button>
+  <button data-page="more"><i>☰</i>More</button>
 </div>
 
-<!-- MOBILE NAV -->
-<nav class="mobile-nav">
-  <button data-page="dashboard" class="active"><span>⌂</span><span>Home</span></button>
-  <button data-page="school"><span>🎓</span><span>Learn</span></button>
-  <button data-page="habits"><span>✓</span><span>Habits</span></button>
-  <button data-page="coach"><span>🤖</span><span>Coach</span></button>
-  <button onclick="openMoreDrawer()"><span>☰</span><span>More</span></button>
-</nav>
-
-<!-- MORE DRAWER -->
-<div class="drawer" id="moreDrawer" onclick="closeMoreDrawer(event)">
-  <div class="drawer-panel" onclick="event.stopPropagation()">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
-      <h2 style="margin:0">LifeRise</h2>
-      <button class="close" onclick="closeMoreDrawer()">×</button>
-    </div>
-
-    <div class="nav-title">LIFE</div>
-    <button class="nav-btn" onclick="drawerPage('mylife')">◎ My Life</button>
-    <button class="nav-btn" onclick="drawerPage('wealth')">💰 Wealth</button>
-    <button class="nav-btn" onclick="drawerPage('career')">🚀 Career</button>
-    <button class="nav-btn" onclick="drawerPage('business')">🏢 Business</button>
-    <button class="nav-btn" onclick="drawerPage('mind')">🧠 Mind</button>
-    <button class="nav-btn" onclick="drawerPage('health')">♥ Health</button>
-    <button class="nav-btn" onclick="drawerPage('relationships')">♡ Relationships</button>
-    <button class="nav-btn" onclick="drawerPage('goals')">🎯 Goals</button>
-
-    <div class="nav-title">TOOLS</div>
-    <button class="nav-btn" onclick="drawerPage('roadmap')">◈ Roadmap</button>
-    <button class="nav-btn" onclick="drawerPage('journal')">✎ Journal</button>
-    <button class="nav-btn" onclick="drawerPage('tools')">⚙ Life Tools</button>
-    <button class="nav-btn" onclick="drawerPage('challenge')">🔥 Challenge</button>
-    <button class="nav-btn" onclick="drawerPage('progress')">◒ Progress</button>
-    <button class="nav-btn" onclick="drawerPage('premium')">✦ Premium</button>
-    <button class="nav-btn" onclick="drawerPage('settings')">⚙ Settings</button>
-  </div>
 </div>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal">
+<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
+  <div class="modal" id="modalBox">
     <div class="modal-head">
-      <div id="modalTitle">LifeRise</div>
+      <h3 id="modalTitle">Modal</h3>
       <button class="close" onclick="closeModal()">×</button>
     </div>
     <div class="modal-body" id="modalBody"></div>
@@ -1721,7 +1546,7 @@ th{color:#8e96a4;font-weight:700}
 <script>
 /* =========================================================
    LIFERISE V4
-   LOCAL-FIRST PERSONAL GROWTH SYSTEM
+   Local-first Life Growth System
 ========================================================= */
 
 const STORAGE_KEY = "liferise_v4_data";
@@ -1750,8 +1575,6 @@ const defaultData = {
   lastActive:"",
   challengeDate:"",
   challengeDone:false,
-  language:"my",
-  adviceIndex:0,
   school:{
     completed:[],
     selectedDay:1
@@ -1769,14 +1592,36 @@ const defaultData = {
     afternoon:true,
     evening:true
   },
-  premium:false,
-  onboardingDone:false
+  premium:false
 };
 
 let data = loadData();
 
-function clone(obj){
+function deepClone(obj){
   return JSON.parse(JSON.stringify(obj));
+}
+
+function mergeData(base, old){
+  if(!old || typeof old!=="object") return base;
+
+  const merged = deepClone(base);
+
+  Object.keys(merged).forEach(k=>{
+    if(old[k] !== undefined){
+      if(
+        typeof merged[k] === "object" &&
+        merged[k] !== null &&
+        !Array.isArray(merged[k]) &&
+        typeof old[k] === "object"
+      ){
+        merged[k] = {...merged[k],...old[k]};
+      }else{
+        merged[k] = old[k];
+      }
+    }
+  });
+
+  return merged;
 }
 
 function loadData(){
@@ -1784,73 +1629,59 @@ function loadData(){
 
   if(saved){
     try{
-      return Object.assign(clone(defaultData),JSON.parse(saved));
+      return mergeData(defaultData,JSON.parse(saved));
     }catch(e){}
   }
 
   /* V2 migration */
-  let old = localStorage.getItem("liferise_v2_data");
+  const old = localStorage.getItem("liferise_v2_data");
 
   if(old){
     try{
-      const v2 = JSON.parse(old);
-      const merged = clone(defaultData);
-
-      Object.keys(merged).forEach(k=>{
-        if(v2[k] !== undefined) merged[k] = v2[k];
-      });
-
-      if(v2.life) merged.assessment = Object.assign(merged.assessment,v2.life);
-      if(v2.profile){
-        merged.name = v2.profile.name || "";
-        merged.vision = v2.profile.vision || "";
-        merged.why = v2.profile.why || "";
-      }
-
-      localStorage.setItem(STORAGE_KEY,JSON.stringify(merged));
-      return merged;
+      const oldData = JSON.parse(old);
+      const migrated = mergeData(defaultData,oldData);
+      localStorage.setItem(STORAGE_KEY,JSON.stringify(migrated));
+      return migrated;
     }catch(e){}
   }
 
-  localStorage.setItem(STORAGE_KEY,JSON.stringify(defaultData));
-  return clone(defaultData);
+  return deepClone(defaultData);
 }
 
-function saveData(){
+function save(){
   localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
-  refreshAll();
+  renderAll();
 }
 
 function todayKey(){
-  const d = new Date();
-  return d.toISOString().slice(0,10);
+  return new Date().toISOString().slice(0,10);
 }
 
 function formatMoney(n){
-  return new Intl.NumberFormat("en-US").format(Number(n)||0)+" Ks";
+  n = Number(n)||0;
+  return n.toLocaleString("en-US");
 }
 
-function escapeHTML(str){
-  return String(str??"")
-    .replace(/&/g,"&amp;")
-    .replace(/</g,"&lt;")
-    .replace(/>/g,"&gt;")
-    .replace(/"/g,"&quot;")
-    .replace(/'/g,"&#039;");
+function toast(msg){
+  const el=document.getElementById("toast");
+  el.textContent=msg;
+  el.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer=setTimeout(()=>el.classList.remove("show"),2400);
 }
 
-/* =========================================================
+/* =========================
    NAVIGATION
-========================================================= */
+========================= */
 
-const pageNames = {
+const pageTitles={
   dashboard:"Dashboard",
   mylife:"My Life",
   school:"Life School 365",
   wealth:"Wealth Course",
   career:"Career Course",
   business:"Business Course",
-  habits:"Habit Tracker",
+  habits:"Habits",
   mind:"Mind & Emotion",
   health:"Health",
   relationships:"Relationships",
@@ -1866,743 +1697,690 @@ const pageNames = {
 };
 
 function showPage(page){
+  if(page==="more"){
+    openMore();
+    return;
+  }
+
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 
-  const target = document.getElementById("page-"+page);
+  const target=document.getElementById("page-"+page);
   if(target) target.classList.add("active");
 
-  document.querySelectorAll(".nav-btn").forEach(b=>{
-    b.classList.toggle("active",b.dataset.page===page);
+  document.querySelectorAll(".nav-btn").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
   });
 
-  document.querySelectorAll(".mobile-nav button[data-page]").forEach(b=>{
-    b.classList.toggle("active",b.dataset.page===page);
+  document.querySelectorAll(".mobile-nav button").forEach(btn=>{
+    btn.classList.toggle("active",btn.dataset.page===page);
   });
 
-  document.getElementById("pageTitle").textContent = pageNames[page] || "LifeRise";
+  document.getElementById("topTitle").textContent=pageTitles[page]||"LifeRise";
 
   window.scrollTo({top:0,behavior:"smooth"});
 
   if(page==="school") renderSchool();
   if(page==="habits") renderHabits();
   if(page==="goals") renderGoals();
-  if(page==="coach") renderCoachHistory();
+  if(page==="progress") renderProgress();
   if(page==="journal") loadJournal();
-  if(page==="mylife") renderAssessment();
 }
 
 document.querySelectorAll("[data-page]").forEach(btn=>{
   btn.addEventListener("click",()=>showPage(btn.dataset.page));
 });
 
-function openMoreDrawer(){
-  document.getElementById("moreDrawer").classList.add("show");
-}
+/* =========================
+   SCHOOL 365
+========================= */
 
-function closeMoreDrawer(e){
-  if(!e || e.target.id==="moreDrawer"){
-    document.getElementById("moreDrawer").classList.remove("show");
-  }
-}
+const categories=[
+  "Mindset",
+  "Money",
+  "Career",
+  "Business",
+  "Health",
+  "Relationships",
+  "Time",
+  "Growth"
+];
 
-function drawerPage(page){
-  closeMoreDrawer();
-  showPage(page);
-}
-
-/* =========================================================
-   DATE / DAY
-========================================================= */
-
-function getDayOfYear(){
-  const now = new Date();
-  const start = new Date(now.getFullYear(),0,0);
-  const diff = now - start;
-  return Math.min(365,Math.floor(diff/(1000*60*60*24)));
-}
-
-function getCurrentSchoolDay(){
-  return data.school.selectedDay || Math.max(1,getDayOfYear());
-}
-
-/* =========================================================
-   LIFE SCHOOL 365
-========================================================= */
-
-const schoolTopics = {
-
-Mindset:[
-"ကိုယ့်ဘဝကို ပြန်ကြည့်ခြင်း",
-"ကိုယ့်အတွက် အရေးကြီးတာတွေသိခြင်း",
-"Focus ဆိုတာဘာလဲ",
-"Negative Thinking ကိုသတိထားခြင်း",
-"Fear ကိုနားလည်ခြင်း",
-"Confidence တည်ဆောက်ခြင်း",
-"Self-talk ကိုပြောင်းလဲခြင်း",
-"Comparison Trap",
-"Perfectionism ကိုလျှော့ခြင်း",
-"Growth Mindset",
-"Failure ကိုသင်ခန်းစာအဖြစ်ကြည့်ခြင်း",
-"Patience",
-"Consistency",
-"Discipline",
-"Responsibility",
-"Control the Controllable",
-"Fact vs Story",
-"Small Steps",
-"Decision Making",
-"Long-term Thinking"
-],
-
-Money:[
-"ပိုက်ဆံအပေါ် ကိုယ့်ယုံကြည်ချက်",
-"ဝင်ငွေတိုးခြင်း",
-"အသုံးစရိတ်ကို သိခြင်း",
-"Budget တည်ဆောက်ခြင်း",
-"Saving Habit",
-"Emergency Fund",
-"Bad Debt",
-"Good Debt ကိုနားလည်ခြင်း",
-"Skill ကနေ Income ပြောင်းခြင်း",
-"Side Income",
-"Multiple Income",
-"Asset နဲ့ Liability",
-"Cash Flow",
-"Financial Goal",
-"Money Discipline",
-"Impulse Spending",
-"Needs vs Wants",
-"Financial Protection",
-"Risk Management",
-"Wealth Building"
-],
-
-Career:[
-"Career Direction",
-"ကိုယ့် Skill ကိုသိခြင်း",
-"Communication",
-"Professional Behavior",
-"Time Management",
-"Work Prioritization",
-"KPI ကိုနားလည်ခြင်း",
-"Result ကိုတိုင်းတာခြင်း",
-"Feedback လက်ခံခြင်း",
-"Problem Solving",
-"Presentation",
-"Business English",
-"Negotiation",
-"Leadership",
-"Teamwork",
-"Visibility",
-"Promotion Strategy",
-"Personal Brand",
-"Networking",
-"Career Planning"
-],
-
-Business:[
-"Customer ကိုနားလည်ခြင်း",
-"Customer Problem",
-"Product Value",
-"Market",
-"Marketing",
-"Sales",
-"Pricing",
-"Gross Profit",
-"Net Profit",
-"Cash Flow",
-"Inventory",
-"Operation",
-"Customer Retention",
-"Team",
-"Delegation",
-"Process",
-"System",
-"Data",
-"Scale",
-"Business Strategy"
-],
-
-Health:[
-"Sleep",
-"Morning Energy",
-"Movement",
-"Walking",
-"Water",
-"Food Quality",
-"Portion Control",
-"Rest",
-"Stress",
-"Screen Time",
-"Posture",
-"Breathing",
-"Energy Management",
-"Routine",
-"Recovery",
-"Consistency",
-"Healthy Environment",
-"Work-Life Balance",
-"Long-term Health",
-"Self-care"
-],
-
-Relationships:[
-"နားထောင်ခြင်း",
-"Empathy",
-"Communication",
-"Respect",
-"Family Time",
-"Quality Time",
-"Friendship",
-"Boundaries",
-"Trust",
-"Conflict",
-"Apology",
-"Forgiveness",
-"Support",
-"Appreciation",
-"Expectation",
-"Emotional Safety",
-"Healthy Distance",
-"Giving",
-"Receiving",
-"Relationship Growth"
-],
-
-Time:[
-"Time Audit",
-"Priority",
-"Urgent vs Important",
-"Deep Work",
-"Time Blocking",
-"Planning",
-"Morning Routine",
-"Evening Routine",
-"Distraction",
-"Phone Usage",
-"Meeting Time",
-"Travel Time",
-"Delegation",
-"Batching",
-"Single Tasking",
-"Rest",
-"Weekly Review",
-"Monthly Review",
-"Quarterly Review",
-"Life Calendar"
-],
-
-Growth:[
-"Learning Habit",
-"Reading",
-"Practice",
-"Skill Stack",
-"Feedback",
-"Reflection",
-"Experiment",
-"Curiosity",
-"Creativity",
-"Adaptability",
-"Networking",
-"Mentorship",
-"Personal Brand",
-"Leadership Growth",
-"Financial Growth",
-"Career Growth",
-"Business Growth",
-"Life Design",
-"Legacy",
-"Continuous Improvement"
-]
-
+const topics={
+  Mindset:[
+    "ကိုယ့်ဘဝကို ပြန်ကြည့်ခြင်း",
+    "ကိုယ့်ရဲ့ WHY ကိုရှာခြင်း",
+    "အတွေးနဲ့ အမှန်တရားခွဲခြားခြင်း",
+    "Negative Thinking ကိုသတိထားခြင်း",
+    "Fear ကို နားလည်ခြင်း",
+    "Confidence တည်ဆောက်ခြင်း",
+    "Self-Talk",
+    "Discipline",
+    "Consistency",
+    "Procrastination",
+    "Comfort Zone",
+    "Responsibility",
+    "Focus",
+    "Patience",
+    "Long-term Thinking",
+    "Growth Mindset",
+    "Failure ကို သင်ခန်းစာအဖြစ်မြင်ခြင်း",
+    "Comparison Trap",
+    "Decision Making",
+    "Emotional Control"
+  ],
+  Money:[
+    "ငွေကို ဘယ်လိုမြင်လဲ",
+    "ဝင်ငွေနဲ့ Wealth ကွာခြားချက်",
+    "အသုံးစရိတ်ကိုသိခြင်း",
+    "Needs vs Wants",
+    "Budget တည်ဆောက်ခြင်း",
+    "Saving Habit",
+    "Emergency Fund",
+    "Bad Debt",
+    "Good Debt ကိုနားလည်ခြင်း",
+    "Income Gap",
+    "Skill နဲ့ Income",
+    "Multiple Income",
+    "Asset နဲ့ Liability",
+    "Cash Flow",
+    "Financial Goal",
+    "Lifestyle Inflation",
+    "Impulse Buying",
+    "Money Review",
+    "Financial Protection",
+    "Long-term Wealth"
+  ],
+  Career:[
+    "Career Direction",
+    "Skill Inventory",
+    "Communication",
+    "Listening",
+    "Presentation",
+    "Business English",
+    "Negotiation",
+    "Sales Skill",
+    "Leadership",
+    "Delegation",
+    "Problem Solving",
+    "Excel & Data",
+    "Reporting",
+    "Personal Brand",
+    "Visibility",
+    "Performance Evidence",
+    "Promotion Strategy",
+    "Networking",
+    "Career Planning",
+    "Career Review"
+  ],
+  Business:[
+    "Customer ကိုနားလည်ခြင်း",
+    "Problem ကိုရှာခြင်း",
+    "Product Value",
+    "Customer Segment",
+    "Marketing",
+    "Sales Funnel",
+    "Pricing",
+    "Gross Profit",
+    "Cash Flow",
+    "Inventory",
+    "Operation",
+    "Process",
+    "Team",
+    "Delegation",
+    "Customer Retention",
+    "Referral",
+    "KPI",
+    "System",
+    "Scale",
+    "Business Review"
+  ],
+  Health:[
+    "Sleep",
+    "Movement",
+    "Water",
+    "Food",
+    "Recovery",
+    "Stress",
+    "Screen Time",
+    "Walking",
+    "Exercise Habit",
+    "Energy Management",
+    "Rest",
+    "Routine",
+    "Health Tracking",
+    "Healthy Environment",
+    "Long-term Health"
+  ],
+  Relationships:[
+    "Listening",
+    "Respect",
+    "Trust",
+    "Communication",
+    "Boundaries",
+    "Family Time",
+    "Appreciation",
+    "Conflict",
+    "Forgiveness",
+    "Empathy",
+    "Customer Relationship",
+    "Work Relationship",
+    "Friendship",
+    "Support",
+    "Relationship Review"
+  ],
+  Time:[
+    "Time Awareness",
+    "Time Audit",
+    "Priority",
+    "Urgent vs Important",
+    "Deep Work",
+    "Distraction",
+    "Planning",
+    "Morning Routine",
+    "Evening Review",
+    "Calendar",
+    "Batching",
+    "Saying No",
+    "Focus Block",
+    "Energy vs Time",
+    "Weekly Review"
+  ],
+  Growth:[
+    "Learning Habit",
+    "Reading",
+    "Practice",
+    "Feedback",
+    "Mentor",
+    "Experiment",
+    "Reflection",
+    "Small Wins",
+    "Skill Stack",
+    "Adaptability",
+    "Curiosity",
+    "Self Review",
+    "Goal Review",
+    "Progress Tracking",
+    "Life Design"
+  ]
 };
 
-const schoolCategories = Object.keys(schoolTopics);
+const phaseInfo=[
+  {min:1,max:30,name:"RESET",desc:"ကိုယ့်ဘဝကို ပြန်စစ်ဆေးပြီး အခြေခံကိုရှင်းလင်းခြင်း"},
+  {min:31,max:90,name:"BUILD",desc:"အကျင့်၊ Routine နဲ့ System တွေတည်ဆောက်ခြင်း"},
+  {min:91,max:180,name:"GROW",desc:"Skill၊ Career၊ Income နဲ့ Capacity တိုးတက်ခြင်း"},
+  {min:181,max:270,name:"SCALE",desc:"System၊ Team၊ Asset နဲ့ Wealth ကိုချဲ့ထွင်ခြင်း"},
+  {min:271,max:365,name:"MASTER",desc:"ရေရှည်ဘဝ၊ Family၊ Purpose နဲ့ Legacy ကိုဒီဇိုင်းဆွဲခြင်း"}
+];
 
-function phaseForDay(day){
-  if(day<=30) return "RESET";
-  if(day<=90) return "BUILD";
-  if(day<=180) return "GROW";
-  if(day<=270) return "SCALE";
-  return "MASTER";
+function getPhase(day){
+  return phaseInfo.find(p=>day>=p.min && day<=p.max) || phaseInfo[0];
 }
 
-function categoryForDay(day){
-  return schoolCategories[(day-1)%schoolCategories.length];
+function getCategory(day){
+  return categories[(day-1)%categories.length];
 }
 
-function topicForDay(day){
-  const cat = categoryForDay(day);
-  const arr = schoolTopics[cat];
-  return arr[Math.floor((day-1)/schoolCategories.length)%arr.length];
+function getTopic(day){
+  const cat=getCategory(day);
+  const arr=topics[cat];
+  return arr[Math.floor((day-1)/8)%arr.length];
 }
 
-function lessonContent(day){
+function getSchoolLesson(day){
+  const cat=getCategory(day);
+  const topic=getTopic(day);
+  const phase=getPhase(day);
 
-  const cat = categoryForDay(day);
-  const topic = topicForDay(day);
-  const phase = phaseForDay(day);
-
-  const templates = {
-
-Mindset:{
-    explain:`${topic} ဆိုတာ ကိုယ့်အတွေး၊ ခံစားချက်နဲ့ လုပ်ဆောင်ချက်တွေကို ပိုမိုသတိရှိရှိ စီမံနိုင်ဖို့ အခြေခံကျတဲ့အကြောင်းအရာတစ်ခုဖြစ်ပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး ကိုယ့်ဘဝမှာ လက်ရှိဖြစ်နေတဲ့အခြေအနေတစ်ခုကို ရေးပါ`,
-    reflect:`အခုအခြေအနေမှာ ကိုယ့်အတွေးကို ဘယ်လိုပြောင်းရင် လုပ်ဆောင်ချက်က ပိုကောင်းလာနိုင်မလဲ`
-},
-
-Money:{
-    explain:`ငွေကြေးတိုးတက်မှုဆိုတာ ပိုက်ဆံပိုရှာရုံနဲ့ မပြီးပါဘူး။ ဝင်ငွေ၊ အသုံးစရိတ်၊ စုဆောင်းမှု၊ အန္တရာယ်စီမံမှုနဲ့ ရေရှည် asset building ကိုပါ စဉ်းစားရပါတယ်`,
-    action:`ဒီနေ့ ကိုယ့်ရဲ့ ငွေကြေးအခြေအနေထဲက ${topic} နဲ့ဆိုင်တဲ့ အချက် ၃ ခုကို စစ်ပါ`,
-    reflect:`ဒီအချက်ကို ပိုကောင်းအောင်လုပ်နိုင်ရင် လစဉ်ငွေကြေးအခြေအနေ ဘယ်လိုပြောင်းလဲနိုင်မလဲ`
-},
-
-Career:{
-    explain:`Career တိုးတက်မှုဟာ အလုပ်လုပ်နေရုံနဲ့မဟုတ်ဘဲ Result၊ Skill၊ Communication၊ Visibility နဲ့ Leadership တို့ပေါင်းစပ်မှုကနေ ဖြစ်လာပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး လက်ရှိအလုပ်မှာ တိုးတက်အောင်လုပ်နိုင်တဲ့ action တစ်ခုရွေးပါ`,
-    reflect:`ကိုယ့် Career ရဲ့ နောက်တစ်ဆင့်အတွက် ဘယ် Skill က အရေးကြီးဆုံးလဲ`
-},
-
-Business:{
-    explain:`Business တစ်ခုတိုးတက်ဖို့ Customer ရဲ့လိုအပ်ချက်၊ Product Value၊ Sales၊ Profit၊ Cash Flow နဲ့ Operation ကို တစ်ခုချင်းစီ နားလည်ဖို့လိုပါတယ်`,
-    action:`ကိုယ့်လုပ်ငန်း ဒါမှမဟုတ် ကိုယ့်အလုပ်ကို Business Perspective နဲ့ကြည့်ပြီး ${topic} နဲ့ဆိုင်တဲ့ အချက်တစ်ခုကို စစ်ပါ`,
-    reflect:`ဒီအချက်ကို တိုးတက်အောင်လုပ်ရင် Customer ဒါမှမဟုတ် Profit အပေါ် ဘယ်လိုသက်ရောက်မလဲ`
-},
-
-Health:{
-    explain:`ကျန်းမာရေးက ဘဝတိုးတက်ရေးရဲ့ အခြေခံစွမ်းအင်ဖြစ်ပါတယ်။ အလုပ်၊ ငွေကြေးနဲ့ ရည်မှန်းချက်တွေကို ရေရှည်ဆက်လုပ်နိုင်ဖို့ Energy Management အရေးကြီးပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး လက်တွေ့လုပ်ဆောင်ချက်တစ်ခုရွေးပါ`,
-    reflect:`ဒီအကျင့်ကို 30 ရက်ဆက်လုပ်နိုင်ရင် ကိုယ့်စွမ်းအင်နဲ့ဘဝမှာ ဘာတွေပြောင်းလဲနိုင်မလဲ`
-},
-
-Relationships:{
-    explain:`ကောင်းမွန်တဲ့ဆက်ဆံရေးမှာ Communication၊ Respect၊ Trust နဲ့ Boundaries တွေဟာ အရေးကြီးပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး မိသားစု ဒါမှမဟုတ် မိတ်ဆွေတစ်ယောက်နဲ့ လက်တွေ့လုပ်ဆောင်ချက်တစ်ခုလုပ်ပါ`,
-    reflect:`ဒီဆက်ဆံရေးကို ပိုကောင်းအောင် ကိုယ်တိုင်ဘာလုပ်နိုင်မလဲ`
-},
-
-Time:{
-    explain:`အချိန်စီမံခန့်ခွဲမှုဆိုတာ နာရီကိုထိန်းချုပ်တာမဟုတ်ဘဲ ကိုယ့်အာရုံစူးစိုက်မှုနဲ့ ဦးစားပေးမှုကို စီမံတာဖြစ်ပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး အချိန်အသုံးပြုပုံကို ၁ ကြိမ်စစ်ဆေးပါ`,
-    reflect:`ကိုယ့်အချိန်ထဲက ဘယ်အရာကို လျှော့ပြီး ဘယ်အရာကို တိုးသင့်လဲ`
-},
-
-Growth:{
-    explain:`Personal Growth ဆိုတာ အမြဲတမ်းအသစ်တစ်ခုကို သင်ယူခြင်း၊ လက်တွေ့ကျင့်ခြင်း၊ Feedback ရယူခြင်းနဲ့ Reflection လုပ်ခြင်းတို့ရဲ့ စက်ဝိုင်းတစ်ခုဖြစ်ပါတယ်`,
-    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး 20 မိနစ်အနည်းဆုံး လေ့လာခြင်း ဒါမှမဟုတ် လက်တွေ့ကျင့်ခြင်းလုပ်ပါ`,
-    reflect:`ဒီ Skill ကို 90 ရက်တိုးတက်အောင်လုပ်နိုင်ရင် ကိုယ့်ဘဝမှာ ဘာအခွင့်အရေးအသစ်တွေ ရနိုင်မလဲ`
-}
-
+  const base={
+    "ကိုယ့်ဘဝကို ပြန်ကြည့်ခြင်း":{
+      goal:"လက်ရှိဘဝကို အမှန်အတိုင်းမြင်နိုင်ဖို့",
+      explain:
+      "ဘဝတိုးတက်ဖို့ ပထမဆုံးအဆင့်က ကိုယ့်ရဲ့ လက်ရှိအခြေအနေကို မဖုံးကွယ်ဘဲ မြင်နိုင်ခြင်းပါ။ Money၊ Career၊ Health၊ Mind၊ Family၊ Relationship၊ Time နဲ့ Growth ဆိုတဲ့အပိုင်းတွေကို သီးခြားစဉ်းစားပါ။ အရာအားလုံးကို တစ်ခါတည်းပြောင်းဖို့ မလိုပါ။ အရေးအကြီးဆုံး Gap တစ်ခုကို ရှာနိုင်ရင် လုံလောက်ပါတယ်။",
+      example:
+      "ဥပမာ — လစဉ်ဝင်ငွေ 15 သိန်းရှိပေမယ့် လကုန်တိုင်း ငွေမကျန်ဘူးဆိုရင် “ငါဝင်ငွေနည်းလို့” လို့ပဲ မသတ်မှတ်ပါနဲ့။ ဝင်ငွေ၊ Fixed Expense၊ Variable Expense၊ Debt Payment နဲ့ Saving ကို ခွဲကြည့်ရပါမယ်",
+      action:"Life Area 8 ခုကို 1–10 အထိ အမှတ်ပေးပြီး အမှတ်အနည်းဆုံးတစ်ခုကို ရွေးပါ"
+    }
   };
 
-  const t = templates[cat];
+  if(base[topic]){
+    return {...base[topic],title:topic,category:cat,phase:phase.name,phaseDesc:phase.desc};
+  }
+
+  const templates={
+    Mindset:{
+      goal:`${topic} ကို ကိုယ့်ဘဝတိုးတက်မှုနဲ့ ချိတ်ဆက်နားလည်ဖို့`,
+      explain:`${topic} ဆိုတာ စာအုပ်ထဲမှာပဲရှိတဲ့ အယူအဆမဟုတ်ပါ။ နေ့စဉ်ဆုံးဖြတ်ချက်တွေ၊ အလုပ်လုပ်ပုံ၊ လူတွေနဲ့ဆက်ဆံပုံနဲ့ ကိုယ့်ရဲ့ရလဒ်တွေထဲမှာ အမြဲတွေ့ရပါတယ်။ အရေးကြီးတာက သိထားရုံမဟုတ်ဘဲ ကိုယ့်ဘဝမှာ ဘယ်လိုပေါ်လာနေလဲ သတိထားနိုင်ဖို့ပါ`,
+      example:`ဥပမာ — ${topic} အားနည်းနေတဲ့အခါ အလုပ်တစ်ခုကို စလုပ်မယ်ဆိုပြီး အကြိမ်ကြိမ်ရွှေ့ဆိုင်းတာ၊ ပြဿနာတစ်ခုဖြစ်တာနဲ့ ကိုယ့်ကိုယ်ကို အပြစ်တင်တာ၊ ရလဒ်မရခင် လက်လျှော့တာမျိုးတွေ ဖြစ်နိုင်ပါတယ်`,
+      action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး ကိုယ့်မှာဖြစ်နေတဲ့ အပြုအမူတစ်ခုကို ရေးပါ။ ပြီးရင် နောက်တစ်ကြိမ်မှာ ဘယ်လိုတုံ့ပြန်မလဲ ရေးပါ`
+    },
+    Money:{
+      goal:`ငွေကြေးကို ပိုမိုစနစ်တကျ စီမံနိုင်ဖို့`,
+      explain:`ငွေကြေးတိုးတက်မှုဟာ ဝင်ငွေတိုးတာတစ်ခုတည်းနဲ့ မပြီးပါ။ ဝင်ငွေဘယ်လောက်ဝင်တယ်၊ ဘယ်လောက်ထွက်တယ်၊ ဘယ်လောက်ကျန်တယ်၊ ဘယ်လိုအသုံးချတယ်ဆိုတာကို နားလည်ရပါမယ်`,
+      example:`ဥပမာ — ဝင်ငွေ 20 သိန်းကနေ 25 သိန်းဖြစ်သွားပေမယ့် Lifestyle ကို 5 သိန်းတိုးလိုက်ရင် Wealth Building Capacity က မတိုးနိုင်ပါ`,
+      action:`ဒီနေ့ ငွေကြေးနဲ့ပတ်သက်တဲ့ Transaction 5 ခုကို ပြန်ကြည့်ပြီး Need / Want / Investment ဆိုပြီး ခွဲပါ`
+    },
+    Career:{
+      goal:`Career Value ကို တဖြည်းဖြည်းတိုးတက်အောင်လုပ်ဖို့`,
+      explain:`Career တိုးတက်မှုဟာ အလုပ်ကြိုးစားတာတစ်ခုတည်းမဟုတ်ပါ။ Result၊ Skill၊ Communication၊ Visibility နဲ့ Leadership တို့ပေါင်းစပ်ပြီး ကိုယ့်ရဲ့ Professional Value ကို တည်ဆောက်ရပါတယ်`,
+      example:`ဥပမာ — “ငါအလုပ်ကြိုးစားတယ်” ဆိုတာထက် “ဒီ Quarter မှာ Sales 18% တိုးခဲ့တယ်၊ Collection Gap ကို လျှော့နိုင်ခဲ့တယ်၊ Team Process တစ်ခုကို တိုးတက်အောင်လုပ်ခဲ့တယ်” ဆိုတဲ့ Evidence က ပိုရှင်းလင်းပါတယ်`,
+      action:`လက်ရှိအလုပ်မှာ ကိုယ်ဖန်တီးခဲ့တဲ့ Result 3 ခုကို နံပါတ်နဲ့ရေးပါ`
+    },
+    Business:{
+      goal:`Business ကို Customer → Value → Sales → Profit → System ဆိုတဲ့အမြင်နဲ့ စဉ်းစားဖို့`,
+      explain:`Business မှာ Product ကောင်းတာတစ်ခုတည်းနဲ့ မလုံလောက်ပါ။ Customer ဘာလိုချင်လဲ၊ ဘာပြဿနာဖြေရှင်းပေးနေလဲ၊ ဘယ်လိုရောင်းမလဲ၊ Margin ဘယ်လောက်ရှိလဲ၊ Cash Flow ဘယ်လိုရှိလဲဆိုတာ သိဖို့လိုပါတယ်`,
+      example:`ဥပမာ — ရောင်းအားကောင်းပေမယ့် Gross Margin နည်းလွန်းပြီး Customer Credit ကြာနေရင် Revenue တိုးနေပေမယ့် Cash Flow က အခက်အခဲဖြစ်နိုင်ပါတယ်`,
+      action:`ကိုယ့်လုပ်ငန်း ဒါမှမဟုတ် ကိုယ်စိတ်ဝင်စားတဲ့ Business တစ်ခုကို Customer, Product, Price, Sales, Profit 5 ခုနဲ့ ပြန်ရေးပါ`
+    },
+    Health:{
+      goal:`Energy နဲ့ Health ကို ရေရှည်ထိန်းနိုင်ဖို့`,
+      explain:`ကျန်းမာရေးကို တစ်ရက်နှစ်ရက် Challenge လုပ်တာထက် ရေရှည်လုပ်နိုင်တဲ့ Habit တည်ဆောက်ဖို့ ပိုအရေးကြီးပါတယ်`,
+      example:`ဥပမာ — Gym ကို တစ်ပတ် 6 ရက်သွားပြီး 2 ပတ်အကြာရပ်သွားတာထက် တစ်နေ့ 20–30 မိနစ် လမ်းလျှောက်တာကို ရေရှည်လုပ်နိုင်ရင် Habit အဖြစ်တည်ဆောက်ရ ပိုလွယ်နိုင်ပါတယ်`,
+      action:`ဒီနေ့ Health Habit တစ်ခုကို 10 မိနစ်အနည်းဆုံးလုပ်ပါ`
+    },
+    Relationships:{
+      goal:`လူတွေနဲ့ ယုံကြည်မှုနဲ့ လေးစားမှုရှိတဲ့ ဆက်ဆံရေးတည်ဆောက်ဖို့`,
+      explain:`Relationship ကောင်းဖို့ အမြဲသဘောတူဖို့မလိုပါ။ မတူညီတဲ့အမြင်ရှိတဲ့အချိန်မှာတောင် Respect နဲ့ Communication ကို ထိန်းနိုင်ဖို့လိုပါတယ်`,
+      example:`ဥပမာ — Customer က Complaint တစ်ခုတင်လာတဲ့အခါ ချက်ချင်းပြန်ငြင်းမယ့်အစား “ဘယ်အပိုင်းမှာ အဆင်မပြေတာလဲ” လို့ အရင်မေးခြင်းက Problem ကိုပိုရှင်းစေနိုင်ပါတယ်`,
+      action:`ဒီနေ့ လူတစ်ယောက်ပြောတဲ့အရာကို ဖြေရှင်းဖို့မကြိုးစားဘဲ 5 မိနစ်အပြည့် နားထောင်ပါ`
+    },
+    Time:{
+      goal:`အချိန်ကို မတော်တဆသုံးမိတာထက် ရည်ရွယ်ချက်နဲ့အသုံးချနိုင်ဖို့`,
+      explain:`လူတိုင်းမှာ တစ်နေ့ 24 နာရီပဲရှိပါတယ်။ Time Management ရဲ့အဓိကက အလုပ်တွေများများလုပ်ဖို့မဟုတ်ဘဲ အရေးကြီးတဲ့အလုပ်တွေကို အချိန်မှန်ပြီးအောင်လုပ်နိုင်ဖို့ပါ`,
+      example:`ဥပမာ — မနက်တစ်နာရီ Social Media ကြည့်ပြီး နေ့လယ်မှ အရေးကြီးတဲ့ Report ကို အလျင်လိုလုပ်ရင် အလုပ်များနေသလိုခံစားရပေမယ့် Priority ကို မှန်မှန်မစီမံနိုင်ပါ`,
+      action:`ဒီနေ့ အချိန် 30 မိနစ်ကို Phone မသုံးဘဲ အရေးကြီးဆုံးအလုပ်တစ်ခုအတွက် သီးသန့်ထားပါ`
+    },
+    Growth:{
+      goal:`နေ့စဉ်သေးငယ်တဲ့ တိုးတက်မှုကို ရေရှည်စနစ်အဖြစ် ပြောင်းလဲဖို့`,
+      explain:`Growth ဆိုတာ တစ်ရက်တည်းနဲ့ အများကြီးတိုးတက်သွားတာမဟုတ်ပါ။ Learning → Practice → Feedback → Improvement ဆိုတဲ့ Cycle ကို ထပ်ခါထပ်ခါလုပ်ခြင်းပါ`,
+      example:`ဥပမာ — English Speaking တိုးချင်ရင် “English ကောင်းချင်တယ်” လို့ပြောနေရုံနဲ့မရပါ။ တစ်နေ့ 15 မိနစ် Speaking Practice → ကိုယ့်အသံ Record → ပြန်နားထောင် → အမှားပြင် ဆိုတဲ့ Cycle လုပ်နိုင်ပါတယ်`,
+      action:`ကိုယ်တိုးတက်ချင်တဲ့ Skill တစ်ခုရွေးပြီး ဒီနေ့ 20 မိနစ် Practice လုပ်ပါ`
+    }
+  };
 
   return {
-    day,
-    phase,
-    category:cat,
     title:topic,
-    objective:`Day ${day} ရဲ့ ရည်ရွယ်ချက်က ${topic} ကို သိရုံမဟုတ်ဘဲ ကိုယ့်ဘဝထဲမှာ လက်တွေ့အသုံးချနိုင်ဖို့ဖြစ်ပါတယ်`,
-    explain:t.explain,
-    example:`ဥပမာ — ဒီအကြောင်းအရာကို စာဖတ်ပြီးထားတာထက် ကိုယ့်လက်တွေ့ဘဝထဲက ဖြစ်ရပ်တစ်ခုနဲ့ ချိတ်ဆက်ကြည့်ပါ။ အဲ့ဒီလိုလုပ်မှ သင်ခန်းစာက အပြုအမူတစ်ခုအဖြစ် ပြောင်းလဲလာနိုင်ပါတယ်`,
-    think:`ဒီအကြောင်းအရာမှာ ကိုယ့်အခြေအနေက ဘယ်အဆင့်မှာရှိနေလဲ`,
-    write:`စာရွက်တစ်ရွက်ပေါ်မှာ ဒီနေ့သင်ခန်းစာနဲ့ပတ်သက်ပြီး အမှန်တကယ်ဖြစ်နေတဲ့အချက် ၃ ခုရေးပါ`,
-    action:t.action,
-    reflect:t.reflect
+    category:cat,
+    phase:phase.name,
+    phaseDesc:phase.desc,
+    ...templates[cat]
   };
 }
-
-/* =========================================================
-   SCHOOL RENDER
-========================================================= */
 
 function renderSchool(){
-  const day = getCurrentSchoolDay();
-  const lesson = lessonContent(day);
+  const completed=data.school.completed.length;
+  const day=Math.max(1,Math.min(365,data.school.selectedDay||1));
+  const lesson=getSchoolLesson(day);
 
-  document.getElementById("schoolDone").textContent = data.school.completed.length;
-  document.getElementById("schoolDay").textContent = day;
-  document.getElementById("schoolPercent").textContent =
-    Math.round(data.school.completed.length/365*100)+"%";
+  document.getElementById("schoolCompleted").textContent=completed;
+  document.getElementById("schoolDay").textContent=day;
+  document.getElementById("schoolProgress").textContent=Math.round(completed/365*100)+"%";
+  document.getElementById("schoolPhase").textContent=lesson.phase;
 
-  document.getElementById("todayLessonNumber").textContent = day;
+  const isDone=data.school.completed.includes(day);
 
-  const select = document.getElementById("schoolDaySelect");
+  document.getElementById("schoolLesson").innerHTML=`
+    <div class="detail">
+      <span class="badge gold">${lesson.category}</span>
+      <h3>Day ${day} — ${lesson.title}</h3>
 
-  if(select.options.length===0){
-    for(let i=1;i<=365;i++){
-      const op=document.createElement("option");
-      op.value=i;
-      op.textContent=`Day ${i} — ${topicForDay(i)}`;
-      select.appendChild(op);
-    }
-  }
-
-  select.value = day;
-
-  document.getElementById("schoolToday").innerHTML = lessonCardHTML(lesson,true);
-
-  const chosen = data.school.selectedDay || day;
-  document.getElementById("schoolLibrary").innerHTML =
-    lessonCardHTML(lessonContent(chosen),false);
-}
-
-function lessonCardHTML(lesson,today=false){
-
-  const done = data.school.completed.includes(lesson.day);
-
-  return `
-    <div class="card lesson-card ${done?'gold':''}" onclick="openSchoolLesson(${lesson.day})">
-      <div style="display:flex;justify-content:space-between;gap:10px">
-        <div>
-          <span class="badge">${lesson.phase}</span>
-          <span class="badge">${lesson.category}</span>
-        </div>
-        ${done ? `<span class="green">✓ Complete</span>` : ""}
+      <div class="example">
+        <b>ဒီသင်ခန်းစာရဲ့ ရည်ရွယ်ချက်</b><br>
+        ${lesson.goal}
       </div>
 
-      <div class="lesson-number" style="margin-top:15px">DAY ${lesson.day}</div>
-      <div class="lesson-title">${escapeHTML(lesson.title)}</div>
-      <div class="lesson-desc">${escapeHTML(lesson.objective)}</div>
-
-      <div class="lesson-footer">
-        <span class="muted">${today?"ဒီနေ့သင်ခန်းစာ":"Lesson Detail"}</span>
-        <span class="gold-text">Open →</span>
-      </div>
-    </div>
-  `;
-}
-
-function selectSchoolDay(day){
-  data.school.selectedDay = Number(day);
-  saveData();
-  renderSchool();
-}
-
-function openSchoolLesson(day){
-  day = Number(day || getCurrentSchoolDay());
-  const lesson = lessonContent(day);
-  const done = data.school.completed.includes(day);
-
-  document.getElementById("modalTitle").innerHTML =
-    `<b>DAY ${day}</b> — ${escapeHTML(lesson.title)}`;
-
-  document.getElementById("modalBody").innerHTML = `
-    <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:15px">
-      <span class="badge">${lesson.phase}</span>
-      <span class="badge">${lesson.category}</span>
-    </div>
-
-    <div class="coach-section">
-      <h4>🎯 ဒီနေ့ရဲ့ ရည်ရွယ်ချက်</h4>
-      <p>${escapeHTML(lesson.objective)}</p>
-    </div>
-
-    <div class="coach-section">
       <h4>📖 အဓိကအကြောင်းအရာ</h4>
-      <p>${escapeHTML(lesson.explain)}</p>
-    </div>
+      <p>${lesson.explain}</p>
 
-    <div class="coach-section">
-      <h4>💡 လက်တွေ့ဥပမာ</h4>
-      <p>${escapeHTML(lesson.example)}</p>
-    </div>
+      <h4>💡 လက်တွေ့နမူနာ</h4>
+      <div class="example">${lesson.example}</div>
 
-    <div class="coach-section">
-      <h4>🧠 Think</h4>
-      <p>${escapeHTML(lesson.think)}</p>
-    </div>
+      <h4>🧠 ကိုယ်တိုင်စဉ်းစားရန်</h4>
+      <ul>
+        <li>ဒီအကြောင်းအရာက ကိုယ့်ဘဝမှာ ဘယ်လိုပေါ်လာနေလဲ</li>
+        <li>ဘာကြောင့် ဒီလိုဖြစ်နေတာလဲ</li>
+        <li>မပြောင်းဘဲဆက်သွားရင် 6 လအကြာမှာ ဘာဖြစ်နိုင်လဲ</li>
+      </ul>
 
-    <div class="coach-section">
-      <h4>✍ Write</h4>
-      <p>${escapeHTML(lesson.write)}</p>
-    </div>
+      <h4>✍️ ဒီနေ့ လက်တွေ့လုပ်ရန်</h4>
+      <div class="action-box">${lesson.action}</div>
 
-    <div class="coach-section">
-      <h4>⚡ Today's Action</h4>
-      <p>${escapeHTML(lesson.action)}</p>
-    </div>
-
-    <div class="coach-section">
       <h4>🔎 Reflection</h4>
-      <p>${escapeHTML(lesson.reflect)}</p>
-    </div>
+      <p>
+        “ဒီနေ့သင်ယူခဲ့တာထဲက ကိုယ့်ဘဝမှာ အခုချက်ချင်းအသုံးချနိုင်တဲ့
+        အချက်တစ်ခုက ဘာလဲ”
+      </p>
 
-    <div style="margin-top:25px">
-      <button class="btn ${done?'btn-dark':'btn-primary'}" onclick="completeLesson(${day})">
-        ${done?"✓ Completed":"✓ Mark Lesson Complete"}
-      </button>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+        <button class="btn small" onclick="changeSchoolDay(-1)">← Previous</button>
+        <button class="btn primary" onclick="completeSchoolLesson(${day})">
+          ${isDone?"✓ Completed":"ဒီ Lesson ပြီးပြီ"}
+        </button>
+        <button class="btn small" onclick="changeSchoolDay(1)">Next →</button>
+      </div>
     </div>
   `;
-
-  openModal();
 }
 
-function completeLesson(day){
+function changeSchoolDay(step){
+  data.school.selectedDay=Math.max(1,Math.min(365,(data.school.selectedDay||1)+step));
+  save();
+}
+
+function completeSchoolLesson(day){
   if(!data.school.completed.includes(day)){
     data.school.completed.push(day);
-    updateActivity();
-    saveData();
-    toast(`Day ${day} lesson complete`);
+    data.school.completed.sort((a,b)=>a-b);
   }
-  closeModal();
+
+  if(day<365){
+    data.school.selectedDay=day+1;
+  }
+
+  touchActivity();
+  save();
+  toast("Lesson Completed ✓");
+}
+
+function openTodayLesson(){
+  const day=Math.max(1,Math.min(365,data.school.selectedDay||1));
+  showPage("school");
+  data.school.selectedDay=day;
   renderSchool();
 }
 
-/* =========================================================
-   COURSES
-========================================================= */
+/* =========================
+   COURSE SYSTEM
+========================= */
 
-const courseData = {
+const courseData={
+  wealth:{
+    title:"Wealth Course",
+    subtitle:"ငွေကိုရှာ၊ စီမံ၊ စု၊ ကာကွယ်ပြီး Asset တည်ဆောက်ခြင်း",
+    icon:"💰",
+    modules:[
+      ["Money Mindset","ငွေကို ဘယ်လိုမြင်လဲ"],
+      ["Income Growth","ဝင်ငွေတိုးအောင် ဘယ်လိုလုပ်မလဲ"],
+      ["Expenses","အသုံးစရိတ်ကို ဘယ်လိုထိန်းမလဲ"],
+      ["Budgeting","Budget တည်ဆောက်နည်း"],
+      ["Saving","Saving Habit တည်ဆောက်ခြင်း"],
+      ["Emergency Fund","မမျှော်လင့်ထားတဲ့အခြေအနေအတွက် ပြင်ဆင်ခြင်း"],
+      ["Debt Management","အကြွေးကို စနစ်တကျစီမံခြင်း"],
+      ["Skill to Income","Skill ကို Income နဲ့ချိတ်ခြင်း"],
+      ["Side Income","အပိုဝင်ငွေလမ်းကြောင်း"],
+      ["Assets","Asset တည်ဆောက်ခြင်း"],
+      ["Investment Basics","Investment အခြေခံ"],
+      ["Financial Protection","Wealth ကိုကာကွယ်ခြင်း"]
+    ]
+  },
 
-wealth:{
-  title:"Wealth Course",
-  icon:"💰",
-  description:"ပိုက်ဆံကို နားလည်ပြီး ရေရှည်ငွေကြေးတိုးတက်မှုတည်ဆောက်ရန်",
-  modules:[
-    ["Money Mindset","ပိုက်ဆံအပေါ် ကိုယ့်ယုံကြည်ချက်နဲ့ အပြုအမူ"],
-    ["Income Growth","လက်ရှိဝင်ငွေတိုးနိုင်တဲ့လမ်းတွေ"],
-    ["Expense Control","အသုံးစရိတ်ကို နားလည်ပြီး ထိန်းချုပ်ခြင်း"],
-    ["Budgeting","လစဉ်ငွေကြေးအစီအစဉ်တည်ဆောက်ခြင်း"],
-    ["Saving System","စုဆောင်းမှုကို စနစ်တကျလုပ်ခြင်း"],
-    ["Emergency Fund","မမျှော်လင့်ထားတဲ့အခြေအနေအတွက် ငွေထားခြင်း"],
-    ["Debt Management","ကြွေးမြီကို စီမံခြင်း"],
-    ["Skill → Income","Skill တစ်ခုကို ဝင်ငွေအဖြစ်ပြောင်းခြင်း"],
-    ["Side Income","အပိုဝင်ငွေလမ်းကြောင်း"],
-    ["Asset Building","တန်ဖိုးတက်နိုင်တဲ့ Asset တည်ဆောက်ခြင်း"],
-    ["Investment Basics","Investment ရဲ့ အခြေခံအယူအဆ"],
-    ["Financial Protection","Risk နဲ့ Financial Protection"]
-  ]
-},
+  career:{
+    title:"Career Course",
+    subtitle:"Professional Value တိုးပြီး Career Growth တည်ဆောက်ခြင်း",
+    icon:"↗",
+    modules:[
+      ["Communication","အလုပ်ခွင် Communication"],
+      ["Leadership","Leadership အခြေခံ"],
+      ["Sales","Sales Skill"],
+      ["Negotiation","Negotiation"],
+      ["Excel & Data","Data နဲ့ ဆုံးဖြတ်ခြင်း"],
+      ["Presentation","Presentation"],
+      ["Business English","Professional English"],
+      ["Personal Branding","ကိုယ့် Professional Brand"],
+      ["Performance","Result နဲ့ Evidence"],
+      ["Promotion Strategy","Career တိုးတက်ရေး Strategy"],
+      ["Networking","Professional Network"],
+      ["Career Planning","ရေရှည် Career Plan"]
+    ]
+  },
 
-career:{
-  title:"Career Course",
-  icon:"🚀",
-  description:"အလုပ်မှာ Result ကောင်းရုံမက Career ကို ရေရှည်တိုးတက်အောင်တည်ဆောက်ရန်",
-  modules:[
-    ["Communication","Professional Communication"],
-    ["Leadership","လူကို ဦးဆောင်ခြင်း"],
-    ["Sales","Customer နဲ့ Value-Based Selling"],
-    ["Negotiation","Win-Win Negotiation"],
-    ["Excel & Data","Data ကိုအသုံးချပြီး ဆုံးဖြတ်ခြင်း"],
-    ["Presentation","အကြောင်းအရာကို ရှင်းလင်းစွာတင်ပြခြင်း"],
-    ["Business English","အလုပ်သုံး English"],
-    ["Personal Branding","Professional Identity"],
-    ["Promotion Strategy","Result → Evidence → Visibility → Leadership"],
-    ["Career Planning","Career Roadmap တည်ဆောက်ခြင်း"]
-  ]
-},
-
-business:{
-  title:"Business Course",
-  icon:"🏢",
-  description:"လုပ်ငန်းတစ်ခုကို Sales ကနေ Profit နဲ့ Scale အထိ နားလည်ရန်",
-  modules:[
-    ["Customer","Customer ကိုနားလည်ခြင်း"],
-    ["Product","Product Value"],
-    ["Marketing","Demand ဖန်တီးခြင်း"],
-    ["Sales","Sales System"],
-    ["Pricing","ဈေးနှုန်းသတ်မှတ်ခြင်း"],
-    ["Profit","Gross / Net Profit"],
-    ["Cash Flow","ငွေဝင်ငွေထွက်စီမံခြင်း"],
-    ["Operations","လုပ်ငန်းစနစ်"],
-    ["Team","People Management"],
-    ["Scale","System နဲ့ Scale လုပ်ခြင်း"]
-  ]
-}
-
+  business:{
+    title:"Business Course",
+    subtitle:"Customer ကနေ Scale အထိ Business ကို System တစ်ခုလို စီမံခြင်း",
+    icon:"◇",
+    modules:[
+      ["Customer","Customer ကိုနားလည်ခြင်း"],
+      ["Product","Product Value"],
+      ["Marketing","Marketing"],
+      ["Sales","Sales System"],
+      ["Pricing","Pricing Strategy"],
+      ["Profit","Profit ကိုနားလည်ခြင်း"],
+      ["Cash Flow","Cash Flow"],
+      ["Operations","Operation System"],
+      ["Team","Team Management"],
+      ["KPI","KPI"],
+      ["Retention","Customer Retention"],
+      ["Scale","Business Scale"]
+    ]
+  }
 };
 
-function renderCourse(type){
-  const target=document.getElementById(type+"Modules");
-  if(!target)return;
+function courseLessonDetail(course,module,index){
+  const name=module[0];
+  const topic=module[1];
 
-  const course=courseData[type];
-  const completed=data.courses[type].completed;
-
-  target.innerHTML = course.modules.map((m,i)=>{
-
-    const num=i+1;
-    const isFree=num<=3;
-    const done=completed.includes(num);
-
-    return `
-      <div class="card course">
-        <div class="course-icon">${course.icon}</div>
-        <div class="badge">${isFree?"FREE":"PREMIUM"}</div>
-        <h3>${num}. ${escapeHTML(m[0])}</h3>
-        <p>${escapeHTML(m[1])}</p>
-
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:15px">
-          <span class="${done?'green':'muted'}">${done?"✓ Completed":isFree?"Available":"🔒 Locked"}</span>
-          ${
-            isFree
-            ? `<button class="btn ${done?'btn-dark':'btn-primary'} btn-small" onclick="openCourseLesson('${type}',${num})">${done?"Review":"Start"}</button>`
-            : `<button class="btn btn-dark btn-small" onclick="showPage('premium')">Premium</button>`
-          }
-        </div>
-      </div>
-    `;
-  }).join("");
-}
-
-function openCourseLesson(type,num){
-
-  const course=courseData[type];
-  const m=course.modules[num-1];
-
-  document.getElementById("modalTitle").textContent =
-    `${course.title} — ${num}. ${m[0]}`;
-
-  const explanations = {
-    wealth:[
-      "ပိုက်ဆံနဲ့ပတ်သက်တဲ့ ကိုယ့်ယုံကြည်ချက်တွေက spending၊ saving နဲ့ earning behavior ကို သက်ရောက်စေပါတယ်",
-      "ဝင်ငွေတိုးဖို့ Skill၊ Responsibility၊ Value နဲ့ Market Demand ကိုတွဲစဉ်းစားပါ",
-      "အသုံးစရိတ်ကို မသိရင် ဘယ်လောက်ဝင်ငွေကောင်းကောင်း ငွေကြေးအခြေအနေကို မထိန်းနိုင်ပါ",
-      "Budget ဆိုတာ ကိုယ့်ပိုက်ဆံကို အလုပ်တစ်ခုချင်းစီပေးထားတဲ့ plan ဖြစ်ပါတယ်"
-    ],
-    career:[
-      "Professional Communication က ကိုယ့်အတွေးကို ရှင်းလင်းစွာပြောနိုင်ခြင်း၊ နားထောင်နိုင်ခြင်းနဲ့ follow-up လုပ်နိုင်ခြင်းတို့ပါဝင်ပါတယ်",
-      "Leadership ဆိုတာ title ရှိတာမဟုတ်ဘဲ လူတွေကို direction၊ support နဲ့ accountability ပေးနိုင်ခြင်းဖြစ်ပါတယ်",
-      "Sales မှာ Product ကိုပဲရောင်းတာထက် Customer Problem နဲ့ Value ကိုနားလည်ဖို့ အရေးကြီးပါတယ်"
-    ],
-    business:[
-      "Customer မသိဘဲ Product တည်ဆောက်ရင် market fit ရဖို့ခက်နိုင်ပါတယ်",
-      "Product Value ဆိုတာ Customer က ဘာပြဿနာကို ဖြေရှင်းပေးနိုင်လဲဆိုတာပါ",
-      "Marketing ရဲ့ အဓိကတာဝန်က သင့် Value ကို သင့် Customer ဆီရောက်အောင်လုပ်ပေးခြင်းဖြစ်ပါတယ်"
-    ]
+  const detail={
+    wealth:{
+      explain:`${topic} ဟာ Wealth Building မှာ အခြေခံအကျဆုံးအချက်တွေထဲက တစ်ခုပါ။ ငွေကြေးတိုးတက်မှုကို တစ်ချက်တည်းနဲ့မကြည့်ဘဲ Income → Expense → Saving → Protection → Asset ဆိုတဲ့ Flow နဲ့ စဉ်းစားပါ`,
+      example:`ဥပမာ — လစဉ်ဝင်ငွေ 20 သိန်းရှိတဲ့သူတစ်ယောက်က 19.5 သိန်းအသုံးပြုပြီး 50,000 ပဲကျန်ရင် ဝင်ငွေကောင်းလာတာနဲ့ Wealth တိုးလာမယ်လို့ မဆိုနိုင်ပါ။ Cash Flow ကို စနစ်တကျပြန်စစ်ဖို့လိုပါတယ်`
+    },
+    career:{
+      explain:`${topic} က Career Growth အတွက် တိုက်ရိုက်အသုံးချနိုင်တဲ့ Skill တစ်ခုပါ။ Professional တစ်ယောက်အနေနဲ့ Knowledge တစ်ခုတည်းမဟုတ်ဘဲ Result ထုတ်နိုင်ခြင်း၊ အဲဒီ Result ကိုရှင်းပြနိုင်ခြင်းနဲ့ လူတွေနဲ့အလုပ်လုပ်နိုင်ခြင်းတွေပါလိုပါတယ်`,
+      example:`ဥပမာ — “Report ပို့ပြီးပါပြီ” ဆိုတာထက် “ဒီလ Target 100 ရဲ့ 92% ရောက်ပါတယ်၊ Gap 8% ရှိပါတယ်၊ Gap ရဲ့အဓိကအကြောင်းရင်း 2 ခုက ဒီအချက်တွေဖြစ်ပြီး နောက်အပတ်မှာ ဒီ Action 3 ခုလုပ်မယ်” ဆိုရင် Communication ပိုရှင်းပါတယ်`
+    },
+    business:{
+      explain:`${topic} ကို Business Owner တစ်ယောက်အနေနဲ့ Number နဲ့ Process နှစ်ခုစလုံးကနေကြည့်ရပါမယ်။ Customer ရဲ့လိုအပ်ချက်ကို နားလည်ပြီး Value ပေးနိုင်ရင် Sales ဖြစ်လာနိုင်ပါတယ်၊ Sales ဖြစ်ရုံနဲ့မပြီးဘဲ Profit နဲ့ Cash Flow ကိုပါ ထိန်းရပါမယ်`,
+      example:`ဥပမာ — ရောင်းအား 100 သိန်းရှိပေမယ့် Product Cost၊ Delivery၊ Discount၊ Staff Cost တွေပြီးတဲ့အခါ Profit 5 သိန်းပဲကျန်နိုင်ပါတယ်။ ဒါကြောင့် Revenue တစ်ခုတည်းမကြည့်ဘဲ Margin ကိုကြည့်ရပါမယ်`
+    }
   };
 
-  let pool=explanations[type]||[];
-  let explain=pool[(num-1)%pool.length] || `${m[0]} ကို ကိုယ့်လက်တွေ့အခြေအနေမှာ အသုံးချကြည့်ပါ`;
+  return {
+    name,
+    topic,
+    explain:detail[course].explain,
+    example:detail[course].example,
+    action:`ဒီနေ့ ${topic} နဲ့ပတ်သက်ပြီး ကိုယ့်အလုပ် ဒါမှမဟုတ် ကိုယ့်ဘဝမှာ လက်တွေ့အသုံးချနိုင်တဲ့ အချက်တစ်ခုကို ရွေးပြီး လုပ်ဆောင်ပါ`
+  };
+}
 
-  document.getElementById("modalBody").innerHTML=`
-    <div class="badge">${type.toUpperCase()}</div>
-    <h2>${escapeHTML(m[0])}</h2>
+function renderCourse(course){
+  const c=courseData[course];
+  const page=document.getElementById("page-"+course);
+  const completed=data.courses[course].completed;
+  const percent=Math.round(completed.length/c.modules.length*100);
 
-    <div class="coach-section">
-      <h4>📖 Lesson</h4>
-      <p>${escapeHTML(explain)}</p>
+  page.innerHTML=`
+    <div class="hero">
+      <div class="hero-kicker">${c.title.toUpperCase()}</div>
+      <h1>${c.icon} ${c.title}</h1>
+      <p>${c.subtitle}</p>
     </div>
 
-    <div class="coach-section">
-      <h4>🧠 Think</h4>
-      <p>ဒီအကြောင်းအရာမှာ ကိုယ့်လက်ရှိအခြေအနေက ဘယ်လိုရှိလဲ</p>
+    <div class="card" style="margin-bottom:18px">
+      <div class="progress-label">
+        <span>Course Progress</span>
+        <span>${percent}%</span>
+      </div>
+      <div class="progress"><div style="width:${percent}%"></div></div>
     </div>
 
-    <div class="coach-section">
-      <h4>✍ Write</h4>
-      <p>လက်တွေ့ဘဝထဲက ဥပမာတစ်ခုနဲ့ ချိတ်ပြီး အချက် ၃ ခုရေးပါ</p>
-    </div>
+    <div class="lesson-list">
+      ${c.modules.map((m,i)=>{
+        const done=completed.includes(i);
+        const locked=i>=3 && !data.premium;
 
-    <div class="coach-section">
-      <h4>⚡ Action</h4>
-      <p>ဒီနေ့အတွင်း အနည်းဆုံး Action တစ်ခု လုပ်ပါ</p>
-    </div>
+        return `
+          <div class="lesson-item ${done?"done":""} ${locked?"locked":""}">
+            ${locked?`
+              <div class="lock-content">
+                <div><span>◆</span><small>Premium Lesson</small></div>
+              </div>`:""}
 
-    <button class="btn btn-primary" onclick="completeCourse('${type}',${num})">
-      ✓ Mark Complete
-    </button>
+            <div class="lesson-number">${done?"✓":i+1}</div>
+            <div class="lesson-main">
+              <h4>${m[0]}</h4>
+              <p>${m[1]}</p>
+            </div>
+            <div class="lesson-actions">
+              <button class="btn small" onclick="openCourseLesson('${course}',${i})">
+                <span>ဖတ်မယ်</span> →
+              </button>
+            </div>
+          </div>
+        `;
+      }).join("")}
+    </div>
   `;
-
-  openModal();
 }
 
-function completeCourse(type,num){
-  if(!data.courses[type].completed.includes(num)){
-    data.courses[type].completed.push(num);
-    updateActivity();
-    saveData();
+function openCourseLesson(course,index){
+  const c=courseData[course];
+  if(index>=3 && !data.premium){
+    openModal(
+      "Premium Lesson",
+      `<div class="detail">
+        <h3>🔒 ဒီ Lesson ကို Premium အတွက် သတ်မှတ်ထားပါတယ်</h3>
+        <p>
+          လက်ရှိ Version မှာ Premium Payment ကို မချိတ်ရသေးတဲ့အတွက်
+          ဒီ Lesson ကို Unlock မလုပ်ထားပါ
+        </p>
+        <div class="action-box">
+          Premium Architecture ကို ထည့်ထားပြီး နောက်ပိုင်းမှာ
+          Payment Gateway / Account System / Cloud Sync နဲ့ ချိတ်နိုင်အောင် တည်ဆောက်ထားပါတယ်
+        </div>
+        <button class="btn primary" style="margin-top:15px" onclick="showPage('premium');closeModal()">
+          Premium ကြည့်မယ်
+        </button>
+      </div>`
+    );
+    return;
   }
-  closeModal();
-  renderCourse(type);
-  toast("Course lesson complete");
+
+  const lesson=courseLessonDetail(course,c.modules[index],index);
+  const done=data.courses[course].completed.includes(index);
+
+  openModal(
+    `${c.title} • Lesson ${index+1}`,
+    `<div class="detail">
+      <span class="badge gold">${lesson.name}</span>
+      <h3>${lesson.topic}</h3>
+
+      <h4>📖 ဒီ Lesson က ဘာကြောင့်အရေးကြီးလဲ</h4>
+      <p>${lesson.explain}</p>
+
+      <h4>💡 လက်တွေ့နမူနာ</h4>
+      <div class="example">${lesson.example}</div>
+
+      <h4>🧠 ကိုယ်တိုင်စဉ်းစားရန်</h4>
+      <ul>
+        <li>ဒီအချက်က ကိုယ့်ဘဝမှာ ဘယ်လိုဖြစ်နေသလဲ</li>
+        <li>လက်ရှိမှာ ဘာ Gap ရှိနေလဲ</li>
+        <li>Gap ကို လျှော့ဖို့ ဘာကိုပြောင်းရမလဲ</li>
+      </ul>
+
+      <h4>✍️ Action</h4>
+      <div class="action-box">${lesson.action}</div>
+
+      <h4>🔎 Reflection</h4>
+      <p>
+        “ဒီ Lesson ကို သိထားရုံနဲ့ ဘာမှမပြောင်းလဲဘူး
+        ဒါကြောင့် ဒီနေ့ ကိုယ်တကယ်လုပ်မယ့် အရာတစ်ခုက ဘာလဲ”
+      </p>
+
+      <button class="btn primary" onclick="completeCourseLesson('${course}',${index})">
+        ${done?"✓ Completed":"Lesson Complete"}
+      </button>
+    </div>`
+  );
 }
 
-/* =========================================================
+function completeCourseLesson(course,index){
+  if(!data.courses[course].completed.includes(index)){
+    data.courses[course].completed.push(index);
+  }
+  touchActivity();
+  save();
+  closeModal();
+  toast("Course Lesson Completed ✓");
+}
+
+/* =========================
    HABITS
-========================================================= */
+========================= */
 
 function addHabit(){
   const input=document.getElementById("habitInput");
   const name=input.value.trim();
 
   if(!name){
-    toast("Habit name ထည့်ပါ");
+    toast("Habit Name ထည့်ပါ");
     return;
   }
 
   data.habits.push({
-    id:Date.now().toString(),
+    id:Date.now(),
     name,
     created:todayKey()
   });
 
   input.value="";
-  saveData();
-  renderHabits();
-  toast("Habit ထည့်ပြီးပါပြီ");
-}
-
-function habitChecked(id,date=todayKey()){
-  return !!(data.habitChecks[date] && data.habitChecks[date][id]);
+  save();
+  toast("Habit ထည့်ပြီးပါပြီ ✓");
 }
 
 function toggleHabit(id){
-  const d=todayKey();
+  const day=todayKey();
 
-  if(!data.habitChecks[d]) data.habitChecks[d]={};
+  if(!data.habitChecks[day]) data.habitChecks[day]={};
 
-  data.habitChecks[d][id]=!data.habitChecks[d][id];
+  data.habitChecks[day][id]=!data.habitChecks[day][id];
 
-  updateActivity();
-  saveData();
-  renderHabits();
+  touchActivity();
+  save();
 }
 
 function deleteHabit(id){
   data.habits=data.habits.filter(h=>h.id!==id);
 
-  Object.keys(data.habitChecks).forEach(date=>{
-    if(data.habitChecks[date]) delete data.habitChecks[date][id];
+  Object.keys(data.habitChecks).forEach(day=>{
+    if(data.habitChecks[day]) delete data.habitChecks[day][id];
   });
 
-  saveData();
-  renderHabits();
+  save();
 }
 
-function dayKeyOffset(offset){
+function dayOffset(offset){
   const d=new Date();
-  d.setDate(d.getDate()-offset);
+  d.setDate(d.getDate()+offset);
   return d.toISOString().slice(0,10);
 }
 
-function habitCompletionForDays(days){
+function habitRate(days){
   if(!data.habits.length)return 0;
 
   let total=days*data.habits.length;
   let done=0;
 
   for(let i=0;i<days;i++){
-    const key=dayKeyOffset(i);
+    const day=dayOffset(-i);
     data.habits.forEach(h=>{
-      if(habitChecked(h.id,key))done++;
+      if(data.habitChecks[day]?.[h.id])done++;
     });
   }
 
   return Math.round(done/total*100);
 }
 
-function currentHabitStreak(){
+function habitStreak(){
   if(!data.habits.length)return 0;
 
   let streak=0;
 
-  for(let offset=0;offset<365;offset++){
-    const key=dayKeyOffset(offset);
-    const all=data.habits.every(h=>habitChecked(h.id,key));
+  for(let i=0;i<365;i++){
+    const day=dayOffset(-i);
+    const checks=data.habitChecks[day]||{};
+    const all=data.habits.every(h=>checks[h.id]);
 
-    if(all) streak++;
+    if(all)streak++;
     else break;
   }
 
@@ -2610,45 +2388,169 @@ function currentHabitStreak(){
 }
 
 function renderHabits(){
-
-  document.getElementById("habitStreak").textContent=currentHabitStreak();
-  document.getElementById("habitToday").textContent=habitCompletionForDays(1)+"%";
-  document.getElementById("habit7").textContent=habitCompletionForDays(7)+"%";
-  document.getElementById("habit30").textContent=habitCompletionForDays(30)+"%";
-  document.getElementById("habitDateText").textContent=new Date().toLocaleDateString();
+  document.getElementById("habitStreak").textContent=habitStreak();
+  document.getElementById("habit7").textContent=habitRate(7)+"%";
+  document.getElementById("habit30").textContent=habitRate(30)+"%";
 
   const list=document.getElementById("habitList");
 
   if(!data.habits.length){
-    list.innerHTML=`
-      <div class="empty">
-        <div class="empty-icon">✓</div>
-        <div>Habit မရှိသေးပါ</div>
-        <div style="font-size:11px;margin-top:6px">အပေါ်ကနေ Habit အသစ်တစ်ခုထည့်ပါ</div>
-      </div>
-    `;
+    list.innerHTML=`<div class="empty">Habit မရှိသေးပါ<br>အပေါ်မှာ Habit တစ်ခုထည့်ပါ</div>`;
     return;
   }
 
+  const today=data.habitChecks[todayKey()]||{};
+
   list.innerHTML=data.habits.map(h=>`
-    <div class="habit">
-      <div class="check ${habitChecked(h.id)?'done':''}" onclick="toggleHabit('${h.id}')">
-        ${habitChecked(h.id)?"✓":""}
+    <div class="action-row">
+      <div class="check ${today[h.id]?"done":""}" onclick="toggleHabit(${h.id})">
+        ${today[h.id]?"✓":""}
       </div>
-      <div class="habit-info">
-        <div class="habit-name">${escapeHTML(h.name)}</div>
-        <div class="habit-meta">Created ${escapeHTML(h.created)}</div>
+      <div class="action-text">
+        <b>${escapeHtml(h.name)}</b>
+        <small>${habitPersonalStreak(h.id)} day streak</small>
       </div>
-      <button class="btn btn-danger btn-small" onclick="deleteHabit('${h.id}')">Delete</button>
+      <button class="btn small danger" onclick="deleteHabit(${h.id})">×</button>
     </div>
   `).join("");
 }
 
-/* =========================================================
-   ASSESSMENT
-========================================================= */
+function habitPersonalStreak(id){
+  let s=0;
 
-const assessmentLabels={
+  for(let i=0;i<365;i++){
+    const day=dayOffset(-i);
+    if(data.habitChecks[day]?.[id])s++;
+    else break;
+  }
+
+  return s;
+}
+
+/* =========================
+   GOALS
+========================= */
+
+function addGoal(){
+  const name=document.getElementById("goalName").value.trim();
+  if(!name){
+    toast("Goal ထည့်ပါ");
+    return;
+  }
+
+  data.goals.push({
+    id:Date.now(),
+    name,
+    why:document.getElementById("goalWhy").value.trim(),
+    deadline:document.getElementById("goalDeadline").value,
+    progress:Math.max(0,Math.min(100,Number(document.getElementById("goalProgress").value)||0)),
+    done:false
+  });
+
+  document.getElementById("goalName").value="";
+  document.getElementById("goalWhy").value="";
+  document.getElementById("goalDeadline").value="";
+  document.getElementById("goalProgress").value=0;
+
+  save();
+  toast("Goal ထည့်ပြီးပါပြီ ✓");
+}
+
+function updateGoal(id,value){
+  const g=data.goals.find(x=>x.id===id);
+  if(!g)return;
+
+  g.progress=Math.max(0,Math.min(100,Number(value)||0));
+  g.done=g.progress>=100;
+
+  save();
+}
+
+function deleteGoal(id){
+  data.goals=data.goals.filter(g=>g.id!==id);
+  save();
+}
+
+function renderGoals(){
+  const list=document.getElementById("goalList");
+
+  if(!data.goals.length){
+    list.innerHTML=`<div class="empty">Goal မရှိသေးပါ</div>`;
+    return;
+  }
+
+  list.innerHTML=data.goals.map(g=>`
+    <div style="padding:15px 0;border-bottom:1px solid var(--line)">
+      <div style="display:flex;justify-content:space-between;gap:10px">
+        <b>${escapeHtml(g.name)}</b>
+        ${g.done?'<span class="badge green">Completed</span>':''}
+      </div>
+
+      ${g.why?`<div class="small-text" style="margin-top:4px">${escapeHtml(g.why)}</div>`:""}
+
+      <div class="progress-label" style="margin-top:12px">
+        <span>Progress</span>
+        <span>${g.progress}%</span>
+      </div>
+      <div class="progress"><div style="width:${g.progress}%"></div></div>
+
+      <div style="display:flex;gap:8px;align-items:center;margin-top:10px">
+        <input type="range" min="0" max="100" value="${g.progress}"
+          onchange="updateGoal(${g.id},this.value)">
+        <button class="btn small danger" onclick="deleteGoal(${g.id})">Delete</button>
+      </div>
+
+      ${g.deadline?`<div class="small-text">Deadline: ${g.deadline}</div>`:""}
+    </div>
+  `).join("");
+}
+
+/* =========================
+   JOURNAL
+========================= */
+
+function loadJournal(){
+  const j=data.journal[todayKey()]||{};
+
+  document.getElementById("journalGood").value=j.good||"";
+  document.getElementById("journalImprove").value=j.improve||"";
+  document.getElementById("journalAction").value=j.action||"";
+  document.getElementById("journalGratitude").value=j.gratitude||"";
+}
+
+function saveJournal(){
+  data.journal[todayKey()]={
+    good:document.getElementById("journalGood").value,
+    improve:document.getElementById("journalImprove").value,
+    action:document.getElementById("journalAction").value,
+    gratitude:document.getElementById("journalGratitude").value
+  };
+
+  touchActivity();
+  save();
+  toast("Journal သိမ်းပြီးပါပြီ ✓");
+}
+
+/* =========================
+   LIFE PROFILE
+========================= */
+
+function loadLifeProfile(){
+  document.getElementById("lifeName").value=data.name||"";
+  document.getElementById("lifeVision").value=data.vision||"";
+  document.getElementById("lifeWhy").value=data.why||"";
+}
+
+function saveLifeProfile(){
+  data.name=document.getElementById("lifeName").value.trim();
+  data.vision=document.getElementById("lifeVision").value.trim();
+  data.why=document.getElementById("lifeWhy").value.trim();
+
+  save();
+  toast("My Life သိမ်းပြီးပါပြီ ✓");
+}
+
+const assessmentNames={
   mind:"Mind & Emotion",
   money:"Money",
   career:"Career",
@@ -2659,695 +2561,579 @@ const assessmentLabels={
   growth:"Personal Growth"
 };
 
-function calcLifeScore(){
+function renderAssessment(){
+  const el=document.getElementById("assessment");
+
+  el.innerHTML=Object.keys(assessmentNames).map(k=>`
+    <div class="range-row">
+      <span style="font-size:11px">${assessmentNames[k]}</span>
+      <input type="range" min="1" max="10" value="${data.assessment[k]}"
+        oninput="updateAssessment('${k}',this.value)">
+      <b id="range-${k}">${data.assessment[k]}</b>
+    </div>
+  `).join("");
+}
+
+function updateAssessment(key,value){
+  data.assessment[key]=Number(value);
+  const el=document.getElementById("range-"+key);
+  if(el)el.textContent=value;
+}
+
+function saveAssessment(){
+  save();
+  toast("Assessment သိမ်းပြီးပါပြီ ✓");
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+const dailyActions=[
+  ["🧠","Mind","5 မိနစ်တိတ်တိတ်နေပြီး ဒီနေ့အရေးကြီးဆုံးအရာတစ်ခုကို သတ်မှတ်ပါ"],
+  ["💰","Money","ဒီနေ့အသုံးစရိတ်တစ်ခုကို ပြန်စစ်ပြီး လိုအပ်/မလိုအပ် ခွဲပါ"],
+  ["↗","Career","ကိုယ့် Skill တစ်ခုကို အနည်းဆုံး 20 မိနစ်လေ့လာပါ"],
+  ["♡","Health","လမ်းလျှောက်ခြင်း ဒါမှမဟုတ် ကိုယ်လက်လှုပ်ရှားမှု 15–20 မိနစ်လုပ်ပါ"],
+  ["♥","Relationship","အရေးကြီးတဲ့လူတစ်ယောက်နဲ့ စိတ်ရင်းနဲ့ ဆက်သွယ်ပါ"]
+];
+
+function renderDashboardActions(){
+  const key=todayKey();
+  if(!data.actions[key])data.actions[key]={};
+
+  document.getElementById("dashboardActions").innerHTML=dailyActions.map((a,i)=>`
+    <div class="action-row">
+      <div class="check ${data.actions[key][i]?"done":""}" onclick="toggleDailyAction(${i})">
+        ${data.actions[key][i]?"✓":""}
+      </div>
+      <div class="action-text">
+        <b>${a[0]} ${a[1]}</b>
+        <small>${a[2]}</small>
+      </div>
+    </div>
+  `).join("");
+}
+
+function toggleDailyAction(i){
+  const key=todayKey();
+  if(!data.actions[key])data.actions[key]={};
+
+  data.actions[key][i]=!data.actions[key][i];
+
+  if(data.actions[key][i])touchActivity();
+
+  save();
+}
+
+function lifeScore(){
   const vals=Object.values(data.assessment);
   return Math.round(vals.reduce((a,b)=>a+b,0)/vals.length*10);
 }
 
-function renderAssessment(){
-
-  const target=document.getElementById("assessment");
-
-  target.innerHTML=Object.entries(assessmentLabels).map(([key,label])=>`
-    <div class="assess">
-      <div class="assess-top">
-        <span>${label}</span>
-        <b id="assess-${key}">${data.assessment[key]}/10</b>
-      </div>
-      <input
-        class="range"
-        type="range"
-        min="1"
-        max="10"
-        value="${data.assessment[key]}"
-        oninput="updateAssessmentValue('${key}',this.value)"
-      >
-    </div>
-  `).join("");
-
-  updateScoreUI();
+function goalPercent(){
+  if(!data.goals.length)return 0;
+  return Math.round(data.goals.reduce((a,g)=>a+g.progress,0)/data.goals.length);
 }
 
-function updateAssessmentValue(key,value){
-  data.assessment[key]=Number(value);
-  const label=document.getElementById("assess-"+key);
-  if(label)label.textContent=value+"/10";
-  updateScoreUI();
+function courseCompleted(){
+  return Object.values(data.courses)
+    .reduce((sum,c)=>sum+c.completed.length,0);
 }
 
-function saveAssessment(){
-  saveData();
-  toast("Assessment saved");
+function totalProgress(){
+  const assessment=lifeScore();
+  const lessons=Math.min(100,Math.round(data.school.completed.length/365*100));
+  const habits=habitRate(30);
+  const goals=goalPercent();
+
+  return Math.round((assessment+lessons+habits+goals)/4);
 }
 
-function updateScoreUI(){
+function renderDashboard(){
+  const score=lifeScore();
 
-  const score=calcLifeScore();
+  document.getElementById("dashScore").textContent=score;
+  document.getElementById("dashStreak").textContent=data.streak;
+  document.getElementById("dashLessons").textContent=
+    data.school.completed.length+courseCompleted();
+  document.getElementById("dashHabits").textContent=habitRate(7)+"%";
 
-  const big=document.getElementById("lifeScoreBig");
-  if(big)big.textContent=score;
+  document.getElementById("topStreak").textContent=data.streak;
 
-  const ring=document.getElementById("lifeRing");
-  if(ring)ring.style.setProperty("--score",score+"%");
+  const name=data.name;
+  document.getElementById("greeting").textContent=
+    name?`${name} ရေ — ဒီနေ့လည်း ကိုယ့်ဘဝကို တစ်ဆင့်တိုးတက်အောင်လုပ်ပါ`:
+    "ကိုယ့်ဘဝကို ကိုယ်တိုင်တည်ဆောက်ပါ";
 
-  const dash=document.getElementById("dashScore");
-  if(dash)dash.textContent=score;
+  document.getElementById("avatar").textContent=
+    name?name.charAt(0).toUpperCase():"L";
 
-  const bars=document.getElementById("lifeAreaBars");
+  const day=Math.max(1,Math.min(365,data.school.selectedDay||1));
+  const lesson=getSchoolLesson(day);
 
-  if(bars){
-    bars.innerHTML=Object.entries(assessmentLabels).map(([key,label])=>`
-      <div style="margin-bottom:14px">
-        <div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:6px">
-          <span>${label}</span>
-          <b>${data.assessment[key]}/10</b>
-        </div>
-        <div class="progress">
-          <span style="width:${data.assessment[key]*10}%"></span>
-        </div>
-      </div>
-    `).join("");
-  }
-}
+  document.getElementById("todayPhase").textContent=lesson.phase;
+  document.getElementById("todayLessonTitle").textContent=
+    `Day ${day} — ${lesson.title}`;
+  document.getElementById("todayLessonPreview").textContent=lesson.goal;
 
-/* =========================================================
-   PROFILE
-========================================================= */
+  const done=data.school.completed.includes(day);
+  document.getElementById("todayLessonStatus").textContent=
+    done?"ပြီးပြီ ✓":"မပြီးသေး";
+  document.getElementById("todayLessonProgress").style.width=
+    done?"100%":"0%";
 
-function saveProfile(){
-  data.name=document.getElementById("profileName").value.trim();
-  data.vision=document.getElementById("profileVision").value.trim();
-  data.why=document.getElementById("profileWhy").value.trim();
-
-  saveData();
-  toast("My Life saved");
-}
-
-function loadProfile(){
-  const a=document.getElementById("profileName");
-  const b=document.getElementById("profileVision");
-  const c=document.getElementById("profileWhy");
-
-  if(a)a.value=data.name||"";
-  if(b)b.value=data.vision||"";
-  if(c)c.value=data.why||"";
-}
-
-/* =========================================================
-   GOALS
-========================================================= */
-
-function addGoal(){
-
-  const title=document.getElementById("goalTitle").value.trim();
-
-  if(!title){
-    toast("Goal ထည့်ပါ");
-    return;
-  }
-
-  data.goals.push({
-    id:Date.now().toString(),
-    title,
-    why:document.getElementById("goalWhy").value.trim(),
-    deadline:document.getElementById("goalDeadline").value,
-    progress:0,
-    completed:false,
-    created:todayKey()
-  });
-
-  document.getElementById("goalTitle").value="";
-  document.getElementById("goalWhy").value="";
-  document.getElementById("goalDeadline").value="";
-
-  saveData();
-  renderGoals();
-  toast("Goal created");
-}
-
-function updateGoalProgress(id,value){
-
-  const goal=data.goals.find(g=>g.id===id);
-  if(!goal)return;
-
-  goal.progress=Number(value);
-  goal.completed=goal.progress>=100;
-
-  saveData();
-}
-
-function deleteGoal(id){
-  data.goals=data.goals.filter(g=>g.id!==id);
-  saveData();
-  renderGoals();
-}
-
-function renderGoals(){
-
-  const list=document.getElementById("goalList");
-
-  if(!data.goals.length){
-    list.innerHTML=`
-      <div class="card empty">
-        <div class="empty-icon">🎯</div>
-        <div>Goal မရှိသေးပါ</div>
-      </div>
-    `;
-  }else{
-    list.innerHTML=data.goals.map(g=>`
-      <div class="card" style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;gap:12px">
-          <div>
-            <div class="badge">${g.completed?"COMPLETE":"ACTIVE"}</div>
-            <h3>${escapeHTML(g.title)}</h3>
-            <p class="muted">${escapeHTML(g.why||"")}</p>
-          </div>
-          <button class="btn btn-danger btn-small" onclick="deleteGoal('${g.id}')">Delete</button>
-        </div>
-
-        <div style="display:flex;justify-content:space-between;font-size:11px;margin:15px 0 7px">
-          <span>Progress</span>
-          <b>${g.progress}%</b>
-        </div>
-
-        <input
-          class="range"
-          type="range"
-          min="0"
-          max="100"
-          value="${g.progress}"
-          oninput="updateGoalProgress('${g.id}',this.value);this.previousElementSibling.querySelector('b').textContent=this.value+'%'"
-        >
-
-        <div style="margin-top:10px;font-size:10px;color:#777f8b">
-          Deadline: ${g.deadline||"မသတ်မှတ်ရသေး"}
-        </div>
-      </div>
-    `).join("");
-  }
-
-  const active=data.goals.filter(g=>!g.completed).length;
-  document.getElementById("dashGoals").textContent=active;
-}
-
-/* =========================================================
-   ACTIONS
-========================================================= */
-
-const dailyActions=[
-  ["Mind","10 မိနစ် အတွေးအမြင်ကိုပြန်စစ်ပါ"],
-  ["Money","ဒီနေ့ မလိုအပ်တဲ့အသုံးစရိတ် ၁ ခုကိုရှောင်ပါ"],
-  ["Career","Career Skill တစ်ခုကို 20 မိနစ်လေ့လာပါ"],
-  ["Health","အနည်းဆုံး 20 မိနစ် လှုပ်ရှားပါ"],
-  ["Relationship","လူတစ်ယောက်ကို ကျေးဇူးတင်စကားပြောပါ"]
-];
-
-function actionDone(index){
-  return !!(data.actions[todayKey()] && data.actions[todayKey()][index]);
-}
-
-function toggleAction(index){
-
-  const d=todayKey();
-
-  if(!data.actions[d])data.actions[d]={};
-
-  data.actions[d][index]=!data.actions[d][index];
-
-  if(data.actions[d][index])updateActivity();
-
-  saveData();
   renderDashboardActions();
+
+  const gap=(Number(data.targetIncome)||0)-(Number(data.currentIncome)||0);
+  document.getElementById("incomeGap").textContent=
+    formatMoney(Math.max(0,gap));
+
+  document.getElementById("goalPercent").textContent=goalPercent()+"%";
+  document.getElementById("goalBar").style.width=goalPercent()+"%";
+
+  document.getElementById("goalSummary").textContent=
+    data.goals.length?
+    `${data.goals.length} Goals ရှိပြီး Average Progress ${goalPercent()}%`:
+    "Goal မရှိသေးပါ";
 }
 
-function renderDashboardActions(){
-
-  const list=document.getElementById("dashboardActions");
-  if(!list)return;
-
-  const doneCount=dailyActions.filter((_,i)=>actionDone(i)).length;
-
-  document.getElementById("actionCount").textContent=doneCount+" / 5";
-
-  list.innerHTML=dailyActions.map((a,i)=>`
-    <div class="check-row">
-      <div class="check ${actionDone(i)?'done':''}" onclick="toggleAction(${i})">
-        ${actionDone(i)?"✓":""}
-      </div>
-      <div class="check-content">
-        <div class="check-title">${a[0]}</div>
-        <div class="check-sub">${a[1]}</div>
-      </div>
-    </div>
-  `).join("");
-}
-
-/* =========================================================
-   STREAK
-========================================================= */
-
-function updateActivity(){
-
-  const today=todayKey();
-
-  if(data.lastActive===today)return;
-
-  const yesterday=dayKeyOffset(1);
-
-  if(data.lastActive===yesterday){
-    data.streak++;
-  }else{
-    data.streak=1;
-  }
-
-  data.lastActive=today;
-}
-
-/* =========================================================
-   JOURNAL
-========================================================= */
-
-function saveJournal(){
-
-  const d=todayKey();
-
-  data.journal[d]={
-    good:document.getElementById("journalGood").value,
-    learn:document.getElementById("journalLearn").value,
-    tomorrow:document.getElementById("journalTomorrow").value
-  };
-
-  updateActivity();
-  saveData();
-
-  toast("Reflection saved");
-}
-
-function loadJournal(){
-
-  const d=todayKey();
-  const j=data.journal[d]||{};
-
-  document.getElementById("journalDateTitle").textContent=
-    "Today’s Reflection — "+new Date().toLocaleDateString();
-
-  document.getElementById("journalGood").value=j.good||"";
-  document.getElementById("journalLearn").value=j.learn||"";
-  document.getElementById("journalTomorrow").value=j.tomorrow||"";
-}
-
-/* =========================================================
-   TOOLS
-========================================================= */
-
-function calcIncomeGap(){
-
-  const current=Number(document.getElementById("currentIncome").value)||0;
-  const target=Number(document.getElementById("targetIncome").value)||0;
-
-  data.currentIncome=current;
-  data.targetIncome=target;
-  saveData();
-
-  const gap=Math.max(0,target-current);
-
-  document.getElementById("incomeResult").innerHTML=`
-    <div class="card gold flat">
-      <div class="muted">Income Gap</div>
-      <div style="font-size:25px;font-weight:900">${formatMoney(gap)}</div>
-      <div class="muted" style="font-size:11px;margin-top:6px">
-        Target income ကိုရောက်ဖို့ တစ်လမှာ ထပ်မံဖန်တီးရမယ့် Gap
-      </div>
-    </div>
-  `;
-}
-
-function calcSaving(){
-
-  const target=Number(document.getElementById("saveTarget").value)||0;
-  const monthly=Number(document.getElementById("saveMonthly").value)||0;
-
-  if(monthly<=0){
-    toast("Monthly saving ထည့်ပါ");
-    return;
-  }
-
-  const months=Math.ceil(target/monthly);
-
-  document.getElementById("savingResult").innerHTML=`
-    <div class="card gold flat">
-      <div class="muted">Estimated Time</div>
-      <div style="font-size:25px;font-weight:900">${months} months</div>
-      <div class="muted" style="font-size:11px">Interest မထည့်သွင်းထားတဲ့ ရိုးရိုးတွက်ချက်မှု</div>
-    </div>
-  `;
-}
-
-function calcTimeAudit(){
-
-  const work=Number(document.getElementById("timeWork").value)||0;
-  const social=Number(document.getElementById("timeSocial").value)||0;
-  const sleep=Number(document.getElementById("timeSleep").value)||0;
-
-  const used=work+social+sleep;
-  const remain=Math.max(0,24-used);
-
-  document.getElementById("timeResult").innerHTML=`
-    <div class="card gold flat">
-      <div class="muted">Remaining Hours</div>
-      <div style="font-size:25px;font-weight:900">${remain} hrs</div>
-      <div class="muted" style="font-size:11px">တစ်နေ့ 24 နာရီအပေါ်အခြေခံထားပါတယ်</div>
-    </div>
-  `;
-}
-
-/* =========================================================
-   DAILY CHALLENGE
-========================================================= */
+/* =========================
+   CHALLENGE
+========================= */
 
 const challenges=[
-  ["Money","ဒီနေ့ မလိုအပ်တဲ့အသုံးစရိတ်တစ်ခုကို ရှောင်ပါ"],
-  ["Career","Career Skill တစ်ခုကို 20 မိနစ်လေ့လာပါ"],
-  ["Health","20 မိနစ် လမ်းလျှောက်ပါ"],
-  ["Mind","5 မိနစ် ဖုန်းမကြည့်ဘဲ တိတ်တိတ်ဆိတ်ဆိတ်နေပါ"],
-  ["Relationship","မိသားစုဝင်တစ်ယောက်ကို ကျေးဇူးတင်ကြောင်းပြောပါ"],
-  ["Growth","ဒီနေ့သင်ယူခဲ့တာ 3 ခုရေးပါ"],
-  ["Time","Social Media ကို 1 နာရီလျှော့ပါ"]
+  {
+    title:"Money Awareness Challenge",
+    text:`ဒီနေ့ သုံးထားတဲ့ငွေ 5 ခုကို ရေးပါ။ ပြီးရင် တစ်ခုချင်းစီကို “လိုအပ်တာ” နဲ့ “လိုချင်တာ” ဆိုပြီး ခွဲပါ။ ရည်ရွယ်ချက်က ကိုယ့်ကိုယ်ကို အပြစ်တင်ဖို့မဟုတ်ဘဲ ကိုယ့်ရဲ့ Spending Pattern ကို မြင်ဖို့ပါ`
+  },
+  {
+    title:"Focus Challenge",
+    text:`30 မိနစ်အတွက် Phone Notification ပိတ်ပြီး အရေးကြီးဆုံးအလုပ်တစ်ခုကိုသာ လုပ်ပါ။ Multitasking မလုပ်ပါနဲ့`
+  },
+  {
+    title:"Relationship Challenge",
+    text:`ကိုယ့်ဘဝမှာ တန်ဖိုးထားတဲ့လူတစ်ယောက်ကို ဆက်သွယ်ပြီး ကျေးဇူးတင်စကားတစ်ခုပြောပါ`
+  },
+  {
+    title:"Career Challenge",
+    text:`ကိုယ့်အလုပ်မှာ ပြီးမြောက်အောင်လုပ်ခဲ့တဲ့ Result 3 ခုကို နံပါတ်နဲ့ရေးပါ။ နောက်ပိုင်း Performance Review အတွက် Evidence အဖြစ် အသုံးပြုနိုင်အောင် သိမ်းထားပါ`
+  },
+  {
+    title:"Mind Challenge",
+    text:`စိတ်ထဲမှာ အတွေးများနေတဲ့အရာတစ်ခုကို ရေးပြီး Fact 3 ခုနဲ့ Fear/Assumption 3 ခုခွဲပါ`
+  }
 ];
 
 function renderChallenge(){
+  if(data.challengeDate!==todayKey()){
+    data.challengeDate=todayKey();
+    data.challengeDone=false;
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(data));
+  }
 
-  const index=getDayOfYear()%challenges.length;
+  const index=new Date().getDate()%challenges.length;
   const c=challenges[index];
 
-  document.getElementById("challengeTitle").textContent=c[0]+" Challenge";
-  document.getElementById("challengeText").textContent=c[1];
+  document.getElementById("challengeTitle").textContent=c.title;
+  document.getElementById("challengeText").innerHTML=`
+    <div class="example">${c.text}</div>
+  `;
 
-  const done=data.challengeDate===todayKey() && data.challengeDone;
+  document.getElementById("challengeBtn").textContent=
+    data.challengeDone?"✓ Challenge ပြီးပြီ":"Challenge ပြီးပြီ ✓";
 
-  const btn=document.getElementById("challengeBtn");
-
-  btn.textContent=done?"✓ Completed":"Challenge Complete";
-  btn.className="btn "+(done?"btn-dark":"btn-primary");
+  document.getElementById("challengeBtn").disabled=data.challengeDone;
 }
 
 function completeChallenge(){
-
-  data.challengeDate=todayKey();
   data.challengeDone=true;
-
-  updateActivity();
-  saveData();
-  renderChallenge();
-
-  toast("Daily Challenge complete 🔥");
+  touchActivity();
+  save();
+  toast("Challenge Completed 🔥");
 }
 
-/* =========================================================
-   5S RESET
-========================================================= */
-
-function open5S(){
-
-  document.getElementById("modalTitle").textContent="5S Anxiety Reset";
-
-  document.getElementById("modalBody").innerHTML=`
-
-    <div class="coach-section">
-      <h4>1. SPOT — သတိထားပါ</h4>
-      <p>အခုအချိန်မှာ ဘာဖြစ်နေသလဲကို သတ်မှတ်ပါ။ စိတ်ပူနေတာလား၊ ကြောက်နေတာလား၊ ဒေါသထွက်နေတာလား၊ overthinking ဖြစ်နေတာလား၊ ကိုယ်ခန္ဓာတင်းကျပ်နေတာလားဆိုတာ သတိထားပါ</p>
-    </div>
-
-    <div class="coach-section">
-      <h4>2. STEADY — တည်ငြိမ်အောင်လုပ်ပါ</h4>
-      <p>အသက်ကို 4 စက္ကန့်ရှူ → 2 စက္ကန့်ခဏထိန်း → 6 စက္ကန့်ဖြည်းဖြည်းထုတ်ပါ။ အကြိမ်အနည်းငယ်လုပ်ပြီး ခဏရပ်ပါ</p>
-    </div>
-
-    <div class="coach-section">
-      <h4>3. SAY — ခံစားချက်ကို နာမည်ပေးပါ</h4>
-      <p>“အခု ငါ စိတ်ပူနေတယ်”၊ “အခု ငါ ကြောက်နေတယ်” လို့ ရိုးရိုးရှင်းရှင်း သတ်မှတ်ပါ</p>
-    </div>
-
-    <div class="coach-section">
-      <h4>4. SHIFT — အတွေးကိုပြန်စစ်ပါ</h4>
-      <p>Fact ကဘာလဲ၊ ကိုယ့်စိတ်က ထပ်ပြီးအဓိပ္ပါယ်ဖွင့်နေတာကဘာလဲဆိုတာ ခွဲပါ</p>
-    </div>
-
-    <div class="coach-section">
-      <h4>5. STEP — နောက်တစ်ဆင့်ရွေးပါ</h4>
-      <p>ပြဿနာတစ်ခုလုံးကို အခုချက်ချင်းဖြေရှင်းဖို့မလိုပါဘူး။ အခုလုပ်နိုင်တဲ့ အငယ်ဆုံး action တစ်ခုကို ရွေးပါ</p>
-    </div>
-
-    <div class="card gold flat">
-      <b>5S Reminder</b>
-      <div style="margin-top:8px;color:#c9cdd4">
-        SPOT → STEADY → SAY → SHIFT → STEP
-      </div>
-    </div>
-  `;
-
-  openModal();
-}
-
-/* =========================================================
-   DECISION MAKER
-========================================================= */
-
-function openDecision(){
-
-  document.getElementById("modalTitle").textContent="Decision Framework";
-
-  document.getElementById("modalBody").innerHTML=`
-    <div class="field">
-      <label>ဘာကိုဆုံးဖြတ်ချင်တာလဲ</label>
-      <textarea class="textarea" id="decisionProblem"></textarea>
-    </div>
-
-    <div class="field">
-      <label>Option A</label>
-      <input class="input" id="decisionA">
-    </div>
-
-    <div class="field">
-      <label>Option B</label>
-      <input class="input" id="decisionB">
-    </div>
-
-    <div class="field">
-      <label>အရေးကြီးဆုံး Criteria ၃ ခု</label>
-      <textarea class="textarea" id="decisionCriteria" placeholder="ဥပမာ — Income, Growth, Location"></textarea>
-    </div>
-
-    <button class="btn btn-primary" onclick="runDecision()">Analyze</button>
-    <div id="decisionResult" style="margin-top:18px"></div>
-  `;
-
-  openModal();
-}
-
-function runDecision(){
-
-  const problem=document.getElementById("decisionProblem").value;
-  const a=document.getElementById("decisionA").value;
-  const b=document.getElementById("decisionB").value;
-  const criteria=document.getElementById("decisionCriteria").value;
-
-  document.getElementById("decisionResult").innerHTML=`
-    <div class="card gold flat">
-      <h3>Decision Review</h3>
-      <p><b>Problem:</b> ${escapeHTML(problem)}</p>
-      <p><b>Option A:</b> ${escapeHTML(a)}</p>
-      <p><b>Option B:</b> ${escapeHTML(b)}</p>
-      <p><b>Criteria:</b> ${escapeHTML(criteria)}</p>
-
-      <hr style="border-color:var(--line);border-width:1px 0 0;margin:15px 0">
-
-      <p class="muted">
-        ဒီ Tool က သင့်အစား ဘယ် Option ကိုရွေးမလဲဆိုတာ မဆုံးဖြတ်ပါ
-        သင့်အတွက် အရေးကြီးတဲ့ Criteria တွေနဲ့ Option တစ်ခုချင်းစီရဲ့ အကျိုးကျေးဇူး၊ ကုန်ကျစရိတ်၊ Risk နဲ့ Long-term effect ကို စာရင်းချပြီး ကိုယ်တိုင်ဆုံးဖြတ်နိုင်အောင် စီစဉ်ပေးတာပါ
-      </p>
-    </div>
-  `;
-}
-
-/* =========================================================
-   AI LIFE COACH
-========================================================= */
+/* =========================
+   COACH
+========================= */
 
 function runCoach(){
-
   const category=document.getElementById("coachCategory").value;
-  const input=document.getElementById("coachInput").value.trim();
+  const problem=document.getElementById("coachInput").value.trim();
 
-  if(!input){
-    toast("Problem ကိုရေးပါ");
+  if(!problem){
+    toast("Problem ကို ရေးပါ");
     return;
   }
 
   const categoryName={
     career:"Career",
     money:"Money",
-    relationship:"Relationship",
     business:"Business",
-    mind:"Mind / Emotion",
+    relationship:"Relationship",
+    mind:"Mind & Emotion",
     decision:"Decision"
   }[category];
 
-  const responses={
-
-career:{
-  cause:"အလုပ်ပြဿနာရဲ့ အဓိကအကြောင်းရင်းကို Result၊ Skill၊ Communication၊ Visibility နဲ့ Environment ဆိုပြီးခွဲစဉ်းစားနိုင်ပါတယ်",
-  think:"လက်ရှိအလုပ်မှာ ကိုယ်တိုင်ထိန်းချုပ်နိုင်တဲ့အရာက ဘာလဲ၊ တိုးတက်ဖို့အတွက် အရေးကြီးဆုံး Skill က ဘာလဲဆိုတာ စစ်ပါ",
-  action:"ဒီနေ့ Career Result တစ်ခုကို တိုင်းတာနိုင်အောင် သတ်မှတ်ပြီး 30 မိနစ် Skill Improvement လုပ်ပါ",
-  week:"7 ရက်အတွင်း Result တစ်ခု၊ Skill တစ်ခုနဲ့ Communication action တစ်ခုကို အာရုံစိုက်ပါ"
-},
-
-money:{
-  cause:"Money Problem ကို Income၊ Expense၊ Debt၊ Saving နဲ့ Financial Planning ဆိုပြီးခွဲစစ်ပါ",
-  think:"လက်ရှိပြဿနာက ဝင်ငွေနည်းတာလား၊ အသုံးစရိတ်မထိန်းနိုင်တာလား၊ Debt ကြောင့်လားဆိုတာ အရင်ခွဲပါ",
-  action:"ဒီနေ့ လစဉ်ဝင်ငွေ၊ Fixed Expense၊ Variable Expense နဲ့ Debt ကို စာရင်းရေးပါ",
-  week:"7 ရက်အတွင်း မလိုအပ်တဲ့အသုံးစရိတ်တစ်ခုလျှော့ပြီး ဝင်ငွေတိုးနိုင်တဲ့ Skill/Opportunity တစ်ခုရှာပါ"
-},
-
-relationship:{
-  cause:"Relationship Problem မှာ Communication၊ Expectation၊ Boundary၊ Trust နဲ့ unresolved conflict ကို ခွဲစဉ်းစားပါ",
-  think:"ကိုယ်လိုချင်တာနဲ့ တစ်ဖက်လူလိုချင်တာ ဘာကွာနေလဲဆိုတာ စဉ်းစားပါ",
-  action:"အပြစ်တင်မယ့်စကားမသုံးဘဲ ကိုယ့်ခံစားချက်နဲ့ လိုအပ်ချက်ကို ရိုးရိုးရှင်းရှင်းပြောပါ",
-  week:"7 ရက်အတွင်း quality conversation တစ်ကြိမ်လုပ်ပြီး နားထောင်ခြင်းကို အဓိကထားပါ"
-},
-
-business:{
-  cause:"Business Problem ကို Customer၊ Product၊ Marketing၊ Sales၊ Pricing၊ Profit၊ Cash Flow နဲ့ Operation အဖြစ်ခွဲစစ်ပါ",
-  think:"လက်ရှိပြဿနာက Sales မရတာလား၊ Margin နည်းတာလား၊ Cash Flow မလုံလောက်တာလား ခွဲပါ",
-  action:"ဒီနေ့ Customer တစ်စုရဲ့ Problem ကို စာရင်းရေးပြီး ကိုယ့် Product က ဘယ်လိုဖြေရှင်းပေးလဲပြန်စစ်ပါ",
-  week:"7 ရက်အတွင်း Sales Funnel ရဲ့ အားနည်းနေတဲ့အဆင့်တစ်ခုကို တိုးတက်အောင်လုပ်ပါ"
-},
-
-mind:{
-  cause:"စိတ်ဖိအားကို Trigger၊ Emotion၊ Thought၊ Body Response နဲ့ Behavior ဆိုပြီး ခွဲကြည့်ပါ",
-  think:"Fact ကဘာလဲ၊ ကိုယ့်စိတ်က ထပ်ပြီးခန့်မှန်းနေတာကဘာလဲဆိုတာ ခွဲပါ",
-  action:"5S Reset — SPOT → STEADY → SAY → SHIFT → STEP ကို လက်တွေ့လုပ်ပါ",
-  week:"7 ရက်အတွင်း Trigger တစ်ခုချင်းစီကို မှတ်တမ်းတင်ပြီး ကိုယ့်တုံ့ပြန်ပုံကို ပြန်လေ့လာပါ"
-},
-
-decision:{
-  cause:"ဆုံးဖြတ်ချက်ခက်တာဟာ Information မပြည့်စုံတာ၊ Risk မသိတာ၊ Criteria မရှင်းတာ ဒါမှမဟုတ် Fear ကြောင့်ဖြစ်နိုင်ပါတယ်",
-  think:"ဒီဆုံးဖြတ်ချက်အတွက် အရေးကြီးဆုံး Criteria 3 ခုက ဘာလဲဆိုတာ အရင်သတ်မှတ်ပါ",
-  action:"Option တစ်ခုချင်းစီရဲ့ Benefit၊ Cost၊ Risk နဲ့ Long-term Impact ကို ရေးပါ",
-  week:"7 ရက်အတွင်း Information လိုအပ်တာတွေ စုစည်းပြီး Deadline တစ်ခုထားပါ"
-}
-
-};
-
-  const r=responses[category];
-
-  const response={
-    category,
-    input,
-    date:todayKey(),
-    cause:r.cause,
-    think:r.think,
-    action:r.action,
-    week:r.week
+  let response={
+    situation:problem,
+    main:"",
+    cause:"",
+    think:"",
+    action:"",
+    plan:[]
   };
 
-  data.coachHistory.unshift(response);
-
-  if(data.coachHistory.length>20){
-    data.coachHistory=data.coachHistory.slice(0,20);
+  if(category==="money"){
+    response.main="ပြဿနာကို Income တစ်ခုတည်းနဲ့ မကြည့်ဘဲ Cash Flow အနေနဲ့ ခွဲကြည့်ပါ";
+    response.cause="ဝင်ငွေ၊ Fixed Expense၊ Variable Expense၊ Debt နဲ့ Saving အချိုးတွေထဲက တစ်ခုခုက အဓိကအကြောင်းရင်းဖြစ်နိုင်ပါတယ်";
+    response.think="လက်ရှိဝင်ငွေကို မတိုးခင် Expense ကို လျှော့နိုင်လား၊ Expense ကိုမထိခိုက်ဘဲ Income တိုးနိုင်မယ့် Skill / Opportunity ရှိလား စဉ်းစားပါ";
+    response.action="ဒီနေ့ နောက်ဆုံး 30 ရက်အတွင်း ဝင်ငွေနဲ့ အသုံးစရိတ်ကို ပြန်စစ်ပြီး အကြီးဆုံး Expense 3 ခုကို ရှာပါ";
+    response.plan=[
+      "Day 1 — Income / Expense စာရင်းပြုစု",
+      "Day 2 — မလိုအပ်တဲ့ Expense ရှာ",
+      "Day 3 — Saving Target သတ်မှတ်",
+      "Day 4 — Income တိုးနိုင်မယ့် Skill ရွေး",
+      "Day 5 — Opportunity 3 ခုရှာ",
+      "Day 6 — လက်တွေ့စမ်းသပ်",
+      "Day 7 — ရလဒ်ပြန်သုံးသပ်"
+    ];
+  }else if(category==="career"){
+    response.main="Career Problem ကို Position တစ်ခုတည်းနဲ့ မကြည့်ဘဲ Value, Result, Skill, Visibility အနေနဲ့ ခွဲပါ";
+    response.cause="Skill Gap၊ Result Evidence မလုံလောက်ခြင်း၊ Communication Gap၊ Role မကိုက်ညီခြင်း ဒါမှမဟုတ် Growth Opportunity နည်းခြင်းတွေ ဖြစ်နိုင်ပါတယ်";
+    response.think="အလုပ်ပြောင်းတာကို ချက်ချင်းဆုံးဖြတ်မယ့်အစား လက်ရှိနေရာမှာ ဘာတွေတိုးတက်အောင်လုပ်နိုင်လဲနဲ့ အပြင် Market မှာ ကိုယ့် Skill Value ဘယ်လိုရှိလဲ နှစ်ဖက်စလုံးစဉ်းစားပါ";
+    response.action="ကိုယ့်ရဲ့ Result 3 ခု၊ Strong Skills 3 ခု၊ Gap 3 ခုကို ရေးပါ";
+    response.plan=[
+      "Day 1 — Career Situation ရေး",
+      "Day 2 — Skills Inventory",
+      "Day 3 — Result Evidence စု",
+      "Day 4 — Gap သတ်မှတ်",
+      "Day 5 — Skill Improvement Plan",
+      "Day 6 — Market Research",
+      "Day 7 — Next Step သတ်မှတ်"
+    ];
+  }else if(category==="relationship"){
+    response.main="Relationship Problem ကို “ဘယ်သူမှားလဲ” ထက် “ဘာဖြစ်နေလဲ” ဆိုတဲ့အမြင်နဲ့ စတင်ကြည့်ပါ";
+    response.cause="Communication မရှင်းခြင်း၊ Expectation မတူခြင်း၊ Boundary မရှိခြင်း၊ အရင်ဖြစ်ရပ်တွေကြောင့် Trust ထိခိုက်ခြင်းတွေ ဖြစ်နိုင်ပါတယ်";
+    response.think="ကိုယ်လိုချင်တာကို ရှင်းပြပြီး တစ်ဖက်လူရဲ့အမြင်ကိုလည်း နားထောင်ဖို့လိုပါတယ်";
+    response.action="ပြဿနာနဲ့ပတ်သက်ပြီး Fact 3 ခု၊ ကိုယ့်ခံစားချက် 2 ခု၊ ကိုယ်လိုချင်တဲ့ Outcome 1 ခုရေးပါ";
+    response.plan=[
+      "Day 1 — Fact / Feeling ခွဲ",
+      "Day 2 — ကိုယ်လိုချင်တာရေး",
+      "Day 3 — တစ်ဖက်အမြင်စဉ်းစား",
+      "Day 4 — Calm Communication",
+      "Day 5 — Boundary သတ်မှတ်",
+      "Day 6 — Follow-up",
+      "Day 7 — Relationship Review"
+    ];
+  }else if(category==="business"){
+    response.main="Business Problem ကို Customer, Product, Sales, Margin, Cash Flow, Operation ဆိုပြီး ခွဲပါ";
+    response.cause="Customer Need မကိုက်ခြင်း၊ Sales Process အားနည်းခြင်း၊ Pricing / Margin ပြဿနာ၊ Cash Collection နှေးခြင်း ဒါမှမဟုတ် Operation မတည်ငြိမ်ခြင်း ဖြစ်နိုင်ပါတယ်";
+    response.think="Revenue တစ်ခုတည်းကို မကြည့်ဘဲ Gross Profit နဲ့ Cash Flow ကိုပါ ပြန်ကြည့်ပါ";
+    response.action="ဒီနေ့ Business ရဲ့ အဓိက KPI 5 ခုကို ရေးပြီး လက်ရှိအခြေအနေကို မှတ်ပါ";
+    response.plan=[
+      "Day 1 — Customer Review",
+      "Day 2 — Product Review",
+      "Day 3 — Sales Funnel",
+      "Day 4 — Margin",
+      "Day 5 — Cash Flow",
+      "Day 6 — Operation",
+      "Day 7 — Action Plan"
+    ];
+  }else{
+    response.main="ပြဿနာကို ချက်ချင်းဖြေရှင်းဖို့မကြိုးစားဘဲ အရင်ဆုံး Problem ကို သေးငယ်တဲ့အပိုင်းတွေအဖြစ် ခွဲပါ";
+    response.cause="အချက်အလက်မပြည့်စုံခြင်း၊ အလွန်အမင်းစိုးရိမ်ခြင်း၊ အချိန်ဖိအား၊ တစ်ခုတည်းသောရွေးချယ်စရာရှိတယ်လို့ထင်ခြင်းတွေ ဖြစ်နိုင်ပါတယ်";
+    response.think="Fact ဘာတွေလဲ၊ ကိုယ်ထိန်းချုပ်နိုင်တာဘာလဲ၊ မထိန်းချုပ်နိုင်တာဘာလဲ ခွဲပါ";
+    response.action="အခုချက်ချင်းလုပ်နိုင်တဲ့ အဆင့်အသေးဆုံးတစ်ခုကို ရွေးပါ";
+    response.plan=[
+      "Day 1 — Problem Define",
+      "Day 2 — Facts",
+      "Day 3 — Options",
+      "Day 4 — Risks",
+      "Day 5 — Small Experiment",
+      "Day 6 — Result",
+      "Day 7 — Review"
+    ];
   }
 
-  updateActivity();
-  saveData();
+  data.coachHistory.unshift({
+    date:todayKey(),
+    category:categoryName,
+    problem,
+    action:response.action
+  });
+
+  data.coachHistory=data.coachHistory.slice(0,20);
+
+  save();
 
   document.getElementById("coachResult").innerHTML=`
-    <div class="coach-response">
-      <div class="badge">${categoryName}</div>
+    <div class="detail">
+      <span class="badge gold">${categoryName}</span>
 
-      <div class="coach-section" style="margin-top:18px">
-        <h4>1. Current Situation</h4>
-        <p>${escapeHTML(input)}</p>
-      </div>
+      <h3>1. Current Situation</h3>
+      <div class="example">${escapeHtml(response.situation)}</div>
 
-      <div class="coach-section">
-        <h4>2. Possible Cause</h4>
-        <p>${escapeHTML(r.cause)}</p>
-      </div>
+      <h3>2. Main Problem</h3>
+      <p>${response.main}</p>
 
-      <div class="coach-section">
-        <h4>3. What to Think About</h4>
-        <p>${escapeHTML(r.think)}</p>
-      </div>
+      <h3>3. Possible Cause</h3>
+      <p>${response.cause}</p>
 
-      <div class="coach-section">
-        <h4>4. Today Action</h4>
-        <p>${escapeHTML(r.action)}</p>
-      </div>
+      <h3>4. What to Think About</h3>
+      <p>${response.think}</p>
 
-      <div class="coach-section">
-        <h4>5. 7-Day Direction</h4>
-        <p>${escapeHTML(r.week)}</p>
-      </div>
+      <h3>5. Today's Action</h3>
+      <div class="action-box">${response.action}</div>
 
-      <div class="card gold flat">
-        <b>Remember</b>
-        <p style="margin-top:6px">ပြဿနာတစ်ခုလုံးကို တစ်ခါတည်းမဖြေရှင်းပါနဲ့ — နောက်တစ်ဆင့်ကို အရင်ရွေးပါ</p>
+      <h3>6. 7-Day Plan</h3>
+      <ul>
+        ${response.plan.map(x=>`<li>${x}</li>`).join("")}
+      </ul>
+
+      <div class="warning-box">
+        ဒီ Coach Response က စဉ်းစားပုံတည်ဆောက်ဖို့အတွက်ဖြစ်ပြီး
+        သင့်အစား အဆုံးအဖြတ်ချထားတာ မဟုတ်ပါ
       </div>
     </div>
   `;
 
-  document.getElementById("coachInput").value="";
-  renderCoachHistory();
+  toast("Coach Response ရပါပြီ");
 }
 
-function renderCoachHistory(){
+/* =========================
+   TOOLS
+========================= */
 
-  const el=document.getElementById("coachHistory");
-  if(!el)return;
+function openSaving(){
+  openModal(
+    "Saving Calculator",
+    `
+    <div class="field">
+      <label>လိုချင်တဲ့ပမာဏ</label>
+      <input type="number" id="saveTarget" placeholder="ဥပမာ 10000000">
+    </div>
+    <div class="field">
+      <label>လစဉ်စုနိုင်တဲ့ပမာဏ</label>
+      <input type="number" id="saveMonthly" placeholder="ဥပမာ 500000">
+    </div>
+    <button class="btn primary" onclick="calculateSaving()">တွက်မယ်</button>
+    <div id="savingResult" style="margin-top:15px"></div>
+    `
+  );
+}
 
-  if(!data.coachHistory.length){
-    el.innerHTML=`<div class="card empty">Coach history မရှိသေးပါ</div>`;
+function calculateSaving(){
+  const target=Number(document.getElementById("saveTarget").value)||0;
+  const monthly=Number(document.getElementById("saveMonthly").value)||0;
+
+  if(target<=0 || monthly<=0){
+    document.getElementById("savingResult").innerHTML=
+      `<div class="warning-box">ပမာဏနှစ်ခုလုံးထည့်ပါ</div>`;
     return;
   }
 
-  el.innerHTML=data.coachHistory.slice(0,8).map(h=>`
-    <div class="card" style="margin-bottom:10px">
-      <div style="display:flex;justify-content:space-between">
-        <span class="badge">${h.category}</span>
-        <span class="muted" style="font-size:10px">${h.date}</span>
-      </div>
-      <p style="line-height:1.7;font-size:12px">${escapeHTML(h.input)}</p>
-      <div class="muted" style="font-size:11px">${escapeHTML(h.action)}</div>
+  const months=Math.ceil(target/monthly);
+  const years=(months/12).toFixed(1);
+
+  document.getElementById("savingResult").innerHTML=`
+    <div class="action-box">
+      Target <b>${formatMoney(target)}</b> ကို
+      တစ်လ <b>${formatMoney(monthly)}</b> စုရင်
+      ခန့်မှန်းအားဖြင့် <b>${months} လ (${years} နှစ်)</b> ကြာနိုင်ပါတယ်
     </div>
-  `).join("");
+  `;
 }
 
-/* =========================================================
-   NOTIFICATIONS
-========================================================= */
+function openTimeAudit(){
+  openModal(
+    "Time Audit",
+    `
+    <div class="detail">
+      <p>အချိန်ကို စီမံဖို့ ပထမဆုံးအဆင့်က ကိုယ့်အချိန်ဘယ်မှာကုန်နေလဲ သိဖို့ပါ</p>
 
-function toggleNotify(type){
+      <div class="field">
+        <label>အလုပ်</label>
+        <input type="number" id="timeWork" value="8">
+      </div>
 
-  data.notifications[type]=!data.notifications[type];
-  saveData();
-  renderNotificationSettings();
+      <div class="field">
+        <label>အိပ်စက်</label>
+        <input type="number" id="timeSleep" value="7">
+      </div>
+
+      <div class="field">
+        <label>Phone / Social Media</label>
+        <input type="number" id="timePhone" value="2">
+      </div>
+
+      <div class="field">
+        <label>Family / Personal</label>
+        <input type="number" id="timePersonal" value="3">
+      </div>
+
+      <button class="btn primary" onclick="calculateTime()">စစ်မယ်</button>
+      <div id="timeResult" style="margin-top:15px"></div>
+    </div>
+    `
+  );
 }
 
-function renderNotificationSettings(){
+function calculateTime(){
+  const work=Number(document.getElementById("timeWork").value)||0;
+  const sleep=Number(document.getElementById("timeSleep").value)||0;
+  const phone=Number(document.getElementById("timePhone").value)||0;
+  const personal=Number(document.getElementById("timePersonal").value)||0;
 
-  ["morning","afternoon","evening"].forEach(type=>{
-    const el=document.getElementById("notify"+type.charAt(0).toUpperCase()+type.slice(1));
-    if(!el)return;
+  const total=work+sleep+phone+personal;
+  const remaining=24-total;
 
-    el.classList.toggle("done",!!data.notifications[type]);
-    el.textContent=data.notifications[type]?"✓":"";
+  document.getElementById("timeResult").innerHTML=`
+    <div class="${remaining<0?"warning-box":"action-box"}">
+      စုစုပေါင်း <b>${total} နာရီ</b> သုံးထားပါတယ်<br>
+      ကျန်ရှိချိန် <b>${remaining} နာရီ</b>
+      ${remaining<0?"<br>ထည့်ထားတဲ့အချိန်စုစုပေါင်း 24 နာရီကျော်နေပါတယ်":""}
+    </div>
+  `;
+}
+
+function openDecision(){
+  openModal(
+    "Decision Maker",
+    `
+    <div class="detail">
+      <p>
+        LifeRise က သင့်အစား ဘာလုပ်ရမလဲဆိုတာ ဆုံးဖြတ်ပေးမယ့် Tool မဟုတ်ပါ
+        ကိုယ့်ဆုံးဖြတ်ချက်ကို ပိုရှင်းလင်းစွာစဉ်းစားနိုင်ဖို့ Framework ပေးတာပါ
+      </p>
+
+      <div class="field">
+        <label>ဆုံးဖြတ်ရမယ့်အရာ</label>
+        <textarea id="decisionText" placeholder="ဥပမာ — အလုပ်ပြောင်းသင့်လား"></textarea>
+      </div>
+
+      <div class="field">
+        <label>Option A</label>
+        <input id="optionA" placeholder="Option A">
+      </div>
+
+      <div class="field">
+        <label>Option B</label>
+        <input id="optionB" placeholder="Option B">
+      </div>
+
+      <button class="btn primary" onclick="analyzeDecision()">Framework ပြမယ်</button>
+      <div id="decisionResult" style="margin-top:15px"></div>
+    </div>
+    `
+  );
+}
+
+function analyzeDecision(){
+  const question=document.getElementById("decisionText").value;
+  const a=document.getElementById("optionA").value;
+  const b=document.getElementById("optionB").value;
+
+  document.getElementById("decisionResult").innerHTML=`
+    <div class="action-box">
+      <b>ဆုံးဖြတ်ချက်:</b> ${escapeHtml(question)}<br><br>
+
+      <b>Option A:</b> ${escapeHtml(a)}<br>
+      စဉ်းစားရန် — အကျိုးကျေးဇူး၊ ကုန်ကျစရိတ်၊ Risk၊ ရေရှည်အကျိုးဆက်<br><br>
+
+      <b>Option B:</b> ${escapeHtml(b)}<br>
+      စဉ်းစားရန် — အကျိုးကျေးဇူး၊ ကုန်ကျစရိတ်၊ Risk၊ ရေရှည်အကျိုးဆက်<br><br>
+
+      <b>အရေးကြီးဆုံးမေးခွန်း</b><br>
+      “ဘယ် Option က အလွယ်ဆုံးလဲ” ထက်
+      “ဘယ် Option က ကိုယ့်ရဲ့ Long-term Goal နဲ့ ပိုကိုက်ညီလဲ”
+      ကို ပြန်စဉ်းစားပါ
+    </div>
+  `;
+}
+
+/* =========================
+   5S
+========================= */
+
+function open5S(){
+  openModal(
+    "5S Reset",
+    `
+    <div class="detail">
+      <h3>01 SPOT</h3>
+      <p>အခုဘာဖြစ်နေလဲ သတိထားပါ</p>
+
+      <h3>02 STEADY</h3>
+      <p>4 sec inhale → 2 sec hold → 6 sec exhale</p>
+
+      <h3>03 SAY</h3>
+      <p>ခံစားချက်ကို နာမည်ပေးပါ</p>
+
+      <h3>04 SHIFT</h3>
+      <p>Fact နဲ့ Interpretation ခွဲပါ</p>
+
+      <h3>05 STEP</h3>
+      <p>အခုလုပ်နိုင်တဲ့ အဆင့်အသေးဆုံးတစ်ခုကို ရွေးပါ</p>
+
+      <div class="action-box">
+        <b>အခုလုပ်ရန်</b><br>
+        “ငါ့ထိန်းချုပ်နိုင်တဲ့အရာတစ်ခုက ဘာလဲ”
+        လို့ ကိုယ့်ကိုယ်ကိုမေးပြီး အဲဒီအရာတစ်ခုကို ရေးပါ
+      </div>
+    </div>
+    `
+  );
+}
+
+/* =========================
+   PROGRESS
+========================= */
+
+function renderProgress(){
+  const p=totalProgress();
+
+  document.getElementById("progressRing").style.setProperty("--p",p);
+  document.getElementById("progressRingValue").textContent=p+"%";
+
+  const courses=Object.keys(courseData);
+
+  document.getElementById("courseProgress").innerHTML=courses.map(k=>{
+    const total=courseData[k].modules.length;
+    const done=data.courses[k].completed.length;
+    const pct=Math.round(done/total*100);
+
+    return `
+      <div style="margin-bottom:17px">
+        <div class="progress-label">
+          <span>${courseData[k].title}</span>
+          <span>${pct}%</span>
+        </div>
+        <div class="progress"><div style="width:${pct}%"></div></div>
+      </div>
+    `;
+  }).join("");
+}
+
+/* =========================
+   PROFILE / NOTIFICATIONS
+========================= */
+
+function renderSettings(){
+  document.getElementById("notifyMorning").checked=data.notifications.morning;
+  document.getElementById("notifyAfternoon").checked=data.notifications.afternoon;
+  document.getElementById("notifyEvening").checked=data.notifications.evening;
+}
+
+["Morning","Afternoon","Evening"].forEach(x=>{
+  document.getElementById("notify"+x).addEventListener("change",e=>{
+    data.notifications[x.toLowerCase()]=e.target.checked;
+    save();
   });
-}
+});
 
 async function requestNotifications(){
-
   if(!("Notification" in window)){
-    toast("ဒီ Browser မှာ Notification မထောက်ပံ့ပါ");
+    toast("ဒီ Browser မှာ Notification API မရပါ");
     return;
   }
 
@@ -3355,126 +3141,89 @@ async function requestNotifications(){
 
   if(permission==="granted"){
     new Notification("LifeRise",{
-      body:"LifeRise Notification Ready — Build a Better Life"
+      body:"LifeRise Notification အလုပ်လုပ်နေပါပြီ"
     });
-
-    toast("Notification enabled");
-  }else{
-    toast("Notification permission မရပါ");
   }
+
+  toast("Notification Permission: "+permission);
 }
 
-function openNotificationSettings(){
-  showPage("settings");
+/* =========================
+   STREAK
+========================= */
+
+function touchActivity(){
+  const today=todayKey();
+
+  if(data.lastActive===today)return;
+
+  const last=data.lastActive;
+
+  if(!last){
+    data.streak=1;
+  }else{
+    const d1=new Date(last);
+    const d2=new Date(today);
+    const diff=Math.round((d2-d1)/(1000*60*60*24));
+
+    if(diff===1){
+      data.streak++;
+    }else if(diff>1){
+      data.streak=1;
+    }
+  }
+
+  data.lastActive=today;
 }
 
-/* =========================================================
-   PROGRESS
-========================================================= */
-
-function renderProgress(){
-
-  const lessons=data.school.completed.length;
-  const habits=data.habits.length;
-  const goals=data.goals.length;
-  const journals=Object.keys(data.journal).length;
-  const percent=Math.round(lessons/365*100);
-
-  document.getElementById("progressLessons").textContent=lessons;
-  document.getElementById("progressHabits").textContent=habits;
-  document.getElementById("progressGoals").textContent=goals;
-  document.getElementById("progressJournal").textContent=journals;
-
-  document.getElementById("progressSchoolText").textContent=percent+"%";
-  document.getElementById("progressSchoolBar").style.width=percent+"%";
-}
-
-/* =========================================================
-   DASHBOARD
-========================================================= */
-
-function renderDashboardLesson(){
-
-  const day=getCurrentSchoolDay();
-  const lesson=lessonContent(day);
-
-  document.getElementById("dashboardLesson").innerHTML=`
-    <div class="lesson-number">DAY ${day} • ${lesson.phase}</div>
-    <div class="lesson-title">${escapeHTML(lesson.title)}</div>
-    <div class="lesson-desc">${escapeHTML(lesson.objective)}</div>
-
-    <div style="margin-top:15px">
-      <div class="progress">
-        <span style="width:${data.school.completed.includes(day)?100:0}%"></span>
-      </div>
-    </div>
-
-    <button class="btn btn-primary btn-small" style="margin-top:15px" onclick="openSchoolLesson(${day})">
-      ${data.school.completed.includes(day)?"Review Lesson":"Start Lesson"}
-    </button>
-  `;
-}
-
-function renderDashboard(){
-
-  const name=data.name||"LifeRise Member";
-
-  document.getElementById("greeting").textContent=
-    "မင်္ဂလာပါ "+name;
-
-  document.getElementById("dashStreak").textContent=data.streak||0;
-  document.getElementById("dashLessons").textContent=data.school.completed.length;
-
-  const active=data.goals.filter(g=>!g.completed).length;
-  document.getElementById("dashGoals").textContent=active;
-
-  const gap=Math.max(0,(data.targetIncome||0)-(data.currentIncome||0));
-  document.getElementById("incomeGapDash").textContent=formatMoney(gap);
-
-  const hp=habitCompletionForDays(1);
-  document.getElementById("habitProgressDash").style.width=hp+"%";
-
-  renderDashboardLesson();
-  renderDashboardActions();
-  updateScoreUI();
-}
-
-/* =========================================================
-   ROADMAP
-========================================================= */
-
-function renderRoadmap(){
-
-  const day=getDayOfYear();
-  const percent=Math.round(day/365*100);
-
-  document.getElementById("roadmapDay").textContent=day;
-  document.getElementById("roadmapPercent").textContent=percent+"%";
-  document.getElementById("roadmapProgress").style.width=percent+"%";
-}
-
-/* =========================================================
+/* =========================
    MODAL
-========================================================= */
+========================= */
 
-function openModal(){
-  document.getElementById("modal").classList.add("show");
+function openModal(title,body){
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=body;
+  document.getElementById("modalBackdrop").classList.add("show");
 }
 
 function closeModal(){
-  document.getElementById("modal").classList.remove("show");
+  document.getElementById("modalBackdrop").classList.remove("show");
 }
 
-document.getElementById("modal").addEventListener("click",e=>{
-  if(e.target.id==="modal")closeModal();
+function backdropClose(e){
+  if(e.target===document.getElementById("modalBackdrop")){
+    closeModal();
+  }
+}
+
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closeModal();
 });
 
-/* =========================================================
+/* =========================
+   MORE DRAWER
+========================= */
+
+function openMore(){
+  openModal(
+    "LifeRise Menu",
+    `
+    <div class="grid g2">
+      ${Object.keys(pageTitles).map(p=>`
+        <button class="btn" onclick="showPage('${p}');closeModal()">
+          ${pageTitles[p]}
+        </button>
+      `).join("")}
+    </div>
+    `
+  );
+}
+
+/* =========================
    EXPORT / RESET
-========================================================= */
+========================= */
 
 function exportData(){
-
   const blob=new Blob(
     [JSON.stringify(data,null,2)],
     {type:"application/json"}
@@ -3482,111 +3231,60 @@ function exportData(){
 
   const url=URL.createObjectURL(blob);
   const a=document.createElement("a");
-
   a.href=url;
   a.download="liferise-backup-"+todayKey()+".json";
   a.click();
-
   URL.revokeObjectURL(url);
 
-  toast("Data exported");
+  toast("Backup File ပြုလုပ်ပြီးပါပြီ");
 }
 
 function resetData(){
-
-  const ok=confirm("LifeRise data အားလုံးကို ဖျက်မှာသေချာပါသလား");
-
-  if(!ok)return;
+  if(!confirm("LifeRise Data အားလုံးကို ဖျက်မှာသေချာပါသလား"))return;
 
   localStorage.removeItem(STORAGE_KEY);
-  data=clone(defaultData);
+  data=deepClone(defaultData);
 
-  saveData();
+  save();
   location.reload();
 }
 
-/* =========================================================
-   TOAST
-========================================================= */
+/* =========================
+   HELPERS
+========================= */
 
-let toastTimer;
-
-function toast(message){
-
-  const el=document.getElementById("toast");
-
-  el.textContent=message;
-  el.classList.add("show");
-
-  clearTimeout(toastTimer);
-
-  toastTimer=setTimeout(()=>{
-    el.classList.remove("show");
-  },2500);
+function escapeHtml(str){
+  return String(str||"")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
-/* =========================================================
-   REFRESH
-========================================================= */
-
-function refreshAll(){
-
+function renderAll(){
   renderDashboard();
   renderAssessment();
-  renderHabits();
-  renderGoals();
-  renderProgress();
-  renderRoadmap();
-  renderChallenge();
-  renderNotificationSettings();
+  loadLifeProfile();
 
-  loadProfile();
+  renderSchool();
 
   renderCourse("wealth");
   renderCourse("career");
   renderCourse("business");
 
-  if(document.getElementById("page-school").classList.contains("active")){
-    renderSchool();
-  }
-
-  if(document.getElementById("page-coach").classList.contains("active")){
-    renderCoachHistory();
-  }
+  renderHabits();
+  renderGoals();
+  renderChallenge();
+  renderProgress();
+  renderSettings();
 }
 
-/* =========================================================
+/* =========================
    INIT
-========================================================= */
+========================= */
 
-function init(){
-
-  if(!data.school.selectedDay){
-    data.school.selectedDay=getDayOfYear();
-  }
-
-  if(data.currentIncome){
-    const c=document.getElementById("currentIncome");
-    if(c)c.value=data.currentIncome;
-  }
-
-  if(data.targetIncome){
-    const t=document.getElementById("targetIncome");
-    if(t)t.value=data.targetIncome;
-  }
-
-  refreshAll();
-  renderSchool();
-
-  document.getElementById("avatar").textContent=
-    (data.name||"A").charAt(0).toUpperCase();
-
-  setInterval(()=>{
-    refreshAll();
-  },60000);
-}
-
-init();
+renderAll();
 
 </script>
 </body>
